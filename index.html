@@ -3,9 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home page</title>
+    <title>Grace and Glow | Luxury Pink Salon</title>
+    <!-- Single CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>HOME PAGE</h1>
+
+    <!-- MODERN LUXURY START SCREEN (PRELOADER) -->
+    <div id="preloader">
+        <div class="preloader-card">
+            <div class="preloader-badge">
+                <i class="fa-solid fa-crown"></i>
+            </div>
+            
+            <!-- MODERN SALON BRANDING -->
+            <div class="brand-wrapper">
+                <span class="est-tag">EST. 2026</span>
+                <h1 class="modern-salon-title">Grace <span class="ampersand">&</span> Glow</h1>
+                <div class="gold-divider">
+                    <span class="diamond">◆</span>
+                </div>
+                <p class="salon-subtext">LUXURY SPA & BEAUTY SANCTUARY</p>
+            </div>
+
+            <div class="preloader-bar">
+                <div class="bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            <h2>Grace & <span>Glow</span></h2>
+        </div>
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <!-- GALLERY DROPDOWN -->
+                <li class="dropdown" id="galleryDropdown">
+                    <a href="gallery.html">Gallery <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pages/nails.html">Nail Art Station</a></li>
+                        <li><a href="pages/pedicure.html">Spa Pedicure Lounge</a></li>
+                        <li><a href="pages/facials.html">Beauty Rooms</a></li>
+                        <li><a href="pages/hair.html">Hair Studio</a></li>
+                        <li><a href="pages/makeup.html">Makeup Vanity</a></li>
+                        <li><a href="pages/lashes.html">Eyelash Studio</a></li>
+                        <li><a href="pages/before-after.html">Transformations</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#" class="btn-primary glow-btn">Book Now</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SLIDER SECTION -->
+    <section class="hero-slider">
+        <!-- Slide 1 -->
+        <div class="slide active" style="background-image: linear-gradient(rgba(35, 8, 24, 0.65), rgba(35, 8, 24, 0.65)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1600&auto=format&fit=crop');">
+            <div class="hero-content center-content">
+                <span class="tagline anim-element">Khosh Amdeed to Luxury & Care</span>
+                <h1 class="anim-element">Step Into Your Pink Paradise</h1>
+                <p class="anim-element">Experience world-class spa treatments, premium nail art, and hair styling in our modern chic aesthetic salon.</p>
+                <div class="hero-btns anim-element">
+                    <a href="gallery.html" class="btn-primary glow-btn">View Full Gallery</a>
+                    <a href="#preview" class="btn-secondary">Explore Interiors</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" style="background-image: linear-gradient(rgba(35, 8, 24, 0.65), rgba(35, 8, 24, 0.65)), url('https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1600&auto=format&fit=crop');">
+            <div class="hero-content center-content">
+                <span class="tagline anim-element">Luxury Nail Bar</span>
+                <h1 class="anim-element">Custom Acrylics & Gel Extensions</h1>
+                <p class="anim-element">Designed by master technicians using top-tier organic products.</p>
+                <div class="hero-btns anim-element">
+                    <a href="gallery.html" class="btn-primary glow-btn">Explore Nail Art</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" style="background-image: linear-gradient(rgba(35, 8, 24, 0.65), rgba(35, 8, 24, 0.65)), url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1600&auto=format&fit=crop');">
+            <div class="hero-content center-content">
+                <span class="tagline anim-element">Relax & Refresh</span>
+                <h1 class="anim-element">Chic Pink Beauty & Spa Rooms</h1>
+                <p class="anim-element">Rejuvenate your skin with our signature hydrating facials.</p>
+                <div class="hero-btns anim-element">
+                    <a href="#" class="btn-primary glow-btn">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Arrows -->
+        <button class="prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+    </section>
+
+    <!-- GALLERY PREVIEW SECTION -->
+    <section id="preview" class="gallery-preview">
+        <div class="section-title">
+            <h2>Our Interior Aesthetics</h2>
+            <p>A quick peak inside our modern pink beauty salon</p>
+        </div>
+        <div class="preview-grid">
+            <div class="preview-card move-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600&auto=format&fit=crop');">
+                <div class="card-overlay"></div>
+                <div class="card-info">
+                    <div class="icon-wrapper"><i class="fa-solid fa-hand-sparkles"></i></div>
+                    <h3>Nail Station</h3>
+                    <p>Luxury Gel & Acrylic extensions</p>
+                </div>
+            </div>
+            <div class="preview-card move-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600&auto=format&fit=crop');">
+                <div class="card-overlay"></div>
+                <div class="card-info">
+                    <div class="icon-wrapper"><i class="fa-solid fa-spa"></i></div>
+                    <h3>Beauty Room</h3>
+                    <p>Relaxing organic facials</p>
+                </div>
+            </div>
+            <div class="preview-card move-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?q=80&w=600&auto=format&fit=crop');">
+                <div class="card-overlay"></div>
+                <div class="card-info">
+                    <div class="icon-wrapper"><i class="fa-solid fa-couch"></i></div>
+                    <h3>Spa Pedicure</h3>
+                    <p>Premium massage chairs</p>
+                </div>
+            </div>
+            <div class="preview-card move-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=600&auto=format&fit=crop');">
+                <div class="card-overlay"></div>
+                <div class="card-info">
+                    <div class="icon-wrapper"><i class="fa-solid fa-scissors"></i></div>
+                    <h3>Hair Studio</h3>
+                    <p>Modern cuts & premium coloring</p>
+                </div>
+            </div>
+            <div class="preview-card move-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600&auto=format&fit=crop');">
+                <div class="card-overlay"></div>
+                <div class="card-info">
+                    <div class="icon-wrapper"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>Makeup Vanity</h3>
+                    <p>Bridal & party makeover lounge</p>
+                </div>
+            </div>
+            <div class="preview-card move-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1583001809873-a1284a5da527?q=80&w=600&auto=format&fit=crop');">
+                <div class="card-overlay"></div>
+                <div class="card-info">
+                    <div class="icon-wrapper"><i class="fa-solid fa-eye"></i></div>
+                    <h3>Lash & Brow Bar</h3>
+                    <p>Extensions & microblading</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript File Link -->
+    <script src="script.js"></script>
 </body>
 </html>
