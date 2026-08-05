@@ -1,70 +1,85 @@
-document.addEventListener('DOMContentLoaded', () => {
+// PRELOADER
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const preloader = document.getElementById('preloader');
+    if(preloader) preloader.classList.add('fade-out');
+  }, 1500);
+});
 
-  // 1. PRELOADER HIDE
-  const preloader = document.getElementById('preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.classList.add('hidden');
-    });
-    // Fallback if load event fires too fast
-    setTimeout(() => {
-      preloader.classList.add('hidden');
-    }, 1000);
-  }
+// MOBILE MENU
+const mobileBtn = document.getElementById('mobile-menu-btn');
+const navLinks = document.getElementById('nav-links');
+if (mobileBtn && navLinks) {
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+}
 
-  // 2. MOBILE MENU TOGGLE
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
+// HERO SLIDER
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let currentSlide = 0;
+let slideInterval;
 
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-  }
-
-  // 3. MOBILE FRIENDLY DROPDOWN CLICK HANDLER
-  const galleryDropdown = document.getElementById('galleryDropdown');
-  const dropdownBtn = document.getElementById('dropdownBtn');
-
-  if (dropdownBtn && galleryDropdown) {
-    dropdownBtn.addEventListener('click', (e) => {
-      // Small screen / Touch device check
-      if (window.innerWidth <= 768) {
-        e.preventDefault(); // Prevent navigating immediately on tap
-        galleryDropdown.classList.toggle('open');
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
+      const video = slide.querySelector('video');
+      if (video) {
+        video.currentTime = 0;
+        video.play();
       }
-    });
-  }
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (galleryDropdown && !galleryDropdown.contains(e.target)) {
-      galleryDropdown.classList.remove('open');
     }
   });
+}
 
-  // 4. SCROLL ANIMATION OBSERVER
-  const animatedElements = document.querySelectorAll('.scroll-anim');
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
 
-  if ('IntersectionObserver' in window) {
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
-    };
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+}
 
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('appear');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
+function startAutoSlide() {
+  slideInterval = setInterval(nextSlide, 5000);
+}
 
-    animatedElements.forEach(el => scrollObserver.observe(el));
-  } else {
-    // Fallback for older browsers
-    animatedElements.forEach(el => el.classList.add('appear'));
-  }
+function stopAutoSlide() {
+  clearInterval(slideInterval);
+}
 
+if(nextBtn && prevBtn) {
+  nextBtn.addEventListener('click', () => {
+    nextSlide();
+    stopAutoSlide();
+    startAutoSlide();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    prevSlide();
+    stopAutoSlide();
+    startAutoSlide();
+  });
+}
+
+// WATCH VIDEO BUTTON CLICK EVENT
+const watchVideoBtns = document.querySelectorAll('.btn-watch-video');
+watchVideoBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentSlide = 0; // Video slide (Slide 1)
+    showSlide(currentSlide);
+    stopAutoSlide();
+    startAutoSlide();
+
+    // Smooth scroll to top/hero if needed
+    document.getElementById('hero-slider').scrollIntoView({ behavior: 'smooth' });
+  });
 });
+
+startAutoSlide();
