@@ -1,0 +1,283 @@
+/*=========================
+ GOOGLE FONT
+==========================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#12081f;
+    color:#fff;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/*=========================
+ SECTION TITLE
+==========================*/
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title span{
+    color:#ff70c8;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:14px;
+}
+
+.section-title h2{
+    font-size:38px;
+    margin-top:10px;
+}
+
+/*=========================
+ SERVICES
+==========================*/
+
+.services-section{
+    padding:90px 0;
+}
+
+.service-tabs{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:50px;
+}
+
+.service-tabs button{
+    padding:14px 32px;
+    border:none;
+    border-radius:50px;
+    background:rgba(255, 255, 255, .06);
+    color:#fff;
+    cursor:pointer;
+    transition:.4s ease;
+    position: relative;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 600;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, .12);
+}
+
+.service-tabs button:hover,
+.service-tabs button.active{
+    background:linear-gradient(45deg,#ff4db8,#7d4dff);
+    box-shadow:0 0 20px rgba(255,0,170,.5);
+}
+
+/* Shine Effect */
+
+.service-tabs button::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .45)transparent);
+    transition: .7s;
+}
+
+/* Hover */
+
+.service-tabs button:hover,.section-tabs button.active{
+    color: #fff;
+    background: linear-gradient(135deg, #ff4db8, #b44dff, #6f6bff);
+    transform: translate(-4px);
+    box-shadow: 0 0 10px rgba(255, 77, 184, .7), 0 0 25px rgba(180, 77, 255, .6), 0 0 45px rgba(111, 107, 255, .5);
+}
+
+.service-tabs button:hover::before{
+    left: 140%;
+}
+
+.service-tabs button.active{
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        box-shadow: 0 0 8px #ff4db8, 0 0 20px #b44dff;
+    }
+
+    to{
+        box-shadow: 0 0 8px #ff4db8, 0 0 40px #b44dff, 0 0 65px #6f6bff;
+    }
+}
+
+/*=========================
+ SERVICE CARDS
+==========================*/
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.service-card{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.service-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(255,0,170,.35);
+}
+
+.service-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.service-card:hover img{
+    transform:scale(1.1);
+}
+
+.service-card h3{
+    padding:20px 20px 10px;
+    font-size:24px;
+}
+
+.service-card p{
+    padding:0 20px;
+    color:#ddd;
+    line-height:1.7;
+}
+
+.service-card a{
+    display:inline-block;
+    margin:20px;
+    padding:12px 28px;
+    text-decoration:none;
+    color:#fff;
+    border-radius:40px;
+    background:linear-gradient(45deg,#ff4db8,#7d4dff);
+    transition:.3s;                                 
+}
+
+.service-card a:hover{
+    transform:scale(1.05);
+}
+
+/*=========================
+ PACKAGES
+==========================*/
+
+.packages{
+    padding:90px 0;
+}
+
+.package-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+}
+
+.package-card{
+    background:rgba(255,255,255,.05);
+    border-radius:20px;
+    overflow:hidden;
+    backdrop-filter:blur(15px);
+    transition:.4s;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.package-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(255,0,170,.35);
+}
+
+.package-card img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+}
+
+.package-content{
+    padding:25px;
+}
+
+.package-content h3{
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.package-content ul{
+    list-style:none;
+}
+
+.package-content ul li{
+    margin:12px 0;
+    color:#ddd;
+}
+
+.package-content h4{
+    color:#ff70c8;
+    font-size:32px;
+    margin:25px 0;
+}
+
+.package-content a{
+    display:inline-block;
+    text-decoration:none;
+    color:#fff;
+    padding:12px 35px;
+    border-radius:40px;
+    background:linear-gradient(45deg,#ff4db8,#7d4dff);
+    transition:.3s;
+}
+
+.package-content a:hover{
+    transform:scale(1.05);
+}
+
+.featured{
+    border:2px solid #ff4db8;
+}
+
+/*=========================
+ RESPONSIVE
+==========================*/
+
+@media(max-width:768px){
+
+.section-title h2{
+    font-size:28px;
+}
+
+.service-tabs{
+    gap:10px;
+}
+
+.service-tabs button{
+    padding:10px 20px;
+}
+
+.package-content h3{
+    font-size:22px;
+}
+
+}
