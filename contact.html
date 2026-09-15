@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Contact | Glamora
+</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+
+Glamora<span>.</span>
+
+</div>
+
+<div class="nav-links">
+
+<a href="gallery.html">
+Gallery
+</a>
+
+<a href="packages.html">
+Packages
+</a>
+
+<a href="contact.html">
+Contact
+</a>
+
+</div>
+
+</nav>
+
+
+
+<main
+class="
+container
+fade-in
+">
+
+
+<section
+style="
+padding:
+70px 0
+">
+
+
+<h1 class="section-title">
+
+Contact Us
+
+</h1>
+
+
+<p class="section-subtitle">
+
+We would love to hear
+from you.
+
+</p>
+
+
+
+<div class="contact-grid">
+
+
+<!-- FORM -->
+
+<div
+class="
+glass
+contact-form
+">
+
+
+<h2>
+
+Send Us a Message
+
+</h2>
+
+
+<form
+id="contactForm">
+
+
+<input
+class="input"
+type="text"
+placeholder="👤 Your Name"
+required>
+
+
+<input
+class="input"
+type="tel"
+placeholder="📞 Phone Number"
+required>
+
+
+<textarea
+class="input"
+placeholder="💌 Your Message"
+required>
+</textarea>
+
+
+<button
+class="
+btn
+btn-gradient
+submit-btn
+">
+
+Send Message
+
+</button>
+
+
+</form>
+
+
+<p
+id="successMessage"
+style="
+display:none;
+color:#7ee787;
+margin-top:15px;
+">
+
+Message sent successfully!
+
+</p>
+
+
+</div>
+
+
+
+<!-- INFO -->
+
+<div
+class="
+glass
+contact-info
+">
+
+
+<h2>
+
+Contact Information
+
+</h2>
+
+
+<div class="info-item">
+
+📍
+
+<div>
+
+<strong>
+Address
+</strong>
+
+<p>
+123 Beauty Street,
+New York, USA
+</p>
+
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+📞
+
+<div>
+
+<strong>
+Phone
+</strong>
+
+<p>
++1 234 567 8900
+</p>
+
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+✉️
+
+<div>
+
+<strong>
+Email
+</strong>
+
+<p>
+info@glamora.com
+</p>
+
+</div>
+
+</div>
+
+
+<div class="info-item">
+
+🕒
+
+<div>
+
+<strong>
+Opening Hours
+</strong>
+
+<p>
+Mon - Sat: 9AM - 8PM
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+</main>
+
+
+
+<footer class="footer">
+
+<div
+class="
+container
+footer-grid
+">
+
+
+<div>
+
+<div class="logo">
+
+Glamora<span>.</span>
+
+</div>
+
+<p>
+
+We bring out the beauty
+in you with luxury care
+and professional expertise.
+
+</p>
+
+</div>
+
+
+<div>
+
+<h3>
+Quick Links
+</h3>
+
+<a href="gallery.html">
+Gallery
+</a>
+
+<br>
+
+<a href="packages.html">
+Packages
+</a>
+
+<br>
+
+<a href="contact.html">
+Contact
+</a>
+
+</div>
+
+
+<div>
+
+<h3>
+Our Services
+</h3>
+
+<p>
+Hair Styling
+</p>
+
+<p>
+Makeup
+</p>
+
+<p>
+Skin Care
+</p>
+
+<p>
+Nail Art
+</p>
+
+</div>
+
+
+<div>
+
+<h3>
+Newsletter
+</h3>
+
+<p>
+Subscribe for beauty
+updates and offers.
+</p>
+
+
+<div class="newsletter">
+
+<input
+placeholder="Enter your email">
+
+<button
+class="
+btn
+btn-gradient
+">
+
+→
+
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="copyright">
+
+© 2026 Glamora Beauty Salon.
+All Rights Reserved.
+
+</div>
+
+</footer>
+
+
+
+<style>
+
+.contact-grid {
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:30px;
+
+}
+
+
+.contact-form {
+
+padding:35px;
+
+}
+
+
+.contact-form h2 {
+
+margin-bottom:25px;
+
+}
+
+
+#contactForm {
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+
+.submit-btn {
+
+width:100%;
+
+}
+
+
+.contact-info {
+
+padding:35px;
+
+}
+
+
+.contact-info h2 {
+
+margin-bottom:30px;
+
+}
+
+
+.info-item {
+
+display:flex;
+
+gap:15px;
+
+margin-bottom:25px;
+
+padding-bottom:20px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.08);
+
+}
+
+
+.info-item p {
+
+color:
+var(--muted);
+
+margin-top:5px;
+
+}
+
+
+@media(max-width:750px){
+
+.contact-grid{
+
+grid-template-columns:
+1fr;
+
+}
+
+}
+
+</style>
+
+
+
+<script>
+
+const form =
+document.getElementById(
+"contactForm"
+);
+
+
+form.addEventListener(
+"submit",
+e => {
+
+e.preventDefault();
+
+
+document
+.getElementById(
+"successMessage"
+)
+.style.display = "block";
+
+
+form.reset();
+
+}
+);
+
+</script>
+
+
+</body>
+
+</html>
