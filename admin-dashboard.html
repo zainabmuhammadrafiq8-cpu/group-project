@@ -1,0 +1,3071 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Glamora</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Glamora<span>.</span>
+    </div>
+
+
+    <div class="admin-nav">
+
+        <span id="adminEmail">
+            Loading...
+        </span>
+
+
+        <button
+        id="logoutBtn"
+        class="btn btn-outline">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container fade-in">
+
+
+<section class="dashboard-page">
+
+
+<!-- ================= TITLE ================= -->
+
+<div class="dashboard-header">
+
+    <div>
+
+        <p class="dashboard-small">
+            GLAMORA ADMIN PANEL
+        </p>
+
+
+        <h1 class="section-title">
+            Admin Dashboard
+        </h1>
+
+    </div>
+
+
+    <div
+    id="dashboardMessage"
+    class="dashboard-message">
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= REAL STATS ================= -->
+
+<div class="stats-grid">
+
+
+    <div class="glass stat-card">
+
+        <div class="stat-icon">
+            📅
+        </div>
+
+        <h2 id="totalBookings">
+            0
+        </h2>
+
+        <p>
+            Total Bookings
+        </p>
+
+    </div>
+
+
+
+    <div class="glass stat-card">
+
+        <div class="stat-icon">
+            ⏳
+        </div>
+
+        <h2 id="pendingBookings">
+            0
+        </h2>
+
+        <p>
+            Pending
+        </p>
+
+    </div>
+
+
+
+    <div class="glass stat-card">
+
+        <div class="stat-icon">
+            ✅
+        </div>
+
+        <h2 id="confirmedBookings">
+            0
+        </h2>
+
+        <p>
+            Confirmed
+        </p>
+
+    </div>
+
+
+
+    <div class="glass stat-card">
+
+        <div class="stat-icon">
+            👩‍🎨
+        </div>
+
+        <h2 id="totalStaff">
+            0
+        </h2>
+
+        <p>
+            Total Staff
+        </p>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================= BOOKINGS ================= -->
+
+<div class="glass dashboard-section">
+
+
+    <div class="section-top">
+
+        <div>
+
+            <p class="dashboard-small">
+                APPOINTMENTS
+            </p>
+
+            <h2>
+                All Bookings
+            </h2>
+
+        </div>
+
+
+        <button
+        id="refreshBookingsBtn"
+        class="btn btn-outline">
+
+            ↻ Refresh
+
+        </button>
+
+    </div>
+
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+        id="bookingSearch"
+        class="input"
+        type="text"
+        placeholder="🔍 Search customer, phone or service...">
+
+    </div>
+
+
+
+    <!-- TABLE -->
+
+    <div class="table-wrapper">
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>Customer</th>
+
+                    <th>Phone</th>
+
+                    <th>Service</th>
+
+                    <th>Staff</th>
+
+                    <th>Date</th>
+
+                    <th>Time</th>
+
+                    <th>Status</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody
+            id="adminBookings">
+
+                <tr>
+
+                    <td colspan="8">
+                        Loading bookings...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================= FORMS ================= -->
+
+<div class="admin-forms">
+
+
+
+<!-- ================= ADD SERVICE ================= -->
+
+<div class="glass dashboard-section">
+
+
+    <p class="dashboard-small">
+        SERVICES
+    </p>
+
+
+    <h2>
+        Add Service
+    </h2>
+
+
+    <form
+    id="serviceForm"
+    class="admin-form">
+
+
+        <input
+        id="serviceName"
+        class="input"
+        type="text"
+        placeholder="Service Name"
+        required>
+
+
+        <input
+        id="servicePrice"
+        class="input"
+        type="number"
+        placeholder="Price"
+        required>
+
+
+        <input
+        id="serviceDuration"
+        class="input"
+        type="text"
+        placeholder="Duration (e.g. 60 min)"
+        required>
+
+
+        <button
+        type="submit"
+        class="btn btn-gradient">
+
+            + Add Service
+
+        </button>
+
+
+    </form>
+
+
+    <p
+    id="serviceMessage"
+    class="form-message">
+
+    </p>
+
+
+</div>
+
+
+
+<!-- ================= ADD STAFF ================= -->
+
+<div class="glass dashboard-section">
+
+
+    <p class="dashboard-small">
+        TEAM
+    </p>
+
+
+    <h2>
+        Add Staff
+    </h2>
+
+
+    <form
+    id="staffForm"
+    class="admin-form">
+
+
+        <input
+        id="staffName"
+        class="input"
+        type="text"
+        placeholder="Staff Name"
+        required>
+
+
+        <input
+        id="staffSpecialty"
+        class="input"
+        type="text"
+        placeholder="Specialty"
+        required>
+
+
+        <input
+        id="staffPhoto"
+        class="input"
+        type="text"
+        placeholder="Photo URL (Optional)">
+
+
+        <button
+        type="submit"
+        class="btn btn-gradient">
+
+            + Add Staff
+
+        </button>
+
+
+    </form>
+
+
+    <p
+    id="staffMessage"
+    class="form-message">
+
+    </p>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ================= SERVICES MANAGEMENT ================= -->
+
+<div class="glass dashboard-section">
+
+
+    <div class="section-top">
+
+        <div>
+
+            <p class="dashboard-small">
+                MANAGE SERVICES
+            </p>
+
+            <h2>
+                All Services
+            </h2>
+
+        </div>
+
+
+        <button
+        id="refreshServicesBtn"
+        class="btn btn-outline">
+
+            ↻ Refresh
+
+        </button>
+
+    </div>
+
+
+    <div
+    id="servicesList"
+    class="management-grid">
+
+        Loading services...
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================= STAFF MANAGEMENT ================= -->
+
+<div class="glass dashboard-section">
+
+
+    <div class="section-top">
+
+        <div>
+
+            <p class="dashboard-small">
+                MANAGE TEAM
+            </p>
+
+            <h2>
+                All Staff
+            </h2>
+
+        </div>
+
+
+        <button
+        id="refreshStaffBtn"
+        class="btn btn-outline">
+
+            ↻ Refresh
+
+        </button>
+
+    </div>
+
+
+    <div
+    id="staffList"
+    class="management-grid">
+
+        Loading staff...
+
+    </div>
+
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- ================= EDIT SERVICE MODAL ================= -->
+
+<div
+id="serviceModal"
+class="modal">
+
+    <div class="glass modal-content">
+
+
+        <button
+        class="modal-close"
+        onclick="closeServiceModal()">
+
+            ×
+
+        </button>
+
+
+        <p class="dashboard-small">
+            EDIT SERVICE
+        </p>
+
+
+        <h2>
+            Update Service
+        </h2>
+
+
+        <input
+        type="hidden"
+        id="editServiceId">
+
+
+        <input
+        id="editServiceName"
+        class="input"
+        placeholder="Service Name">
+
+
+        <input
+        id="editServicePrice"
+        class="input"
+        type="number"
+        placeholder="Price">
+
+
+        <input
+        id="editServiceDuration"
+        class="input"
+        placeholder="Duration">
+
+
+        <button
+        id="saveServiceBtn"
+        class="btn btn-gradient">
+
+            Save Changes
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= EDIT STAFF MODAL ================= -->
+
+<div
+id="staffModal"
+class="modal">
+
+    <div class="glass modal-content">
+
+
+        <button
+        class="modal-close"
+        onclick="closeStaffModal()">
+
+            ×
+
+        </button>
+
+
+        <p class="dashboard-small">
+            EDIT STAFF
+        </p>
+
+
+        <h2>
+            Update Staff
+        </h2>
+
+
+        <input
+        type="hidden"
+        id="editStaffId">
+
+
+        <input
+        id="editStaffName"
+        class="input"
+        placeholder="Staff Name">
+
+
+        <input
+        id="editStaffSpecialty"
+        class="input"
+        placeholder="Specialty">
+
+
+        <input
+        id="editStaffPhoto"
+        class="input"
+        placeholder="Photo URL">
+
+
+        <button
+        id="saveStaffBtn"
+        class="btn btn-gradient">
+
+            Save Changes
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= STYLES ================= -->
+
+<style>
+
+
+.dashboard-page {
+
+    padding:45px 0 70px;
+
+}
+
+
+.dashboard-header {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+    gap:20px;
+
+}
+
+
+.dashboard-small {
+
+    color:var(--pink-light);
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+
+.admin-nav {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+#adminEmail {
+
+    color:var(--pink-light);
+
+    font-size:14px;
+
+}
+
+
+
+/* ================= STATS ================= */
+
+.stats-grid {
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:20px;
+
+    margin-bottom:35px;
+
+}
+
+
+.stat-card {
+
+    padding:25px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+
+.stat-card:hover {
+
+    transform:translateY(-5px);
+
+}
+
+
+.stat-icon {
+
+    width:55px;
+
+    height:55px;
+
+    margin:auto auto 15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,78,138,.12);
+
+    font-size:24px;
+
+}
+
+
+.stat-card h2 {
+
+    font-size:28px;
+
+    margin:8px 0;
+
+}
+
+
+.stat-card p {
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+
+/* ================= SECTIONS ================= */
+
+.dashboard-section {
+
+    padding:30px;
+
+    margin-bottom:30px;
+
+}
+
+
+.dashboard-section h2 {
+
+    margin-bottom:25px;
+
+}
+
+
+.section-top {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+
+.section-top h2 {
+
+    margin-bottom:0;
+
+}
+
+
+
+/* ================= SEARCH ================= */
+
+.search-box {
+
+    margin-bottom:20px;
+
+}
+
+
+.search-box .input {
+
+    width:100%;
+
+}
+
+
+
+/* ================= TABLE ================= */
+
+.table-wrapper {
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+
+table {
+
+    width:100%;
+
+    min-width:1000px;
+
+    border-collapse:collapse;
+
+}
+
+
+th {
+
+    text-align:left;
+
+    padding:16px;
+
+    color:var(--pink-light);
+
+    font-size:13px;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.1);
+
+}
+
+
+td {
+
+    padding:16px;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.07);
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+tbody tr:hover {
+
+    background:
+    rgba(255,255,255,.03);
+
+}
+
+
+
+/* ================= BADGES ================= */
+
+.badge {
+
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+
+.badge.pending {
+
+    color:#ffd166;
+
+    background:
+    rgba(255,209,102,.12);
+
+}
+
+
+.badge.confirmed {
+
+    color:#67e480;
+
+    background:
+    rgba(103,228,128,.12);
+
+}
+
+
+.badge.cancelled {
+
+    color:#ff7777;
+
+    background:
+    rgba(255,119,119,.12);
+
+}
+
+
+
+/* ================= BUTTONS ================= */
+
+.action-buttons {
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+
+.action-buttons .btn {
+
+    padding:8px 12px;
+
+    font-size:11px;
+
+}
+
+
+.confirm-btn {
+
+    border:none;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff4e8a,
+        #8b2fd6
+    );
+
+}
+
+
+.cancel-btn {
+
+    background:
+    rgba(255,70,70,.12);
+
+    color:#ff7777;
+
+    border:
+    1px solid rgba(255,70,70,.3);
+
+}
+
+
+
+/* ================= FORMS ================= */
+
+.admin-forms {
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:30px;
+
+}
+
+
+.admin-form {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.form-message {
+
+    margin-top:15px;
+
+    text-align:center;
+
+    font-size:13px;
+
+}
+
+
+
+/* ================= MANAGEMENT ================= */
+
+.management-grid {
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+
+.management-card {
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:16px;
+
+    padding:20px;
+
+    transition:.3s;
+
+}
+
+
+.management-card:hover {
+
+    transform:translateY(-4px);
+
+    border-color:
+    rgba(255,78,138,.4);
+
+}
+
+
+.management-card h3 {
+
+    margin-bottom:8px;
+
+}
+
+
+.management-card p {
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin:6px 0;
+
+}
+
+
+.card-actions {
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:18px;
+
+}
+
+
+.edit-btn {
+
+    background:
+    rgba(139,47,214,.15);
+
+    color:
+    #c28cff;
+
+    border:
+    1px solid rgba(139,47,214,.3);
+
+}
+
+
+.delete-btn {
+
+    background:
+    rgba(255,70,70,.12);
+
+    color:#ff7777;
+
+    border:
+    1px solid rgba(255,70,70,.3);
+
+}
+
+
+
+/* ================= STAFF PHOTO ================= */
+
+.staff-photo {
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    margin-bottom:12px;
+
+    border:
+    2px solid rgba(255,78,138,.3);
+
+}
+
+
+.staff-placeholder {
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:25px;
+
+    background:
+    rgba(255,78,138,.12);
+
+    margin-bottom:12px;
+
+}
+
+
+
+/* ================= MODAL ================= */
+
+.modal {
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+    rgba(0,0,0,.7);
+
+    backdrop-filter:
+    blur(8px);
+
+    z-index:999;
+
+    padding:20px;
+
+}
+
+
+.modal.active {
+
+    display:flex;
+
+}
+
+
+.modal-content {
+
+    width:100%;
+
+    max-width:450px;
+
+    padding:30px;
+
+    position:relative;
+
+}
+
+
+.modal-content h2 {
+
+    margin-bottom:25px;
+
+}
+
+
+.modal-content .input {
+
+    width:100%;
+
+    margin-bottom:15px;
+
+}
+
+
+.modal-close {
+
+    position:absolute;
+
+    right:20px;
+
+    top:15px;
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+}
+
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px){
+
+    .management-grid {
+
+        grid-template-columns:
+        1fr 1fr;
+
+    }
+
+}
+
+
+@media(max-width:900px){
+
+    .stats-grid {
+
+        grid-template-columns:
+        1fr 1fr;
+
+    }
+
+
+    .admin-forms {
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .dashboard-header {
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    .stats-grid {
+
+        grid-template-columns:
+        1fr 1fr;
+
+        gap:12px;
+
+    }
+
+
+    .stat-card {
+
+        padding:18px;
+
+    }
+
+
+    .dashboard-section {
+
+        padding:20px;
+
+    }
+
+
+    .section-top {
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    .management-grid {
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+
+}
+
+
+</style>
+
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+
+import {
+
+    auth,
+    db,
+
+    onAuthStateChanged,
+    signOut,
+
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+
+    serverTimestamp
+
+}
+
+from "./firebase.js";
+
+
+
+let currentAdmin = null;
+
+let allBookings = [];
+
+
+
+/* =====================================
+   AUTH CHECK
+===================================== */
+
+onAuthStateChanged(
+
+    auth,
+
+    async user => {
+
+
+        if(!user){
+
+            window.location.href =
+            "admin-login.html";
+
+            return;
+
+        }
+
+
+        currentAdmin = user;
+
+
+        document.getElementById(
+            "adminEmail"
+        ).innerText = user.email;
+
+
+        await loadDashboard();
+
+
+    }
+
+);
+
+
+
+
+/* =====================================
+   LOAD EVERYTHING
+===================================== */
+
+async function loadDashboard(){
+
+    await Promise.all([
+
+        loadBookings(),
+
+        loadServices(),
+
+        loadStaff()
+
+    ]);
+
+}
+
+
+
+
+/* =====================================
+   LOAD BOOKINGS
+===================================== */
+
+async function loadBookings(){
+
+
+    const tbody =
+    document.getElementById(
+        "adminBookings"
+    );
+
+
+    tbody.innerHTML = `
+
+        <tr>
+
+            <td colspan="8">
+
+                Loading bookings...
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+    try{
+
+
+        const snapshot =
+        await getDocs(
+
+            collection(
+                db,
+                "bookings"
+            )
+
+        );
+
+
+        allBookings = [];
+
+
+        snapshot.forEach(
+
+            bookingDoc => {
+
+
+                allBookings.push({
+
+                    id:
+                    bookingDoc.id,
+
+                    ...bookingDoc.data()
+
+                });
+
+
+            }
+
+        );
+
+
+        renderBookings(
+            allBookings
+        );
+
+
+        updateBookingStats();
+
+
+    }
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="8">
+
+                    Error loading bookings:
+                    ${error.message}
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+    }
+
+
+}
+
+
+
+
+/* =====================================
+   RENDER BOOKINGS
+===================================== */
+
+function renderBookings(bookings){
+
+
+    const tbody =
+    document.getElementById(
+        "adminBookings"
+    );
+
+
+    tbody.innerHTML = "";
+
+
+    if(bookings.length === 0){
+
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="8">
+
+                    No bookings found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        return;
+
+
+    }
+
+
+
+    bookings.forEach(
+
+        data => {
+
+
+            const status =
+            data.status || "Pending";
+
+
+            const statusClass =
+            status.toLowerCase();
+
+
+            tbody.innerHTML += `
+
+                <tr>
+
+
+                    <td>
+
+                        ${data.customerName || "Guest"}
+
+                    </td>
+
+
+                    <td>
+
+                        ${data.phone || "-"}
+
+                    </td>
+
+
+                    <td>
+
+                        ${data.service || "-"}
+
+                    </td>
+
+
+                    <td>
+
+                        ${data.staff || "-"}
+
+                    </td>
+
+
+                    <td>
+
+                        ${data.date || "-"}
+
+                    </td>
+
+
+                    <td>
+
+                        ${data.time || "-"}
+
+                    </td>
+
+
+                    <td>
+
+                        <span
+                        class="
+                        badge
+                        ${statusClass}
+                        ">
+
+                            ${status}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+
+                        <div class="action-buttons">
+
+
+                            <button
+                            class="
+                            btn
+                            confirm-btn
+                            "
+
+                            onclick="
+                            updateBookingStatus(
+                                '${data.id}',
+                                'Confirmed'
+                            )
+                            ">
+
+                                Confirm
+
+                            </button>
+
+
+
+                            <button
+                            class="
+                            btn
+                            cancel-btn
+                            "
+
+                            onclick="
+                            updateBookingStatus(
+                                '${data.id}',
+                                'Cancelled'
+                            )
+                            ">
+
+                                Cancel
+
+                            </button>
+
+
+                        </div>
+
+
+                    </td>
+
+
+                </tr>
+
+            `;
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+/* =====================================
+   BOOKING STATS
+===================================== */
+
+function updateBookingStats(){
+
+
+    const total =
+    allBookings.length;
+
+
+    const pending =
+    allBookings.filter(
+
+        booking =>
+
+        (booking.status || "Pending")
+        .toLowerCase()
+        ===
+        "pending"
+
+    ).length;
+
+
+    const confirmed =
+    allBookings.filter(
+
+        booking =>
+
+        (booking.status || "")
+        .toLowerCase()
+        ===
+        "confirmed"
+
+    ).length;
+
+
+    document.getElementById(
+        "totalBookings"
+    ).innerText = total;
+
+
+    document.getElementById(
+        "pendingBookings"
+    ).innerText = pending;
+
+
+    document.getElementById(
+        "confirmedBookings"
+    ).innerText = confirmed;
+
+
+}
+
+
+
+
+/* =====================================
+   UPDATE BOOKING STATUS
+===================================== */
+
+window.updateBookingStatus =
+async function(bookingId,status){
+
+
+    try{
+
+
+        await updateDoc(
+
+            doc(
+
+                db,
+                "bookings",
+                bookingId
+
+            ),
+
+            {
+
+                status:
+                status
+
+            }
+
+        );
+
+
+        showDashboardMessage(
+
+            "Booking successfully " +
+            status,
+
+            "#67e480"
+
+        );
+
+
+        await loadBookings();
+
+
+    }
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert(
+
+            "Error updating booking: " +
+            error.message
+
+        );
+
+
+    }
+
+
+};
+
+
+
+
+/* =====================================
+   SEARCH BOOKINGS
+===================================== */
+
+document.getElementById(
+    "bookingSearch"
+).addEventListener(
+
+    "input",
+
+    function(){
+
+
+        const value =
+        this.value
+        .toLowerCase()
+        .trim();
+
+
+        const filtered =
+        allBookings.filter(
+
+            booking => {
+
+
+                return (
+
+                    (booking.customerName || "")
+                    .toLowerCase()
+                    .includes(value)
+
+                    ||
+
+                    (booking.phone || "")
+                    .toLowerCase()
+                    .includes(value)
+
+                    ||
+
+                    (booking.service || "")
+                    .toLowerCase()
+                    .includes(value)
+
+                );
+
+
+            }
+
+        );
+
+
+        renderBookings(
+            filtered
+        );
+
+
+    }
+
+);
+
+
+
+
+/* =====================================
+   LOAD SERVICES
+===================================== */
+
+async function loadServices(){
+
+
+    const container =
+    document.getElementById(
+        "servicesList"
+    );
+
+
+    container.innerHTML =
+    "Loading services...";
+
+
+    try{
+
+
+        const snapshot =
+        await getDocs(
+
+            collection(
+                db,
+                "services"
+            )
+
+        );
+
+
+        container.innerHTML =
+        "";
+
+
+        if(snapshot.empty){
+
+
+            container.innerHTML =
+            "<p>No services added yet.</p>";
+
+
+            return;
+
+
+        }
+
+
+        document.getElementById(
+            "totalServices"
+        );
+
+
+        snapshot.forEach(
+
+            serviceDoc => {
+
+
+                const service =
+                serviceDoc.data();
+
+
+                container.innerHTML += `
+
+                    <div
+                    class="
+                    management-card
+                    ">
+
+
+                        <h3>
+
+                            ${service.name || "Service"}
+
+                        </h3>
+
+
+                        <p>
+
+                            💰 Price:
+                            ${service.price || "-"}
+
+                        </p>
+
+
+                        <p>
+
+                            ⏱ Duration:
+                            ${service.duration || "-"}
+
+                        </p>
+
+
+                        <div
+                        class="
+                        card-actions
+                        ">
+
+
+                            <button
+                            class="
+                            btn
+                            edit-btn
+                            "
+
+                            onclick="
+                            openServiceModal(
+                                '${serviceDoc.id}',
+                                '${escapeQuotes(service.name || "")}',
+                                '${escapeQuotes(service.price || "")}',
+                                '${escapeQuotes(service.duration || "")}'
+                            )
+                            ">
+
+                                Edit
+
+                            </button>
+
+
+                            <button
+                            class="
+                            btn
+                            delete-btn
+                            "
+
+                            onclick="
+                            deleteService(
+                                '${serviceDoc.id}'
+                            )
+                            ">
+
+                                Delete
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+
+            }
+
+        );
+
+
+    }
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        container.innerHTML =
+        "<p>Error loading services.</p>";
+
+
+    }
+
+
+}
+
+
+
+
+/* =====================================
+   ADD SERVICE
+===================================== */
+
+document.getElementById(
+    "serviceForm"
+).addEventListener(
+
+    "submit",
+
+    async e => {
+
+
+        e.preventDefault();
+
+
+        const name =
+        document.getElementById(
+            "serviceName"
+        ).value.trim();
+
+
+        const price =
+        document.getElementById(
+            "servicePrice"
+        ).value.trim();
+
+
+        const duration =
+        document.getElementById(
+            "serviceDuration"
+        ).value.trim();
+
+
+        const message =
+        document.getElementById(
+            "serviceMessage"
+        );
+
+
+        try{
+
+
+            await addDoc(
+
+                collection(
+                    db,
+                    "services"
+                ),
+
+                {
+
+                    name,
+
+                    price,
+
+                    duration,
+
+                    createdAt:
+                    serverTimestamp()
+
+                }
+
+            );
+
+
+            message.style.color =
+            "#67e480";
+
+
+            message.innerText =
+            "Service added successfully!";
+
+
+            e.target.reset();
+
+
+            await loadServices();
+
+
+        }
+
+        catch(error){
+
+
+            message.style.color =
+            "#ff7777";
+
+
+            message.innerText =
+            error.message;
+
+
+        }
+
+
+    }
+
+);
+
+
+
+
+/* =====================================
+   SERVICE MODAL
+===================================== */
+
+window.openServiceModal =
+function(id,name,price,duration){
+
+
+    document.getElementById(
+        "editServiceId"
+    ).value = id;
+
+
+    document.getElementById(
+        "editServiceName"
+    ).value = name;
+
+
+    document.getElementById(
+        "editServicePrice"
+    ).value = price;
+
+
+    document.getElementById(
+        "editServiceDuration"
+    ).value = duration;
+
+
+    document.getElementById(
+        "serviceModal"
+    ).classList.add(
+        "active"
+    );
+
+
+};
+
+
+
+window.closeServiceModal =
+function(){
+
+
+    document.getElementById(
+        "serviceModal"
+    ).classList.remove(
+        "active"
+    );
+
+
+};
+
+
+
+
+/* =====================================
+   SAVE SERVICE
+===================================== */
+
+document.getElementById(
+    "saveServiceBtn"
+).addEventListener(
+
+    "click",
+
+    async () => {
+
+
+        const id =
+        document.getElementById(
+            "editServiceId"
+        ).value;
+
+
+        const name =
+        document.getElementById(
+            "editServiceName"
+        ).value.trim();
+
+
+        const price =
+        document.getElementById(
+            "editServicePrice"
+        ).value.trim();
+
+
+        const duration =
+        document.getElementById(
+            "editServiceDuration"
+        ).value.trim();
+
+
+        try{
+
+
+            await updateDoc(
+
+                doc(
+                    db,
+                    "services",
+                    id
+                ),
+
+                {
+
+                    name,
+
+                    price,
+
+                    duration
+
+                }
+
+            );
+
+
+            closeServiceModal();
+
+
+            await loadServices();
+
+
+            showDashboardMessage(
+
+                "Service updated successfully!",
+
+                "#67e480"
+
+            );
+
+
+        }
+
+        catch(error){
+
+
+            alert(
+                error.message
+            );
+
+
+        }
+
+
+    }
+
+);
+
+
+
+
+/* =====================================
+   DELETE SERVICE
+===================================== */
+
+window.deleteService =
+async function(id){
+
+
+    const confirmDelete =
+    confirm(
+        "Are you sure you want to delete this service?"
+    );
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+    try{
+
+
+        await deleteDoc(
+
+            doc(
+                db,
+                "services",
+                id
+            )
+
+        );
+
+
+        await loadServices();
+
+
+        showDashboardMessage(
+
+            "Service deleted successfully!",
+
+            "#ff7777"
+
+        );
+
+
+    }
+
+    catch(error){
+
+
+        alert(
+            error.message
+        );
+
+
+    }
+
+
+};
+
+
+
+
+/* =====================================
+   LOAD STAFF
+===================================== */
+
+async function loadStaff(){
+
+
+    const container =
+    document.getElementById(
+        "staffList"
+    );
+
+
+    container.innerHTML =
+    "Loading staff...";
+
+
+    try{
+
+
+        const snapshot =
+        await getDocs(
+
+            collection(
+                db,
+                "staff"
+            )
+
+        );
+
+
+        container.innerHTML =
+        "";
+
+
+        document.getElementById(
+            "totalStaff"
+        ).innerText =
+        snapshot.size;
+
+
+        if(snapshot.empty){
+
+
+            container.innerHTML =
+            "<p>No staff added yet.</p>";
+
+
+            return;
+
+
+        }
+
+
+        snapshot.forEach(
+
+            staffDoc => {
+
+
+                const staff =
+                staffDoc.data();
+
+
+                const photoHtml =
+                staff.photo
+
+                ?
+
+                `<img
+                src="${staff.photo}"
+                class="staff-photo"
+                alt="${staff.name}">`
+
+                :
+
+                `<div
+                class="staff-placeholder">
+
+                    👩‍🎨
+
+                </div>`;
+
+
+                container.innerHTML += `
+
+                    <div
+                    class="
+                    management-card
+                    ">
+
+
+                        ${photoHtml}
+
+
+                        <h3>
+
+                            ${staff.name || "Staff"}
+
+                        </h3>
+
+
+                        <p>
+
+                            ✨
+                            ${staff.specialty || "-"}
+
+                        </p>
+
+
+                        <div
+                        class="
+                        card-actions
+                        ">
+
+
+                            <button
+                            class="
+                            btn
+                            edit-btn
+                            "
+
+                            onclick="
+                            openStaffModal(
+                                '${staffDoc.id}',
+                                '${escapeQuotes(staff.name || "")}',
+                                '${escapeQuotes(staff.specialty || "")}',
+                                '${escapeQuotes(staff.photo || "")}'
+                            )
+                            ">
+
+                                Edit
+
+                            </button>
+
+
+
+                            <button
+                            class="
+                            btn
+                            delete-btn
+                            "
+
+                            onclick="
+                            deleteStaff(
+                                '${staffDoc.id}'
+                            )
+                            ">
+
+                                Delete
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+
+            }
+
+        );
+
+
+    }
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        container.innerHTML =
+        "<p>Error loading staff.</p>";
+
+
+    }
+
+
+}
+
+
+
+
+/* =====================================
+   ADD STAFF
+===================================== */
+
+document.getElementById(
+    "staffForm"
+).addEventListener(
+
+    "submit",
+
+    async e => {
+
+
+        e.preventDefault();
+
+
+        const name =
+        document.getElementById(
+            "staffName"
+        ).value.trim();
+
+
+        const specialty =
+        document.getElementById(
+            "staffSpecialty"
+        ).value.trim();
+
+
+        const photo =
+        document.getElementById(
+            "staffPhoto"
+        ).value.trim();
+
+
+        const message =
+        document.getElementById(
+            "staffMessage"
+        );
+
+
+        try{
+
+
+            await addDoc(
+
+                collection(
+                    db,
+                    "staff"
+                ),
+
+                {
+
+                    name,
+
+                    specialty,
+
+                    photo,
+
+                    createdAt:
+                    serverTimestamp()
+
+                }
+
+            );
+
+
+            message.style.color =
+            "#67e480";
+
+
+            message.innerText =
+            "Staff added successfully!";
+
+
+            e.target.reset();
+
+
+            await loadStaff();
+
+
+        }
+
+        catch(error){
+
+
+            message.style.color =
+            "#ff7777";
+
+
+            message.innerText =
+            error.message;
+
+
+        }
+
+
+    }
+
+);
+
+
+
+
+/* =====================================
+   STAFF MODAL
+===================================== */
+
+window.openStaffModal =
+function(id,name,specialty,photo){
+
+
+    document.getElementById(
+        "editStaffId"
+    ).value = id;
+
+
+    document.getElementById(
+        "editStaffName"
+    ).value = name;
+
+
+    document.getElementById(
+        "editStaffSpecialty"
+    ).value = specialty;
+
+
+    document.getElementById(
+        "editStaffPhoto"
+    ).value = photo;
+
+
+    document.getElementById(
+        "staffModal"
+    ).classList.add(
+        "active"
+    );
+
+
+};
+
+
+
+window.closeStaffModal =
+function(){
+
+
+    document.getElementById(
+        "staffModal"
+    ).classList.remove(
+        "active"
+    );
+
+
+};
+
+
+
+
+/* =====================================
+   SAVE STAFF
+===================================== */
+
+document.getElementById(
+    "saveStaffBtn"
+).addEventListener(
+
+    "click",
+
+    async () => {
+
+
+        const id =
+        document.getElementById(
+            "editStaffId"
+        ).value;
+
+
+        const name =
+        document.getElementById(
+            "editStaffName"
+        ).value.trim();
+
+
+        const specialty =
+        document.getElementById(
+            "editStaffSpecialty"
+        ).value.trim();
+
+
+        const photo =
+        document.getElementById(
+            "editStaffPhoto"
+        ).value.trim();
+
+
+        try{
+
+
+            await updateDoc(
+
+                doc(
+                    db,
+                    "staff",
+                    id
+                ),
+
+                {
+
+                    name,
+
+                    specialty,
+
+                    photo
+
+                }
+
+            );
+
+
+            closeStaffModal();
+
+
+            await loadStaff();
+
+
+            showDashboardMessage(
+
+                "Staff updated successfully!",
+
+                "#67e480"
+
+            );
+
+
+        }
+
+        catch(error){
+
+
+            alert(
+                error.message
+            );
+
+
+        }
+
+
+    }
+
+);
+
+
+
+
+/* =====================================
+   DELETE STAFF
+===================================== */
+
+window.deleteStaff =
+async function(id){
+
+
+    const confirmDelete =
+    confirm(
+        "Are you sure you want to delete this staff member?"
+    );
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+    try{
+
+
+        await deleteDoc(
+
+            doc(
+                db,
+                "staff",
+                id
+            )
+
+        );
+
+
+        await loadStaff();
+
+
+        showDashboardMessage(
+
+            "Staff deleted successfully!",
+
+            "#ff7777"
+
+        );
+
+
+    }
+
+    catch(error){
+
+
+        alert(
+            error.message
+        );
+
+
+    }
+
+
+};
+
+
+
+
+/* =====================================
+   REFRESH BUTTONS
+===================================== */
+
+document.getElementById(
+    "refreshBookingsBtn"
+).addEventListener(
+
+    "click",
+
+    loadBookings
+
+);
+
+
+document.getElementById(
+    "refreshServicesBtn"
+).addEventListener(
+
+    "click",
+
+    loadServices
+
+);
+
+
+document.getElementById(
+    "refreshStaffBtn"
+).addEventListener(
+
+    "click",
+
+    loadStaff
+
+);
+
+
+
+
+/* =====================================
+   DASHBOARD MESSAGE
+===================================== */
+
+function showDashboardMessage(
+message,
+color
+){
+
+
+    const element =
+    document.getElementById(
+        "dashboardMessage"
+    );
+
+
+    element.style.color =
+    color;
+
+
+    element.innerText =
+    message;
+
+
+    setTimeout(
+
+        () => {
+
+
+            element.innerText =
+            "";
+
+
+        },
+
+        3000
+
+    );
+
+
+}
+
+
+
+
+/* =====================================
+   SAFE TEXT
+===================================== */
+
+window.escapeQuotes =
+function(text){
+
+
+    return String(text)
+
+    .replace(
+        /'/g,
+        "\\'"
+    )
+
+    .replace(
+        /"/g,
+        '\\"'
+    );
+
+
+};
+
+
+
+
+/* =====================================
+   LOGOUT
+===================================== */
+
+document.getElementById(
+    "logoutBtn"
+).addEventListener(
+
+    "click",
+
+    async () => {
+
+
+        try{
+
+
+            await signOut(
+                auth
+            );
+
+
+            window.location.href =
+            "admin-login.html";
+
+
+        }
+
+        catch(error){
+
+
+            alert(
+                error.message
+            );
+
+
+        }
+
+
+    }
+
+);
+
+
+</script>
+
+
+</body>
+
+</html>
