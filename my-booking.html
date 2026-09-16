@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings | Glamora</title>
+    <link rel="stylesheet" href="./myBooking.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">Glamora<span>.</span></div>
+
+    <div class="nav-actions">
+        <a href="index.html" class="btn btn-outline">Home</a>
+        <button id="logoutBtn" class="btn btn-outline" style="display:none;">
+            Logout
+        </button>
+    </div>
+</nav>
+
+<main class="bookings-page">
+
+    <section class="page-hero">
+        <div class="hero-badge">✦ Your Beauty Journey</div>
+
+        <h1>My <span>Bookings</span></h1>
+
+        <p>
+            Manage your appointments and keep track of your beauty
+            experiences at Glamora.
+        </p>
+    </section>
+
+    <section id="guestView" class="glass guest-card">
+
+        <div class="login-icon">✦</div>
+
+        <h2 id="authTitle">Welcome to Glamora</h2>
+
+        <p id="authDescription">
+            Sign in to view your beauty appointments.
+        </p>
+
+        <form id="authForm">
+            <input
+                id="email"
+                class="input"
+                type="email"
+                placeholder="Email Address"
+                autocomplete="email"
+                required
+            >
+
+            <input
+                id="password"
+                class="input"
+                type="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button id="authSubmitBtn" type="submit" class="btn btn-gradient">
+                Sign In
+            </button>
+        </form>
+
+        <div class="auth-divider">OR</div>
+
+        <button id="googleBtn" type="button" class="btn btn-outline google-btn">
+            🔵 Continue with Google
+        </button>
+
+        <p class="switch-auth">
+            <span id="switchText">Don't have an account?</span>
+            <button id="switchBtn" type="button">Create Account</button>
+        </p>
+
+        <p id="authMessage"></p>
+    </section>
+
+    <section id="bookingView" style="display:none;">
+
+        <div class="glass user-welcome">
+            <div>
+                <h2>Welcome Back ✨</h2>
+                <p id="userEmail">Loading...</p>
+            </div>
+
+            <a href="index.html#booking" class="btn btn-gradient">
+                + New Booking
+            </a>
+        </div>
+
+        <div class="glass bookings-card">
+
+            <div class="booking-header">
+                <div>
+                    <h2>My Appointments</h2>
+                    <p>Your booked beauty services</p>
+                </div>
+
+                <button id="refreshBtn" class="btn btn-outline">
+                    ↻ Refresh
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Service</th>
+                            <th>Staff</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="bookingTable"></tbody>
+                </table>
+            </div>
+
+            <div id="mobileBookings" class="mobile-bookings"></div>
+        </div>
+    </section>
+</main>
+
+<script type="module" src="./myBooking.js"></script>
+</body>
+</html>
