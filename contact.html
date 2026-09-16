@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | Glamora</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ================================
+           CONTACT PAGE
+        ================================= */
+
+        .contact-section {
+            padding: 120px 0 80px;
+        }
+
+        /* ===== HEADING ===== */
+
+        .contact-heading {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .contact-heading h1 {
+            font-size: clamp(42px, 6vw, 72px);
+            font-family: Georgia, "Times New Roman", serif;
+
+            background: linear-gradient(
+                90deg,
+                #ff6b9d,
+                #ff4e8a,
+                #b83cff,
+                #8b2fd6
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            background-clip: text;
+
+            margin: 0 0 14px;
+
+            letter-spacing: -1px;
+
+            filter: drop-shadow(
+                0 0 18px rgba(255, 78, 138, 0.18)
+            );
+
+            animation: headingGlow 3s ease-in-out infinite alternate;
+        }
+
+        .contact-heading p {
+            color: var(--muted);
+            font-size: 17px;
+            margin: 0;
+        }
+
+        @keyframes headingGlow {
+            from {
+                filter: drop-shadow(
+                    0 0 8px rgba(255, 78, 138, 0.12)
+                );
+            }
+
+            to {
+                filter: drop-shadow(
+                    0 0 25px rgba(183, 60, 255, 0.28)
+                );
+            }
+        }
+
+
+        /* ===== CONTACT GRID ===== */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: stretch;
+        }
+
+
+        /* ===== GLASS CARDS ===== */
+
+        .contact-card {
+            position: relative;
+
+            padding: 38px;
+
+            background: rgba(255, 255, 255, 0.055);
+
+            border: 1px solid rgba(255, 255, 255, 0.10);
+
+            border-radius: 22px;
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.20);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .contact-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            top: -100px;
+            right: -80px;
+
+            background: #ff4e8a;
+
+            opacity: 0.08;
+
+            filter: blur(50px);
+
+            border-radius: 50%;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(255, 107, 157, 0.25);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.30),
+                0 0 35px rgba(139, 47, 214, 0.08);
+        }
+
+
+        /* ===== CARD TITLES ===== */
+
+        .contact-card h2 {
+            font-size: 25px;
+            margin: 0 0 28px;
+
+            color: #fff;
+
+            position: relative;
+        }
+
+        .contact-card h2::after {
+            content: "";
+
+            display: block;
+
+            width: 55px;
+            height: 3px;
+
+            margin-top: 10px;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                90deg,
+                #ff4e8a,
+                #8b2fd6
+            );
+        }
+
+
+        /* ===== FORM ===== */
+
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-input {
+            width: 100%;
+            min-height: 52px;
+
+            box-sizing: border-box;
+
+            padding: 14px 17px;
+
+            border-radius: 13px;
+
+            border: 1px solid
+                rgba(255, 255, 255, 0.09);
+
+            outline: none;
+
+            background:
+                rgba(255, 255, 255, 0.045);
+
+            color: #fff;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            transition:
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .contact-input::placeholder {
+            color: rgba(255, 255, 255, 0.42);
+        }
+
+        .contact-input:focus {
+            border-color:
+                rgba(255, 78, 138, 0.65);
+
+            background:
+                rgba(255, 255, 255, 0.07);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(255, 78, 138, 0.08),
+                0 0 20px
+                rgba(139, 47, 214, 0.10);
+        }
+
+        textarea.contact-input {
+            min-height: 145px;
+            resize: vertical;
+        }
+
+
+        /* ===== SEND BUTTON ===== */
+
+        .contact-submit {
+            position: relative;
+
+            width: 100%;
+
+            min-height: 54px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            color: white;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            overflow: hidden;
+
+            background: linear-gradient(
+                100deg,
+                #ff4e8a,
+                #c238d9,
+                #8b2fd6
+            );
+
+            box-shadow:
+                0 10px 30px
+                rgba(255, 78, 138, 0.20);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .contact-submit::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 70%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,0.25),
+                    transparent
+                );
+
+            transition: left 0.6s ease;
+        }
+
+        .contact-submit:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 14px 35px
+                rgba(255, 78, 138, 0.32);
+        }
+
+        .contact-submit:hover::before {
+            left: 130%;
+        }
+
+        .contact-submit:active {
+            transform: translateY(0);
+        }
+
+
+        /* ===== SUCCESS MESSAGE ===== */
+
+        #successMessage {
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 12px 15px;
+
+            border-radius: 10px;
+
+            color: #9cffb5;
+
+            background:
+                rgba(126, 231, 135, 0.08);
+
+            border: 1px solid
+                rgba(126, 231, 135, 0.15);
+
+            font-size: 14px;
+        }
+
+
+        /* ===== INFO ITEMS ===== */
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-item {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+            padding: 20px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .info-item:first-child {
+            padding-top: 0;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+
+        /* ===== ICON ===== */
+
+        .info-icon {
+            flex-shrink: 0;
+
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            font-size: 19px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,78,138,0.18),
+                    rgba(139,47,214,0.18)
+                );
+
+            border:
+                1px solid rgba(255,107,157,0.14);
+
+            box-shadow:
+                0 5px 20px
+                rgba(139,47,214,0.08);
+        }
+
+        .info-content strong {
+            display: block;
+
+            color: #fff;
+
+            font-size: 16px;
+
+            margin-bottom: 5px;
+        }
+
+        .info-content p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ===== QUICK BUTTONS ===== */
+
+        .quick-contact {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+        .quick-contact a {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            padding: 12px;
+
+            border-radius: 11px;
+
+            color: #fff;
+
+            text-decoration: none;
+
+            background:
+                rgba(255,255,255,0.045);
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            transition:
+                all 0.3s ease;
+        }
+
+        .quick-contact a:hover {
+            transform: translateY(-2px);
+
+            border-color:
+                rgba(255,107,157,0.35);
+
+            background:
+                rgba(255,78,138,0.09);
+
+            box-shadow:
+                0 8px 25px
+                rgba(255,78,138,0.10);
+        }
+
+
+        /* ===== SOCIAL SECTION ===== */
+
+        .social-section {
+            text-align: center;
+
+            margin-top: 55px;
+        }
+
+        .social-section h3 {
+            font-size: 21px;
+
+            margin-bottom: 18px;
+        }
+
+        .social-links {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 110px;
+
+            padding: 10px 18px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            color: var(--muted);
+
+            background:
+                rgba(255,255,255,0.045);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(255,107,157,0.4);
+
+            box-shadow:
+                0 8px 25px
+                rgba(255,78,138,0.12);
+        }
+
+
+        /* ===== RESPONSIVE ===== */
+
+        @media (max-width: 850px) {
+
+            .contact-section {
+                padding: 100px 20px 60px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+
+                gap: 22px;
+            }
+
+            .contact-card {
+                padding: 28px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .contact-section {
+                padding:
+                    95px 15px 50px;
+            }
+
+            .contact-heading {
+                margin-bottom: 35px;
+            }
+
+            .contact-heading h1 {
+                font-size: 42px;
+            }
+
+            .contact-heading p {
+                font-size: 15px;
+
+                max-width: 300px;
+
+                margin: auto;
+
+                line-height: 1.6;
+            }
+
+            .contact-card {
+                padding: 23px 18px;
+
+                border-radius: 18px;
+            }
+
+            .contact-card h2 {
+                font-size: 22px;
+            }
+
+            .contact-input {
+                min-height: 50px;
+
+                font-size: 14px;
+            }
+
+            textarea.contact-input {
+                min-height: 125px;
+            }
+
+            .quick-contact {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-direction: column;
+
+                align-items: stretch;
+
+                max-width: 300px;
+
+                margin: auto;
+            }
+
+            .social-links a {
+                width: 100%;
+
+                box-sizing: border-box;
+            }
+
+        }
+
+
+        /* ===== ENTRY ANIMATION ===== */
+
+        .contact-heading {
+            animation:
+                contactFadeDown 0.8s ease both;
+        }
+
+        .contact-card:first-child {
+            animation:
+                contactFromLeft 0.8s ease 0.15s both;
+        }
+
+        .contact-card:last-child {
+            animation:
+                contactFromRight 0.8s ease 0.25s both;
+        }
+
+        @keyframes contactFadeDown {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(-25px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+        @keyframes contactFromLeft {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateX(-35px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+
+        }
+
+        @keyframes contactFromRight {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateX(35px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+
+        }
+
+
+        /* ===== MOBILE NAV ===== */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            .nav-links {
+                gap: 12px !important;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .logo {
+                font-size: 23px !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Glamora<span>.</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="gallery.html">
+            Gallery
+        </a>
+
+        <a href="packages.html">
+            Packages
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+
+    <section class="contact-section">
+
+
+        <!-- HEADING -->
+
+        <div class="contact-heading">
+
+            <h1>
+                Contact Us
+            </h1>
+
+            <p>
+                We'd love to hear from you.
+                Let's make something beautiful together.
+            </p>
+
+        </div>
+
+
+        <!-- CONTACT GRID -->
+
+        <div class="contact-grid">
+
+
+            <!-- ================= FORM ================= -->
+
+            <div class="contact-card">
+
+                <h2>
+                    Send Us a Message
+                </h2>
+
+
+                <form id="contactForm">
+
+
+                    <input
+                        class="contact-input"
+                        type="text"
+                        placeholder="👤 Your Name"
+                        required
+                    >
+
+
+                    <input
+                        class="contact-input"
+                        type="tel"
+                        placeholder="📞 Phone Number"
+                        required
+                    >
+
+
+                    <input
+                        class="contact-input"
+                        type="email"
+                        placeholder="✉️ Your Email"
+                        required
+                    >
+
+
+                    <textarea
+                        class="contact-input"
+                        placeholder="💌 Your Message"
+                        required
+                    ></textarea>
+
+
+                    <button
+                        type="submit"
+                        class="contact-submit"
+                    >
+
+                        Send Message
+                        &nbsp; →
+
+                    </button>
+
+
+                </form>
+
+
+                <p id="successMessage">
+                    ✓ Message sent successfully!
+                </p>
+
+            </div>
+
+
+            <!-- ================= INFO ================= -->
+
+            <div class="contact-card">
+
+                <h2>
+                    Contact Information
+                </h2>
+
+
+                <div class="info-list">
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            📍
+                        </div>
+
+                        <div class="info-content">
+
+                            <strong>
+                                Visit Us
+                            </strong>
+
+                            <p>
+                                123 Beauty Street,
+                                karachi, pakistan.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            📞
+                        </div>
+
+                        <div class="info-content">
+
+                            <strong>
+                                Call Us
+                            </strong>
+
+                            <p>
+                                +92 331 2245034
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            ✉️
+                        </div>
+
+                        <div class="info-content">
+
+                            <strong>
+                                Email Us
+                            </strong>
+
+                            <p>
+                                zainab090@gmail.com
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- HOURS -->
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            🕒
+                        </div>
+
+                        <div class="info-content">
+
+                            <strong>
+                                Opening Hours
+                            </strong>
+
+                            <p>
+                                Monday – Saturday:
+                                9 AM – 8 PM
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- QUICK BUTTONS -->
+
+                <div class="quick-contact">
+
+                    <a href="tel:+12345678900">
+                        📞 Call Us
+                    </a>
+
+                    <a href="mailto:info@glamora.com">
+                        ✉️ Email Us
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= SOCIAL ================= -->
+
+        <div class="social-section">
+
+            <h3>
+                Follow Glamora
+            </h3>
+
+            <div class="social-links">
+
+                <a href="#">
+                    Instagram
+                </a>
+
+                <a href="#">
+                    Facebook
+                </a>
+
+                <a href="#">
+                    TikTok
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+
+    <div class="container footer-grid">
+
+
+        <!-- BRAND -->
+
+        <div>
+
+            <div class="logo">
+                Glamora<span>.</span>
+            </div>
+
+            <p>
+                We bring out the beauty
+                in you with luxury care
+                and professional expertise.
+            </p>
+
+        </div>
+
+
+        <!-- LINKS -->
+
+        <div>
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <a href="gallery.html">
+                Gallery
+            </a>
+
+            <br>
+
+            <a href="packages.html">
+                Packages
+            </a>
+
+            <br>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+
+        <!-- SERVICES -->
+
+        <div>
+
+            <h3>
+                Our Services
+            </h3>
+
+            <p>
+                Hair Styling
+            </p>
+
+            <p>
+                Makeup
+            </p>
+
+            <p>
+                Skin Care
+            </p>
+
+            <p>
+                Nail Art
+            </p>
+
+        </div>
+
+
+        <!-- NEWSLETTER -->
+
+        <div>
+
+            <h3>
+                Newsletter
+            </h3>
+
+            <p>
+                Subscribe for beauty
+                updates and offers.
+            </p>
+
+
+            <div class="newsletter">
+
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                >
+
+                <button
+                    type="button"
+                    class="btn btn-gradient"
+                >
+                    →
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Glamora Beauty Salon.
+        All Rights Reserved.
+
+    </div>
+
+
+</footer>
+
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+
+    const form =
+        document.getElementById("contactForm");
+
+    const successMessage =
+        document.getElementById("successMessage");
+
+
+    form.addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+
+        successMessage.style.display =
+            "block";
+
+
+        form.reset();
+
+
+        setTimeout(function() {
+
+            successMessage.style.display =
+                "none";
+
+        }, 4000);
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
