@@ -1,645 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Gallery | Glamora Beauty Salon</title>
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-
     <style>
 
-        /* =====================================================
-           MODERN GLAMORA GALLERY
-        ===================================================== */
+        /* =========================
+           GLOBAL
+        ========================= */
 
-        .gallery-page {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(139, 47, 214, 0.18), transparent 28%),
+                radial-gradient(circle at 90% 30%, rgba(255, 78, 138, 0.13), transparent 30%),
+                linear-gradient(135deg, #12091f, #1a0f2e 45%, #24123c);
+            color: #fff;
             min-height: 100vh;
-            padding: 120px 0 90px;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.07), transparent 25%),
+                radial-gradient(circle at 80% 90%, rgba(139, 47, 214, 0.08), transparent 25%);
+            z-index: -1;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+
+            background: rgba(15, 7, 27, 0.72);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav {
+            width: min(1180px, 92%);
+            margin: auto;
+
+            min-height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ff6b9d;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            position: relative;
+
+            font-size: 14px;
+            color: rgba(255,255,255,0.72);
+
+            transition: 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+
+            width: 0;
+            height: 2px;
+
+            border-radius: 20px;
+
+            background: linear-gradient(
+                90deg,
+                #ff4e8a,
+                #8b2fd6
+            );
+
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+
+            width: 44px;
+            height: 44px;
+
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+
+            background: rgba(255,255,255,0.05);
+
+            color: white;
+            font-size: 21px;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 470px;
+
+            padding: 145px 20px 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            position: relative;
             overflow: hidden;
         }
 
+        .hero::before {
+            content: "";
 
-        /* =====================================================
-           HERO
-        ===================================================== */
+            position: absolute;
 
-        .gallery-hero {
-            text-align: center;
-            max-width: 760px;
-            margin: 0 auto 65px;
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 78, 138, 0.10);
+
+            filter: blur(80px);
+
+            top: 60px;
+            left: 50%;
+
+            transform: translateX(-50%);
         }
 
-        .hero-label {
+        .hero-content {
+            position: relative;
+            max-width: 760px;
+        }
+
+        .eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
 
-            color: #ff6b9d;
+            padding: 9px 18px;
 
-            font-size: 11px;
-            font-weight: 500;
+            margin-bottom: 22px;
 
-            letter-spacing: 3px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
 
-            margin-bottom: 12px;
+            background: rgba(255,255,255,0.045);
 
-            opacity: 0;
-            transform: translateY(15px);
+            color: #ff9fbd;
 
-            animation: heroItem 0.8s ease forwards;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .hero-label::before,
-        .hero-label::after {
+        .eyebrow::before,
+        .eyebrow::after {
             content: "";
-            width: 35px;
+            width: 18px;
             height: 1px;
-
-            background: linear-gradient(
-                90deg,
-                transparent,
-                #ff4e8a
-            );
+            background: #ff6b9d;
         }
 
-        .hero-label::after {
-            background: linear-gradient(
-                90deg,
-                #8b2fd6,
-                transparent
-            );
-        }
-
-
-        .gallery-hero h1 {
+        .hero h1 {
             font-family: "Cormorant Garamond", serif;
 
-            font-size: clamp(48px, 7vw, 72px);
+            font-size: clamp(55px, 8vw, 90px);
 
             line-height: 0.95;
 
             font-weight: 600;
 
-            color: #f8edf7;
+            margin-bottom: 25px;
 
-            margin: 0;
+            background: linear-gradient(
+                110deg,
+                #fff,
+                #ffb1ca,
+                #d9a7ff
+            );
 
-            letter-spacing: 1px;
-
-            opacity: 0;
-            transform: translateY(25px) scale(0.97);
-
-            animation:
-                heroTitle 1s cubic-bezier(.22,1,.36,1) 0.15s forwards;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
+        .hero p {
+            max-width: 620px;
+            margin: auto;
 
-        .gallery-hero h1 span {
-            color: #ff6b9d;
-
-            text-shadow:
-                0 0 30px rgba(255,78,138,.25);
-        }
-
-
-        .gallery-hero p {
-            color: #b9aebd;
-
-            font-size: 14px;
+            color: rgba(255,255,255,0.63);
 
             line-height: 1.9;
-
-            max-width: 620px;
-
-            margin: 22px auto 0;
-
-            opacity: 0;
-            transform: translateY(18px);
-
-            animation:
-                heroItem 0.9s ease 0.45s forwards;
+            font-size: 15px;
         }
 
 
-        .hero-line {
-            width: 0;
-            height: 2px;
+        /* =========================
+           GALLERY SECTION
+        ========================= */
 
-            margin: 22px auto 0;
+        .gallery-section {
+            width: min(1180px, 92%);
+            margin: auto;
 
-            border-radius: 50px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #ff4e8a,
-                    #8b2fd6
-                );
-
-            box-shadow:
-                0 0 15px rgba(255,78,138,.35);
-
-            animation:
-                lineGrow .8s ease .65s forwards;
+            padding: 20px 0 110px;
         }
 
-
-        /* =====================================================
-           CATEGORY GRID
-        ===================================================== */
-
-        .category-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(5, minmax(0, 1fr));
-
-            gap: 18px;
+        .section-heading {
+            text-align: center;
+            margin-bottom: 42px;
         }
 
+        .section-heading h2 {
+            font-family: "Cormorant Garamond", serif;
 
-        /* =====================================================
-           CATEGORY CARD
-        ===================================================== */
-
-        .category-card {
-
-            position: relative;
-
-            height: 335px;
-
-            overflow: hidden;
-
-            border-radius: 20px;
-
-            border:
-                1px solid rgba(255,255,255,.10);
-
-            background:
-                rgba(255,255,255,.045);
-
-            cursor: pointer;
-
-            isolation: isolate;
-
-            opacity: 0;
-
-            transform:
-                translateY(45px)
-                scale(.94);
-
-            filter: blur(4px);
-
-            transition:
-                opacity .8s cubic-bezier(.22,1,.36,1),
-                transform .8s cubic-bezier(.22,1,.36,1),
-                filter .8s ease,
-                border-color .4s ease,
-                box-shadow .4s ease;
-        }
-
-
-        /* =====================================================
-           CARD REVEAL
-        ===================================================== */
-
-        .category-card.reveal {
-
-            opacity: 1;
-
-            transform:
-                translateY(0)
-                scale(1);
-
-            filter: blur(0);
-        }
-
-
-        /* =====================================================
-           DIFFERENT DELAYS
-        ===================================================== */
-
-        .category-card:nth-child(1) {
-            transition-delay: .02s;
-        }
-
-        .category-card:nth-child(2) {
-            transition-delay: .08s;
-        }
-
-        .category-card:nth-child(3) {
-            transition-delay: .14s;
-        }
-
-        .category-card:nth-child(4) {
-            transition-delay: .20s;
-        }
-
-        .category-card:nth-child(5) {
-            transition-delay: .26s;
-        }
-
-        .category-card:nth-child(6) {
-            transition-delay: .02s;
-        }
-
-        .category-card:nth-child(7) {
-            transition-delay: .08s;
-        }
-
-        .category-card:nth-child(8) {
-            transition-delay: .14s;
-        }
-
-        .category-card:nth-child(9) {
-            transition-delay: .20s;
-        }
-
-        .category-card:nth-child(10) {
-            transition-delay: .26s;
-        }
-
-
-        /* =====================================================
-           CARD IMAGE
-        ===================================================== */
-
-        .category-card img {
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            display: block;
-
-            transition:
-                transform 1s cubic-bezier(.22,1,.36,1),
-                filter .6s ease;
-        }
-
-
-        /* =====================================================
-           IMAGE DARK GRADIENT
-        ===================================================== */
-
-        .category-card::after {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            z-index: 1;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(10,4,20,.05) 20%,
-                    rgba(10,4,20,.25) 45%,
-                    rgba(10,4,20,.96) 100%
-                );
-
-            pointer-events: none;
-
-            transition:
-                background .5s ease;
-        }
-
-
-        /* =====================================================
-           CARD CONTENT
-        ===================================================== */
-
-        .category-content {
-
-            position: absolute;
-
-            left: 0;
-            right: 0;
-            bottom: 0;
-
-            z-index: 2;
-
-            padding: 24px 20px;
-
-            transform: translateY(7px);
-
-            transition:
-                transform .4s ease;
-        }
-
-
-        .category-number {
-
-            color: rgba(255,255,255,.45);
-
-            font-size: 10px;
-
-            letter-spacing: 2px;
-
-            margin-bottom: 5px;
-        }
-
-
-        .category-content h2 {
-
-            font-family:
-                "Cormorant Garamond",
-                serif;
-
-            font-size: 30px;
-
-            color: #fff;
-
-            margin: 0;
+            font-size: clamp(38px, 5vw, 55px);
 
             font-weight: 600;
 
-            transition:
-                color .4s ease,
-                transform .4s ease;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
         }
 
 
-        .category-content p {
+        /* =========================
+           FILTERS
+        ========================= */
 
-            color: #ff9abc;
-
-            font-size: 10px;
-
-            letter-spacing: .7px;
-
-            margin: 2px 0 0;
-
-            opacity: .9;
-        }
-
-
-        .explore {
-
+        .filters {
             display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            margin-top: 13px;
-
-            color: rgba(255,255,255,.72);
-
-            font-size: 10px;
-
-            letter-spacing: .5px;
-
-            transition:
-                color .4s ease,
-                transform .4s ease;
-        }
-
-
-        .arrow {
-
-            width: 28px;
-            height: 28px;
-
-            border-radius: 50%;
-
-            display: flex;
-
-            align-items: center;
             justify-content: center;
+            flex-wrap: wrap;
 
-            border:
-                1px solid rgba(255,107,157,.45);
+            gap: 12px;
 
-            color: #ff6b9d;
-
-            transition:
-                transform .4s ease,
-                background .4s ease,
-                color .4s ease;
+            margin-bottom: 48px;
         }
 
+        .filter-btn {
+            position: relative;
 
-        /* =====================================================
-           MODERN HOVER
-        ===================================================== */
+            padding: 11px 23px;
 
-        .category-card.reveal:hover {
+            border-radius: 50px;
 
-            transform:
-                translateY(-9px)
-                scale(1.025);
+            border: 1px solid rgba(255,255,255,0.1);
 
-            border-color:
-                rgba(255,107,157,.6);
+            background: rgba(255,255,255,0.045);
 
-            box-shadow:
-                0 18px 40px rgba(139,47,214,.22),
-                0 0 25px rgba(255,78,138,.10);
-        }
-
-
-        .category-card.reveal:hover img {
-
-            transform: scale(1.09);
-
-            filter:
-                brightness(1.08)
-                saturate(1.12);
-        }
-
-
-        .category-card.reveal:hover::after {
-
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(255,78,138,.02),
-                    rgba(10,4,20,.96)
-                );
-        }
-
-
-        .category-card.reveal:hover
-        .category-content {
-
-            transform: translateY(0);
-        }
-
-
-        .category-card.reveal:hover
-        .category-content h2 {
-
-            color: #ff6b9d;
-
-            transform: translateX(3px);
-        }
-
-
-        .category-card.reveal:hover
-        .explore {
-
-            color: #fff;
-
-            transform: translateX(3px);
-        }
-
-
-        .category-card.reveal:hover
-        .arrow {
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ff4e8a,
-                    #8b2fd6
-                );
-
-            color: white;
-
-            transform:
-                rotate(-45deg)
-                scale(1.08);
-
-            border-color: transparent;
-        }
-
-
-        /* =====================================================
-           SERVICE GALLERY
-        ===================================================== */
-
-        #serviceGallery {
-            display: none;
-
-            padding-top: 10px;
-        }
-
-
-        .gallery-header {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 25px;
-
-            margin-bottom: 38px;
-        }
-
-
-        .collection-label {
-
-            color: #ff6b9d;
-
-            font-size: 10px;
-
-            letter-spacing: 3px;
-
-            margin-bottom: 5px;
-        }
-
-
-        .gallery-header h2 {
-
-            font-family:
-                "Cormorant Garamond",
-                serif;
-
-            font-size: 52px;
-
-            color: white;
-
-            margin: 0;
-        }
-
-
-        .back-btn {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            border:
-                1px solid rgba(255,255,255,.15);
-
-            background:
-                rgba(255,255,255,.04);
-
-            color: #fff;
-
-            padding: 11px 19px;
-
-            border-radius: 30px;
-
-            font-family: "Poppins", sans-serif;
-
-            font-size: 12px;
+            color: rgba(255,255,255,0.65);
 
             cursor: pointer;
 
             transition:
-                all .35s ease;
+                transform 0.3s ease,
+                background 0.3s ease,
+                color 0.3s ease,
+                border 0.3s ease,
+                box-shadow 0.3s ease;
         }
 
+        .filter-btn:hover {
+            transform: translateY(-3px);
 
-        .back-btn:hover {
+            color: white;
+
+            border-color: rgba(255,107,157,0.4);
+
+            background: rgba(255,107,157,0.08);
+        }
+
+        .filter-btn.active {
+            color: white;
+
+            border-color: transparent;
 
             background:
                 linear-gradient(
-                    135deg,
+                    110deg,
                     #ff4e8a,
                     #8b2fd6
                 );
 
-            border-color: transparent;
-
-            transform: translateX(-4px);
+            box-shadow:
+                0 10px 30px rgba(255,78,138,0.2);
         }
 
 
-        /* =====================================================
-           PHOTO GRID
-        ===================================================== */
+        /* =========================
+           GALLERY GRID
+        ========================= */
 
-        .photo-grid {
-
+        .gallery-grid {
             display: grid;
 
             grid-template-columns:
-                repeat(4, 1fr);
+                repeat(3, 1fr);
 
-            gap: 18px;
+            gap: 24px;
         }
 
 
-        .photo-card {
+        /* =========================
+           CARD
+        ========================= */
 
+        .gallery-card {
             position: relative;
 
-            height: 275px;
+            min-height: 360px;
+
+            border-radius: 24px;
 
             overflow: hidden;
 
-            border-radius: 17px;
+            border: 1px solid rgba(255,255,255,0.09);
 
-            border:
-                1px solid rgba(255,255,255,.09);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.08),
+                    rgba(255,255,255,0.025)
+                );
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.25);
 
             cursor: pointer;
 
@@ -647,1442 +412,1595 @@
 
             transform:
                 translateY(35px)
-                scale(.96);
-
-            filter: blur(4px);
+                scale(0.97);
 
             transition:
-                opacity .75s cubic-bezier(.22,1,.36,1),
-                transform .75s cubic-bezier(.22,1,.36,1),
-                filter .75s ease,
-                box-shadow .35s ease;
+                transform 0.55s cubic-bezier(.2,.8,.2,1),
+                opacity 0.55s ease,
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
         }
 
-
-        .photo-card.reveal {
-
+        .gallery-card.visible {
             opacity: 1;
-
-            transform:
-                translateY(0)
-                scale(1);
-
-            filter: blur(0);
+            transform: translateY(0) scale(1);
         }
 
+        .gallery-card:hover {
+            transform:
+                translateY(-10px)
+                scale(1.015);
 
-        .photo-card img {
+            border-color: rgba(255,107,157,0.38);
 
+            box-shadow:
+                0 30px 70px rgba(0,0,0,0.4),
+                0 0 35px rgba(255,78,138,0.08);
+        }
+
+        .card-image {
+            position: absolute;
+            inset: 0;
+
+            overflow: hidden;
+        }
+
+        .card-image img {
             width: 100%;
             height: 100%;
 
             object-fit: cover;
 
             transition:
-                transform .8s cubic-bezier(.22,1,.36,1);
+                transform 0.8s cubic-bezier(.2,.8,.2,1),
+                filter 0.5s ease;
         }
 
+        .gallery-card:hover .card-image img {
+            transform: scale(1.09);
+            filter: brightness(0.78);
+        }
 
-        .photo-card::after {
-
+        .card-image::after {
             content: "";
 
             position: absolute;
-
             inset: 0;
 
             background:
                 linear-gradient(
-                    180deg,
-                    transparent 45%,
-                    rgba(10,4,20,.96)
+                    to top,
+                    rgba(13,6,22,0.95) 0%,
+                    rgba(13,6,22,0.35) 45%,
+                    rgba(13,6,22,0.05) 100%
                 );
         }
 
 
-        .photo-info {
+        /* =========================
+           CARD CONTENT
+        ========================= */
 
+        .card-content {
             position: absolute;
 
             left: 0;
             right: 0;
             bottom: 0;
 
+            padding: 27px;
             z-index: 2;
-
-            padding: 18px;
         }
 
+        .card-category {
+            display: inline-block;
 
-        .photo-info h3 {
+            padding: 6px 12px;
 
-            color: white;
+            margin-bottom: 12px;
 
-            font-family:
-                "Cormorant Garamond",
-                serif;
+            border-radius: 30px;
 
-            font-size: 23px;
+            background: rgba(255,107,157,0.12);
 
-            margin: 0;
+            border: 1px solid rgba(255,107,157,0.2);
+
+            color: #ff9fbd;
+
+            font-size: 10px;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
         }
 
+        .card-content h3 {
+            font-family: "Cormorant Garamond", serif;
 
-        .photo-info p {
+            font-size: 29px;
 
-            color: #ff6b9d;
+            font-weight: 600;
 
-            font-size: 9px;
-
-            letter-spacing: 1px;
-
-            margin: 2px 0 0;
+            margin-bottom: 6px;
         }
 
+        .card-content p {
+            color: rgba(255,255,255,0.6);
 
-        .photo-card.reveal:hover {
+            font-size: 12px;
 
-            transform:
-                translateY(-7px)
-                scale(1.02);
-
-            box-shadow:
-                0 15px 35px rgba(139,47,214,.25);
+            line-height: 1.6;
         }
 
-
-        .photo-card.reveal:hover img {
-
-            transform: scale(1.08);
-        }
-
-
-        /* =====================================================
-           LIGHTBOX
-        ===================================================== */
-
-        .lightbox {
-
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 99999;
-
-            display: none;
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 20px;
-
-            background:
-                rgba(5,2,12,.95);
-
-            backdrop-filter:
-                blur(12px);
-        }
-
-
-        .lightbox.active {
+        .click-hint {
             display: flex;
-        }
-
-
-        .lightbox img {
-
-            max-width: 92%;
-            max-height: 85vh;
-
-            border-radius: 16px;
-
-            box-shadow:
-                0 25px 80px rgba(0,0,0,.7);
-
-            animation:
-                lightboxIn .4s cubic-bezier(.22,1,.36,1);
-        }
-
-
-        .close-lightbox {
-
-            position: absolute;
-
-            top: 22px;
-            right: 28px;
-
-            width: 44px;
-            height: 44px;
-
-            display: flex;
-
             align-items: center;
-            justify-content: center;
+            gap: 8px;
+
+            margin-top: 15px;
+
+            color: #ff8eb5;
+
+            font-size: 11px;
+
+            opacity: 0.8;
+
+            transition: 0.3s ease;
+        }
+
+        .gallery-card:hover .click-hint {
+            opacity: 1;
+            gap: 12px;
+        }
+
+        .click-hint span {
+            width: 25px;
+            height: 25px;
+
+            display: grid;
+            place-items: center;
 
             border-radius: 50%;
 
-            background:
-                rgba(255,255,255,.07);
+            background: rgba(255,255,255,0.08);
 
-            color: white;
-
-            font-size: 30px;
-
-            cursor: pointer;
-
-            transition: .3s ease;
+            border: 1px solid rgba(255,255,255,0.12);
         }
 
 
-        .close-lightbox:hover {
+        /* =========================
+           EXTRA CARDS
+        ========================= */
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #ff4e8a,
-                    #8b2fd6
-                );
+        .extra-card {
+            display: none;
 
-            transform: rotate(90deg);
+            opacity: 0;
+
+            transform:
+                translateY(35px)
+                scale(0.95);
         }
 
+        .extra-card.show-card {
+            display: block;
 
-        /* =====================================================
-           ANIMATIONS
-        ===================================================== */
-
-        @keyframes heroItem {
-
-            from {
-                opacity: 0;
-                transform: translateY(18px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            animation:
+                extraReveal
+                0.65s
+                cubic-bezier(.2,.8,.2,1)
+                forwards;
         }
 
+        @keyframes extraReveal {
 
-        @keyframes heroTitle {
-
-            from {
+            0% {
                 opacity: 0;
                 transform:
-                    translateY(25px)
-                    scale(.97);
-                filter: blur(5px);
+                    translateY(45px)
+                    scale(0.92);
             }
 
-            to {
+            100% {
                 opacity: 1;
                 transform:
                     translateY(0)
                     scale(1);
-                filter: blur(0);
             }
         }
 
 
-        @keyframes lineGrow {
+        /* =========================
+           SHOW LESS
+        ========================= */
 
-            from {
-                width: 0;
-            }
+        .show-less-wrap {
+            display: none;
 
-            to {
-                width: 75px;
-            }
+            justify-content: center;
+
+            margin-top: 42px;
+        }
+
+        .show-less-wrap.active {
+            display: flex;
+        }
+
+        .show-less {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 13px 25px;
+
+            border-radius: 50px;
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            background: rgba(255,255,255,0.045);
+
+            color: rgba(255,255,255,0.8);
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .show-less:hover {
+            background: rgba(255,107,157,0.1);
+            border-color: rgba(255,107,157,0.3);
+            transform: translateY(-3px);
         }
 
 
-        @keyframes lightboxIn {
+        /* =========================
+           BOTTOM CTA
+        ========================= */
 
-            from {
-                opacity: 0;
-                transform: scale(.92);
-            }
+        .gallery-cta {
+            margin-top: 100px;
 
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            padding: 55px 35px;
+
+            text-align: center;
+
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 28px;
+
+            border: 1px solid rgba(255,255,255,0.09);
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(255,78,138,0.09),
+                    rgba(139,47,214,0.12)
+                );
+
+            box-shadow:
+                inset 0 1px rgba(255,255,255,0.05);
+        }
+
+        .gallery-cta::before {
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            background: rgba(255,78,138,0.12);
+
+            filter: blur(80px);
+
+            border-radius: 50%;
+
+            top: -130px;
+            left: -80px;
+        }
+
+        .gallery-cta h2 {
+            position: relative;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 42px;
+
+            margin-bottom: 12px;
+        }
+
+        .gallery-cta p {
+            position: relative;
+
+            max-width: 550px;
+
+            margin: auto auto 25px;
+
+            color: rgba(255,255,255,0.58);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            position: relative;
+
+            display: inline-flex;
+
+            padding: 13px 28px;
+
+            border-radius: 50px;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #ff4e8a,
+                    #8b2fd6
+                );
+
+            color: white;
+
+            font-size: 13px;
+
+            box-shadow:
+                0 12px 35px rgba(255,78,138,0.2);
+
+            transition: 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 18px 45px rgba(255,78,138,0.3);
         }
 
 
-        /* =====================================================
-           TABLET
-        ===================================================== */
-
-        @media (max-width: 1100px) {
-
-            .category-grid {
-
-                grid-template-columns:
-                    repeat(4, 1fr);
-            }
-
-            .photo-grid {
-
-                grid-template-columns:
-                    repeat(3, 1fr);
-            }
-        }
-
-
-        @media (max-width: 850px) {
-
-            .category-grid {
-
-                grid-template-columns:
-                    repeat(3, 1fr);
-
-                gap: 15px;
-            }
-
-            .category-card {
-
-                height: 320px;
-            }
-
-            .photo-grid {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-        }
-
-
-        /* =====================================================
+        /* =========================
            MOBILE
-        ===================================================== */
+        ========================= */
 
-        @media (max-width: 600px) {
+        @media (max-width: 900px) {
 
-            .gallery-page {
-
-                padding:
-                    95px 15px 60px;
-            }
-
-
-            .gallery-hero {
-
-                margin-bottom: 45px;
-            }
-
-
-            .gallery-hero h1 {
-
-                font-size: 47px;
-            }
-
-
-            .gallery-hero p {
-
-                font-size: 12px;
-
-                line-height: 1.8;
-
-                padding: 0 8px;
-            }
-
-
-            .hero-label {
-
-                font-size: 9px;
-
-                letter-spacing: 2px;
-            }
-
-
-            .category-grid {
-
+            .gallery-grid {
                 grid-template-columns:
                     repeat(2, 1fr);
-
-                gap: 13px;
             }
 
-
-            .category-card {
-
-                height: 260px;
-
-                border-radius: 16px;
+            .nav-links {
+                gap: 20px;
             }
 
+            .gallery-card {
+                min-height: 330px;
+            }
+        }
 
-            .category-content {
 
-                padding:
-                    18px 15px;
+        @media (max-width: 700px) {
+
+            .nav {
+                min-height: 68px;
             }
 
-
-            .category-content h2 {
-
-                font-size: 27px;
+            .logo {
+                font-size: 30px;
             }
 
-
-            .category-content p {
-
-                font-size: 8px;
+            .menu-btn {
+                display: block;
             }
 
+            .nav-links {
+                position: absolute;
 
-            .explore {
+                top: 75px;
+                left: 4%;
 
-                font-size: 8px;
+                width: 92%;
 
-                margin-top: 9px;
+                padding: 20px;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 4px;
+
+                background: rgba(20,9,35,0.95);
+
+                backdrop-filter: blur(20px);
+
+                border: 1px solid rgba(255,255,255,0.1);
+
+                border-radius: 18px;
+
+                opacity: 0;
+                visibility: hidden;
+
+                transform: translateY(-12px);
+
+                transition: 0.3s ease;
             }
 
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
 
-            .arrow {
+            .nav-links li a {
+                display: block;
 
-                width: 24px;
-                height: 24px;
+                padding: 13px 14px;
 
+                border-radius: 10px;
+            }
+
+            .nav-links li a:hover {
+                background: rgba(255,255,255,0.05);
+            }
+
+            .hero {
+                min-height: 430px;
+
+                padding-top: 125px;
+            }
+
+            .hero h1 {
+                font-size: 62px;
+            }
+
+            .hero p {
+                font-size: 13px;
+                line-height: 1.8;
+            }
+
+            .gallery-section {
+                width: 90%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .gallery-card {
+                min-height: 390px;
+                border-radius: 20px;
+            }
+
+            .filters {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 9px 17px;
+                font-size: 12px;
+            }
+
+            .gallery-cta {
+                padding: 42px 22px;
+            }
+
+            .gallery-cta h2 {
+                font-size: 35px;
+            }
+        }
+
+
+        @media (max-width: 420px) {
+
+            .hero h1 {
+                font-size: 53px;
+            }
+
+            .eyebrow {
                 font-size: 10px;
             }
 
-
-            .gallery-header {
-
-                align-items: flex-start;
-
-                flex-direction: column;
+            .gallery-card {
+                min-height: 350px;
             }
 
-
-            .gallery-header h2 {
-
-                font-size: 42px;
+            .card-content {
+                padding: 22px;
             }
 
-
-            .back-btn {
-
-                width: auto;
-            }
-
-
-            .photo-grid {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-
-                gap: 13px;
-            }
-
-
-            .photo-card {
-
-                height: 230px;
-
-                border-radius: 14px;
-            }
-
-
-            .photo-info {
-
-                padding: 14px;
-            }
-
-
-            .photo-info h3 {
-
-                font-size: 19px;
-            }
-
-
-            .close-lightbox {
-
-                top: 12px;
-
-                right: 15px;
-            }
-        }
-
-
-        @media (max-width: 380px) {
-
-            .category-grid {
-
-                grid-template-columns: 1fr;
-            }
-
-            .category-card {
-
-                height: 290px;
-            }
-
-            .photo-grid {
-
-                grid-template-columns: 1fr;
-            }
-
-            .photo-card {
-
-                height: 280px;
-            }
-        }
-
-
-        /* =====================================================
-           REDUCED MOTION
-        ===================================================== */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            .category-card,
-            .photo-card,
-            .gallery-hero,
-            .gallery-hero h1,
-            .gallery-hero p {
-
-                animation: none !important;
-
-                transition: none !important;
-
-                opacity: 1;
-
-                transform: none;
-
-                filter: none;
+            .card-content h3 {
+                font-size: 26px;
             }
         }
 
     </style>
-
 </head>
 
 
 <body>
 
 
-    <!-- =====================================================
-         NAVBAR
-    ===================================================== -->
+<!-- =========================
+     HEADER
+========================= -->
 
-    <nav class="navbar">
+<header class="header">
+
+    <nav class="nav">
 
         <a href="index.html" class="logo">
             Glamora<span>.</span>
         </a>
 
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            type="button"
+            aria-label="Open menu">
+            ☰
+        </button>
 
-        <div class="nav-links">
+        <ul class="nav-links" id="navLinks">
 
-            <a href="index.html">Home</a>
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
 
-            <a href="services.html">Services</a>
+            <li>
+                <a href="services.html">
+                    Services
+                </a>
+            </li>
 
-            <a href="packages.html">Packages</a>
+            <li>
+                <a href="packages.html">
+                    Packages
+                </a>
+            </li>
 
-            <a href="gallery.html" class="active">
-                Gallery
-            </a>
+            <li>
+                <a href="gallery.html" class="active">
+                    Gallery
+                </a>
+            </li>
 
-            <a href="contact.html">Contact</a>
+            <li>
+                <a href="contact.html">
+                    Contact
+                </a>
+            </li>
 
-        </div>
-
-
-        <a href="booking.html"
-           class="btn btn-gradient">
-            Book Now
-        </a>
+        </ul>
 
     </nav>
 
+</header>
 
 
-    <!-- =====================================================
-         MAIN
-    ===================================================== -->
+<!-- =========================
+     HERO
+========================= -->
 
-    <main class="gallery-page">
+<section class="hero">
 
-        <div class="container">
+    <div class="hero-content">
 
-
-            <!-- =================================================
-                 HERO
-            ================================================= -->
-
-            <section
-                class="gallery-hero"
-                id="galleryHero"
-            >
-
-                <div class="hero-label">
-                    BEAUTY IN EVERY DETAIL
-                </div>
-
-
-                <h1>
-                    Our <span>Gallery</span>
-                </h1>
-
-
-                <p>
-                    Discover the art of beauty, crafted with
-                    passion, precision and elegance by our
-                    Glamora experts.
-                </p>
-
-
-                <div class="hero-line"></div>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 10 SERVICE CARDS
-            ================================================= -->
-
-            <section id="categories">
-
-                <div class="category-grid">
-
-
-                    <!-- 01 HAIR -->
-
-                    <div
-                        class="category-card"
-                        onclick="openService('Hair')"
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=85"
-                            alt="Hair"
-                            loading="lazy"
-                        >
-
-                        <div class="category-content">
-
-                            <div class="category-number">
-                                01
-                            </div>
-
-                            <h2>Hair</h2>
-
-                            <p>
-                                STYLE & TRANSFORM
-                            </p>
-
-                            <div class="explore">
-                                Explore Collection
-                                <span class="arrow">→</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- 02 MAKEUP -->
-
-                    <div
-                        class="category-card"
-                        onclick="openService('Makeup')"
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=85"
-                            alt="Makeup"
-                            loading="lazy"
-                        >
-
-                        <div class="category-content">
-
-                            <div class="category-number">
-                                02
-                            </div>
-
-                            <h2>Makeup</h2>
-
-                            <p>
-                                GLAM & ELEGANCE
-                            </p>
-
-                            <div class="explore">
-                                Explore Collection
-                                <span class="arrow">→</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- 03 SKIN -->
-
-                    <div
-                        class="category-card"
-                        onclick="openService('Skin')"
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85"
-                            alt="Skin"
-                            loading="lazy"
-                        >
-
-                        <div class="category-content">
-
-                            <div class="category-number">
-                                03
-                            </div>
-
-                            <h2>Skin</h2>
-
-                            <p>
-                                GLOW & RADIANCE
-                            </p>
-
-                            <div class="explore">
-                                Explore Collection
-                                <span class="arrow">→</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- 04 NAILS -->
-
-                    <div
-                        class="category-card"
-                        onclick="openService('Nails')"
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=85"
-                            alt="Nails"
-                            loading="lazy"
-                        >
-
-                        <div class="category-content">
-
-                            <div class="category-number">
-                                04
-                            </div>
-
-                            <h2>Nails</h2>
-
-                            <p>
-                                ART & DETAILS
-                            </p>
-
-                            <div class="explore">
-                                Explore Collection
-                                <span class="arrow">→</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- 05 BRIDAL -->
-
-                    <div
-                        class="category-card"
-                        onclick="openService('Bridal')"
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85"
-                            alt="Bridal"
-                            loading="lazy"
-                        >
-
-                        <div class="category-content">
-
-                            <div class="category-number">
-                                05
-                            </div>
-
-                            <h2>Bridal</h2>
-
-                            <p>
-                                YOUR SPECIAL DAY
-                            </p>
-
-                            <div class="explore">
-                                Explore Collection
-                                <span class="arrow">→</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- 06 LASHES -->
-
-                    <div
-                        class="category-card"
-                        onclick="openService('Lashes')"
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?auto=format&fit=crop&w=900&q=85"
-                            alt="Lashes"
-                            loading="lazy"
-                        >
-
-                        <div class="category-content">
-
-                            <div class="category-number">
-                                06
-                            </div>
-
-                            <h2>Lashes</h2>
-
-                            <p>
-                                LIFT & DEFINE
-                            </p>
-
-                            <div class="explore">
-                                Explore Collection
-                                <span class="arrow">→</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- 07 BROWS -->
-
-                    <div
-                        class="category-card"
-                        onclick="openService('Brows')"
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1588516903720-8ceb67f9ef84?auto=format&fit=crop&w=900&q=85"
-                            alt="Brows"
-                            loading="lazy"
-                        >
-
-                        <div class="category-content">
-
-                            <div class="category-number">
-                                07
-                            </div>
-
-                            <h2>Brows</h2>
-
-                            <p>
-                                SHAPE & DEFINE
-                            </p>
-
-                            <div class="explore">
-                                Explore Collection
-                                <span class="arrow">→</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- 08 SPA -->
-
-                    <div
-                        class="category-card"
-                        onclick="openService('Spa')"
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=85"
-                            alt="Spa"
-                            loading="lazy"
-                        >
-
-                        <div class="category-content">
-
-                            <div class="category-number">
-                                08
-                            </div>
-
-                            <h2>Spa</h2>
-
-                            <p>
-                                RELAX & RECHARGE
-                            </p>
-
-                            <div class="explore">
-                                Explore Collection
-                                <span class="arrow">→</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- 09 HAIR REMOVAL -->
-
-                    <div
-                        class="category-card"
-                        onclick="openService('Hair Removal')"
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=900&q=85"
-                            alt="Hair Removal"
-                            loading="lazy"
-                        >
-
-                        <div class="category-content">
-
-                            <div class="category-number">
-                                09
-                            </div>
-
-                            <h2>Hair Removal</h2>
-
-                            <p>
-                                SMOOTH & SILKY
-                            </p>
-
-                            <div class="explore">
-                                Explore Collection
-                                <span class="arrow">→</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- 10 MEHNDI -->
-
-                    <div
-                        class="category-card"
-                        onclick="openService('Mehndi')"
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?auto=format&fit=crop&w=900&q=85"
-                            alt="Mehndi"
-                            loading="lazy"
-                        >
-
-                        <div class="category-content">
-
-                            <div class="category-number">
-                                10
-                            </div>
-
-                            <h2>Mehndi</h2>
-
-                            <p>
-                                TRADITIONAL ART
-                            </p>
-
-                            <div class="explore">
-                                Explore Collection
-                                <span class="arrow">→</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 SERVICE GALLERY
-            ================================================= -->
-
-            <section id="serviceGallery">
-
-                <div class="gallery-header">
-
-                    <div>
-
-                        <div class="collection-label">
-                            GLAMORA COLLECTION
-                        </div>
-
-                        <h2 id="serviceTitle">
-                            Hair Gallery
-                        </h2>
-
-                    </div>
-
-
-                    <button
-                        class="back-btn"
-                        onclick="showCategories()"
-                    >
-                        ← Back to Services
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="photo-grid"
-                    id="photoGrid"
-                ></div>
-
-            </section>
-
+        <div class="eyebrow">
+            Glamora Beauty Studio
         </div>
 
-    </main>
+        <h1>
+            Our Gallery
+        </h1>
+
+        <p>
+            Step inside the world of Glamora and explore our
+            signature beauty transformations, elegant styles,
+            flawless finishes and luxury salon artistry.
+        </p>
+
+    </div>
+
+</section>
 
 
+<!-- =========================
+     GALLERY
+========================= -->
 
-    <!-- =====================================================
-         LIGHTBOX
-    ===================================================== -->
+<section class="gallery-section">
 
-    <div
-        class="lightbox"
-        id="lightbox"
-        onclick="closeLightbox()"
-    >
+    <div class="section-heading">
 
-        <span class="close-lightbox">
-            &times;
-        </span>
+        <h2>
+            Beauty In Every Detail
+        </h2>
 
-        <img
-            id="lightboxImage"
-            src=""
-            alt="Gallery Preview"
-        >
+        <p>
+            Click any card to discover more styles from that collection.
+        </p>
 
     </div>
 
 
+    <!-- FILTERS -->
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ===================================================== -->
+    <div class="filters">
 
-    <script>
+        <button
+            class="filter-btn active"
+            data-category="all">
+            All
+        </button>
 
+        <button
+            class="filter-btn"
+            data-category="hair">
+            Hair
+        </button>
 
-        /* =====================================================
-           GALLERY DATA
-        ===================================================== */
+        <button
+            class="filter-btn"
+            data-category="makeup">
+            Makeup
+        </button>
 
-        const galleryData = {
+        <button
+            class="filter-btn"
+            data-category="skin">
+            Skin
+        </button>
 
+        <button
+            class="filter-btn"
+            data-category="nails">
+            Nails
+        </button>
 
-            Hair: [
+    </div>
 
-                ["https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=85", "Luxury Hair Styling", "Hair Styling"],
 
-                ["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85", "Elegant Hair Cut", "Hair Cut"],
+    <!-- =========================
+         CARDS
+    ========================= -->
 
-                ["https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=85", "Premium Hair Color", "Hair Color"],
+    <div class="gallery-grid" id="galleryGrid">
 
-                ["https://images.unsplash.com/photo-1554519515-242161756769?auto=format&fit=crop&w=900&q=85", "Hair Treatment", "Treatment"],
 
-                ["https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=900&q=85", "Smooth & Silky", "Hair Treatment"],
+        <!-- HAIR 1 -->
 
-                ["https://images.unsplash.com/photo-1527799820374-dcf8f0c5f1c9?auto=format&fit=crop&w=900&q=85", "Bridal Hairstyle", "Bridal Hair"]
+        <article
+            class="gallery-card"
+            data-category="hair">
 
-            ],
+            <div class="card-image">
 
+                <img
+                    src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=85"
+                    alt="Luxury Hair Styling">
 
-            Makeup: [
+            </div>
 
-                ["https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=85", "Glam Makeup", "Party Makeup"],
+            <div class="card-content">
 
-                ["https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=85", "Elegant Makeup", "Luxury Makeup"],
+                <span class="card-category">
+                    Hair
+                </span>
 
-                ["https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=85", "Soft Glam", "Soft Makeup"],
+                <h3>
+                    Signature Hair
+                </h3>
 
-                ["https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=85", "Professional Look", "Makeup"],
+                <p>
+                    Elegant salon styling created for a refined look.
+                </p>
 
-                ["https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=85", "Evening Glam", "Evening Makeup"],
+                <div class="click-hint">
+                    Explore more
+                    <span>→</span>
+                </div>
 
-                ["https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=900&q=85", "Natural Beauty", "Natural Makeup"]
+            </div>
 
-            ],
+        </article>
 
 
-            Skin: [
+        <!-- MAKEUP 1 -->
 
-                ["https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85", "Luxury Facial", "Facial"],
+        <article
+            class="gallery-card"
+            data-category="makeup">
 
-                ["https://images.unsplash.com/photo-1556760544-74068565f05c?auto=format&fit=crop&w=900&q=85", "Skin Care", "Skin Care"],
+            <div class="card-image">
 
-                ["https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85", "Glow Treatment", "Glow Facial"],
+                <img
+                    src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=85"
+                    alt="Luxury Makeup">
 
-                ["https://images.unsplash.com/photo-1576426863848-c21f53c60b19?auto=format&fit=crop&w=900&q=85", "Relaxing Treatment", "Premium Treatment"],
+            </div>
 
-                ["https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=85", "Deep Skin Care", "Skin Treatment"],
+            <div class="card-content">
 
-                ["https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=85", "Radiant Skin", "Glow Treatment"]
+                <span class="card-category">
+                    Makeup
+                </span>
 
-            ],
+                <h3>
+                    Glam Makeup
+                </h3>
 
+                <p>
+                    Soft glam finishes designed to highlight natural beauty.
+                </p>
 
-            Nails: [
+                <div class="click-hint">
+                    Explore more
+                    <span>→</span>
+                </div>
 
-                ["https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=85", "Luxury Nail Art", "Nail Art"],
+            </div>
 
-                ["https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=85", "Elegant Nails", "Manicure"],
+        </article>
 
-                ["https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=85", "Classic Nails", "Classic Style"],
 
-                ["https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=900&q=85", "Creative Nail Design", "Nail Design"],
+        <!-- SKIN 1 -->
 
-                ["https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=85", "Pink Glam Nails", "Nail Art"],
+        <article
+            class="gallery-card"
+            data-category="skin">
 
-                ["https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=85", "Bridal Nails", "Bridal Nails"]
+            <div class="card-image">
 
-            ],
+                <img
+                    src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85"
+                    alt="Luxury Skin Treatment">
 
+            </div>
 
-            Bridal: [
+            <div class="card-content">
 
-                ["https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85", "Bridal Beauty", "Bridal Look"],
+                <span class="card-category">
+                    Skin
+                </span>
 
-                ["https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=900&q=85", "Bridal Makeup", "Bridal Makeup"],
+                <h3>
+                    Glow Facial
+                </h3>
 
-                ["https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=85", "Bridal Hair", "Bridal Hairstyle"],
+                <p>
+                    Relaxing skincare rituals for a fresh radiant glow.
+                </p>
 
-                ["https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=900&q=85", "Wedding Glam", "Wedding Look"],
+                <div class="click-hint">
+                    Explore more
+                    <span>→</span>
+                </div>
 
-                ["https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85", "Elegant Bride", "Bridal Styling"],
+            </div>
 
-                ["https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=85", "Wedding Beauty", "Bridal Look"]
+        </article>
 
-            ],
 
+        <!-- NAILS 1 -->
 
-            Lashes: [
+        <article
+            class="gallery-card"
+            data-category="nails">
 
-                ["https://images.unsplash.com/photo-1583001931096-959e9a1a6223?auto=format&fit=crop&w=900&q=85", "Classic Lashes", "Lash Extensions"],
+            <div class="card-image">
 
-                ["https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?auto=format&fit=crop&w=900&q=85", "Volume Lashes", "Volume"],
+                <img
+                    src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=85"
+                    alt="Luxury Nail Art">
 
-                ["https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&w=900&q=85", "Lash Lift", "Lash Lift"],
+            </div>
 
-                ["https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85", "Natural Lashes", "Natural Look"]
+            <div class="card-content">
 
-            ],
+                <span class="card-category">
+                    Nails
+                </span>
 
+                <h3>
+                    Elegant Nails
+                </h3>
 
-            Brows: [
+                <p>
+                    Detailed nail artistry with a sophisticated finish.
+                </p>
 
-                ["https://images.unsplash.com/photo-1588516903720-8ceb67f9ef84?auto=format&fit=crop&w=900&q=85", "Perfect Brows", "Brow Shaping"],
+                <div class="click-hint">
+                    Explore more
+                    <span>→</span>
+                </div>
 
-                ["https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=85", "Brow Styling", "Brow Styling"],
+            </div>
 
-                ["https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=85", "Defined Brows", "Brow Design"],
+        </article>
 
-                ["https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=85", "Natural Brows", "Natural Look"]
 
-            ],
+        <!-- HAIR 2 -->
 
+        <article
+            class="gallery-card"
+            data-category="hair">
 
-            Spa: [
+            <div class="card-image">
 
-                ["https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=85", "Relaxing Spa", "Body Spa"],
+                <img
+                    src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85"
+                    alt="Hair Styling">
 
-                ["https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=85", "Luxury Treatment", "Spa Treatment"],
+            </div>
 
-                ["https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=900&q=85", "Calm & Relax", "Relaxation"],
+            <div class="card-content">
 
-                ["https://images.unsplash.com/photo-1544168215-8bc1b5a4d1a6?auto=format&fit=crop&w=900&q=85", "Wellness Therapy", "Wellness"]
+                <span class="card-category">
+                    Hair
+                </span>
 
-            ],
+                <h3>
+                    Soft Waves
+                </h3>
 
+                <p>
+                    Effortless waves with a polished glamorous finish.
+                </p>
 
-            "Hair Removal": [
+                <div class="click-hint">
+                    Explore more
+                    <span>→</span>
+                </div>
 
-                ["https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=900&q=85", "Smooth Skin", "Waxing"],
+            </div>
 
-                ["https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=85", "Silky Finish", "Body Care"],
+        </article>
 
-                ["https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85", "Skin Smoothness", "Wax Treatment"],
 
-                ["https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=85", "Premium Waxing", "Waxing"]
+        <!-- MAKEUP 2 -->
 
-            ],
+        <article
+            class="gallery-card"
+            data-category="makeup">
 
+            <div class="card-image">
 
-            Mehndi: [
+                <img
+                    src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=85"
+                    alt="Makeup Beauty">
 
-                ["https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?auto=format&fit=crop&w=900&q=85", "Bridal Mehndi", "Bridal Design"],
+            </div>
 
-                ["https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=900&q=85", "Traditional Mehndi", "Traditional Art"],
+            <div class="card-content">
 
-                ["https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85", "Elegant Design", "Mehndi Art"],
+                <span class="card-category">
+                    Makeup
+                </span>
 
-                ["https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?auto=format&fit=crop&w=900&q=85", "Modern Mehndi", "Modern Design"]
+                <h3>
+                    Bridal Glow
+                </h3>
 
-            ]
+                <p>
+                    Timeless bridal beauty with luminous details.
+                </p>
 
-        };
+                <div class="click-hint">
+                    Explore more
+                    <span>→</span>
+                </div>
 
+            </div>
 
-        /* =====================================================
-           SCROLL OBSERVER
-        ===================================================== */
+        </article>
 
-        const observer =
-            new IntersectionObserver(
 
-                (entries, obs) => {
+        <!-- =========================
+             EXTRA HAIR
+        ========================= -->
 
-                    entries.forEach(entry => {
+        <article
+            class="gallery-card extra-card"
+            data-category="hair">
 
-                        if (entry.isIntersecting) {
+            <div class="card-image">
 
-                            entry.target.classList.add("reveal");
+                <img
+                    src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=900&q=85"
+                    alt="Hair Transformation">
 
-                            obs.unobserve(entry.target);
+            </div>
 
-                        }
+            <div class="card-content">
 
-                    });
+                <span class="card-category">
+                    Hair
+                </span>
 
-                },
+                <h3>
+                    Hair Transformation
+                </h3>
 
-                {
-                    threshold: 0.12,
-                    rootMargin: "0px 0px -35px 0px"
-                }
+                <p>
+                    Fresh cuts and beautiful transformations.
+                </p>
 
-            );
+            </div>
 
+        </article>
 
-        function observeElements() {
 
-            document
-                .querySelectorAll(
-                    ".category-card:not(.reveal), .photo-card:not(.reveal)"
-                )
-                .forEach(element => {
+        <article
+            class="gallery-card extra-card"
+            data-category="hair">
 
-                    observer.observe(element);
+            <div class="card-image">
 
-                });
+                <img
+                    src="https://images.unsplash.com/photo-1527799820374-dcf8f2d4a1b5?auto=format&fit=crop&w=900&q=85"
+                    alt="Elegant Hair">
 
-        }
+            </div>
 
+            <div class="card-content">
 
-        observeElements();
+                <span class="card-category">
+                    Hair
+                </span>
 
+                <h3>
+                    Luxury Finish
+                </h3>
 
+                <p>
+                    Sophisticated salon styling for every occasion.
+                </p>
 
-        /* =====================================================
-           OPEN SERVICE
-        ===================================================== */
+            </div>
 
-        function openService(service) {
+        </article>
 
-            const categories =
-                document.getElementById("categories");
 
-            const hero =
-                document.getElementById("galleryHero");
+        <!-- =========================
+             EXTRA MAKEUP
+        ========================= -->
 
-            const serviceGallery =
-                document.getElementById("serviceGallery");
+        <article
+            class="gallery-card extra-card"
+            data-category="makeup">
 
-            const title =
-                document.getElementById("serviceTitle");
+            <div class="card-image">
 
-            const grid =
-                document.getElementById("photoGrid");
+                <img
+                    src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=85"
+                    alt="Professional Makeup">
 
+            </div>
 
-            categories.style.display = "none";
+            <div class="card-content">
 
-            hero.style.display = "none";
+                <span class="card-category">
+                    Makeup
+                </span>
 
-            serviceGallery.style.display = "block";
+                <h3>
+                    Evening Glam
+                </h3>
 
+                <p>
+                    Bold yet elegant makeup for special occasions.
+                </p>
 
-            title.textContent =
-                service + " Gallery";
+            </div>
 
+        </article>
 
-            grid.innerHTML = "";
 
+        <article
+            class="gallery-card extra-card"
+            data-category="makeup">
 
-            galleryData[service].forEach(item => {
+            <div class="card-image">
 
-                const card =
-                    document.createElement("div");
+                <img
+                    src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=85"
+                    alt="Beauty Makeup">
 
-                card.className = "photo-card";
+            </div>
 
+            <div class="card-content">
 
-                card.innerHTML = `
+                <span class="card-category">
+                    Makeup
+                </span>
 
-                    <img
-                        src="${item[0]}"
-                        alt="${item[1]}"
-                        loading="lazy"
-                    >
+                <h3>
+                    Natural Glam
+                </h3>
 
-                    <div class="photo-info">
+                <p>
+                    Fresh, soft and naturally radiant beauty.
+                </p>
 
-                        <h3>
-                            ${item[1]}
-                        </h3>
+            </div>
 
-                        <p>
-                            ${item[2]}
-                        </p>
+        </article>
 
-                    </div>
 
-                `;
+        <!-- =========================
+             EXTRA SKIN
+        ========================= -->
 
+        <article
+            class="gallery-card extra-card"
+            data-category="skin">
 
-                card.addEventListener(
-                    "click",
-                    () => openLightbox(item[0])
+            <div class="card-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1556229010-aa3c3a2f3b2f?auto=format&fit=crop&w=900&q=85"
+                    alt="Skin Care">
+
+            </div>
+
+            <div class="card-content">
+
+                <span class="card-category">
+                    Skin
+                </span>
+
+                <h3>
+                    Hydration Ritual
+                </h3>
+
+                <p>
+                    Deep hydration for soft and refreshed skin.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="gallery-card extra-card"
+            data-category="skin">
+
+            <div class="card-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=85"
+                    alt="Facial Treatment">
+
+            </div>
+
+            <div class="card-content">
+
+                <span class="card-category">
+                    Skin
+                </span>
+
+                <h3>
+                    Pure Radiance
+                </h3>
+
+                <p>
+                    A refreshing skincare experience for luminous skin.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- =========================
+             EXTRA NAILS
+        ========================= -->
+
+        <article
+            class="gallery-card extra-card"
+            data-category="nails">
+
+            <div class="card-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=85"
+                    alt="Nail Art">
+
+            </div>
+
+            <div class="card-content">
+
+                <span class="card-category">
+                    Nails
+                </span>
+
+                <h3>
+                    Pink Elegance
+                </h3>
+
+                <p>
+                    Feminine pink tones with a polished finish.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="gallery-card extra-card"
+            data-category="nails">
+
+            <div class="card-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=85"
+                    alt="Luxury Nail Design">
+
+            </div>
+
+            <div class="card-content">
+
+                <span class="card-category">
+                    Nails
+                </span>
+
+                <h3>
+                    Modern Nail Art
+                </h3>
+
+                <p>
+                    Contemporary designs created with precision.
+                </p>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+    <!-- SHOW LESS -->
+
+    <div
+        class="show-less-wrap"
+        id="showLessWrap">
+
+        <button
+            class="show-less"
+            id="showLess">
+
+            Show Less
+            <span>↑</span>
+
+        </button>
+
+    </div>
+
+
+    <!-- CTA -->
+
+    <div class="gallery-cta">
+
+        <h2>
+            Ready To Glow?
+        </h2>
+
+        <p>
+            Your beauty journey deserves a little luxury.
+            Book your appointment and let Glamora create
+            your perfect look.
+        </p>
+
+        <a
+            href="booking.html"
+            class="cta-btn">
+
+            Book Your Appointment
+            <span style="margin-left:8px;">→</span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    const menuBtn =
+        document.getElementById("menuBtn");
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+
+        navLinks.classList.toggle("active");
+
+        menuBtn.textContent =
+            navLinks.classList.contains("active")
+                ? "✕"
+                : "☰";
+
+    });
+
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+    const filterButtons =
+        document.querySelectorAll(".filter-btn");
+
+    const cards =
+        document.querySelectorAll(".gallery-card");
+
+    const extraCards =
+        document.querySelectorAll(".extra-card");
+
+    const showLessWrap =
+        document.getElementById("showLessWrap");
+
+    const showLess =
+        document.getElementById("showLess");
+
+
+    /* =========================
+       INITIAL CARD ANIMATION
+    ========================= */
+
+    function animateCards() {
+
+        const visibleCards =
+            [...cards].filter(card => {
+
+                return (
+                    card.style.display !== "none" &&
+                    !card.classList.contains("extra-card")
                 );
-
-
-                grid.appendChild(card);
 
             });
 
-
-            /*
-                New photo cards ko observe
-                karna zaroori hai
-            */
+        visibleCards.forEach((card, index) => {
 
             setTimeout(() => {
 
-                document
-                    .querySelectorAll(".photo-card")
-                    .forEach(card => {
+                card.classList.add("visible");
 
-                        observer.observe(card);
+            }, index * 100);
 
-                    });
+        });
 
-            }, 80);
+    }
 
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
+    /* =========================
+       HIDE ALL EXTRA
+    ========================= */
+
+    function hideExtraCards() {
+
+        extraCards.forEach(card => {
+
+            card.classList.remove("show-card");
+
+            card.style.display = "none";
+
+        });
+
+        showLessWrap.classList.remove("active");
+
+    }
+
+
+    /* =========================
+       FILTER
+    ========================= */
+
+    filterButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const category =
+                button.dataset.category;
+
+
+            filterButtons.forEach(btn => {
+                btn.classList.remove("active");
             });
 
-        }
+            button.classList.add("active");
 
 
-
-        /* =====================================================
-           BACK
-        ===================================================== */
-
-        function showCategories() {
-
-            document.getElementById("categories")
-                .style.display = "block";
-
-            document.getElementById("galleryHero")
-                .style.display = "block";
-
-            document.getElementById("serviceGallery")
-                .style.display = "none";
+            hideExtraCards();
 
 
-            window.scrollTo({
+            cards.forEach(card => {
 
-                top: 0,
+                card.classList.remove("visible");
 
-                behavior: "smooth"
+                const cardCategory =
+                    card.dataset.category;
 
-            });
-
-        }
-
-
-
-        /* =====================================================
-           LIGHTBOX
-        ===================================================== */
-
-        function openLightbox(image) {
-
-            document.getElementById(
-                "lightboxImage"
-            ).src = image;
+                const isExtra =
+                    card.classList.contains("extra-card");
 
 
-            document.getElementById(
-                "lightbox"
-            ).classList.add("active");
+                if (isExtra) {
 
-        }
+                    card.style.display = "none";
 
-
-        function closeLightbox() {
-
-            document.getElementById(
-                "lightbox"
-            ).classList.remove("active");
-
-        }
-
-
-        document
-            .getElementById("lightboxImage")
-            .addEventListener(
-                "click",
-                event => event.stopPropagation()
-            );
-
-
-        document.addEventListener(
-            "keydown",
-            event => {
-
-                if (event.key === "Escape") {
-
-                    closeLightbox();
+                    return;
 
                 }
 
-            }
-        );
 
-    </script>
+                if (
+                    category === "all" ||
+                    cardCategory === category
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+
+            setTimeout(() => {
+
+                const selectedCards =
+                    [...cards].filter(card => {
+
+                        return (
+                            card.style.display !== "none" &&
+                            !card.classList.contains("extra-card")
+                        );
+
+                    });
+
+
+                selectedCards.forEach((card, index) => {
+
+                    setTimeout(() => {
+
+                        card.classList.add("visible");
+
+                    }, index * 100);
+
+                });
+
+            }, 50);
+
+        });
+
+    });
+
+
+    /* =========================
+       CARD CLICK
+       SHOW MORE CARDS
+    ========================= */
+
+    cards.forEach(card => {
+
+        card.addEventListener("click", () => {
+
+            const category =
+                card.dataset.category;
+
+
+            if (!category) return;
+
+
+            /* Activate category button */
+
+            filterButtons.forEach(btn => {
+
+                btn.classList.remove("active");
+
+                if (
+                    btn.dataset.category === category
+                ) {
+
+                    btn.classList.add("active");
+
+                }
+
+            });
+
+
+            /* Hide other main cards */
+
+            cards.forEach(item => {
+
+                if (
+                    !item.classList.contains("extra-card") &&
+                    item.dataset.category !== category
+                ) {
+
+                    item.style.display = "none";
+                    item.classList.remove("visible");
+
+                }
+
+            });
+
+
+            /* Keep category cards visible */
+
+            cards.forEach(item => {
+
+                if (
+                    !item.classList.contains("extra-card") &&
+                    item.dataset.category === category
+                ) {
+
+                    item.style.display = "block";
+
+                    setTimeout(() => {
+                        item.classList.add("visible");
+                    }, 50);
+
+                }
+
+            });
+
+
+            /* Find extra cards */
+
+            const categoryExtraCards =
+                [...extraCards].filter(item => {
+
+                    return (
+                        item.dataset.category === category
+                    );
+
+                });
+
+
+            if (
+                categoryExtraCards.length === 0
+            ) {
+                return;
+            }
+
+
+            /* Show extra cards one by one */
+
+            categoryExtraCards.forEach(
+                (extraCard, index) => {
+
+                    extraCard.style.display =
+                        "block";
+
+                    setTimeout(() => {
+
+                        extraCard.classList.add(
+                            "show-card"
+                        );
+
+                    }, 120 + index * 150);
+
+                }
+            );
+
+
+            showLessWrap.classList.add(
+                "active"
+            );
+
+
+            /* Scroll smoothly to new cards */
+
+            setTimeout(() => {
+
+                const firstExtra =
+                    categoryExtraCards[0];
+
+                if (firstExtra) {
+
+                    firstExtra.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                }
+
+            }, 400);
+
+        });
+
+    });
+
+
+    /* =========================
+       SHOW LESS
+    ========================= */
+
+    showLess.addEventListener("click", () => {
+
+        hideExtraCards();
+
+
+        filterButtons.forEach(btn => {
+
+            btn.classList.remove("active");
+
+            if (
+                btn.dataset.category === "all"
+            ) {
+
+                btn.classList.add("active");
+
+            }
+
+        });
+
+
+        cards.forEach(card => {
+
+            card.classList.remove("visible");
+
+            card.style.display = "block";
+
+        });
+
+
+        setTimeout(() => {
+
+            cards.forEach((card, index) => {
+
+                setTimeout(() => {
+
+                    card.classList.add("visible");
+
+                }, index * 80);
+
+            });
+
+        }, 50);
+
+
+        document.querySelector(
+            ".section-heading"
+        ).scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    });
+
+
+    /* =========================
+       FIRST LOAD
+    ========================= */
+
+    window.addEventListener(
+        "DOMContentLoaded",
+        () => {
+
+            animateCards();
+
+        }
+    );
+
+</script>
 
 </body>
-
 </html>
