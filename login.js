@@ -1,5 +1,5 @@
 // ========================================
-// FIREBASE IMPORT
+// FIREBASE AUTH IMPORT
 // ========================================
 
 import { auth } from "./firebase-config.js";
@@ -16,71 +16,103 @@ import {
 
 
 // ========================================
-// GET LOGIN & SIGNUP BOXES
+// LOGIN / SIGNUP BOXES
 // ========================================
 
-const loginForm = document.getElementById("loginForm");
-const signupForm = document.getElementById("signupForm");
+const loginForm =
+    document.getElementById("loginForm");
 
-
-// ========================================
-// GET SWITCH BUTTONS
-// ========================================
-
-const showSignup = document.getElementById("showSignup");
-const showLogin = document.getElementById("showLogin");
+const signupForm =
+    document.getElementById("signupForm");
 
 
 // ========================================
-// LOGIN FORM
+// SWITCH BUTTONS
 // ========================================
 
-const loginActualForm = document.getElementById("loginActualForm");
+const showSignup =
+    document.getElementById("showSignup");
 
-const loginEmail = document.getElementById("loginEmail");
-const loginPassword = document.getElementById("loginPassword");
-
-
-// ========================================
-// SIGNUP FORM
-// ========================================
-
-const signupActualForm = document.getElementById("signupActualForm");
-
-const signupName = document.getElementById("signupName");
-const signupEmail = document.getElementById("signupEmail");
-const signupPassword = document.getElementById("signupPassword");
+const showLogin =
+    document.getElementById("showLogin");
 
 
 // ========================================
-// MESSAGE ELEMENTS
+// LOGIN ELEMENTS
 // ========================================
 
-const loginMessage = document.getElementById("loginMessage");
-const signupMessage = document.getElementById("signupMessage");
+const loginActualForm =
+    document.getElementById("loginActualForm");
+
+const loginEmail =
+    document.getElementById("loginEmail");
+
+const loginPassword =
+    document.getElementById("loginPassword");
+
+const loginMessage =
+    document.getElementById("loginMessage");
+
+
+// ========================================
+// SIGNUP ELEMENTS
+// ========================================
+
+const signupActualForm =
+    document.getElementById("signupActualForm");
+
+const signupName =
+    document.getElementById("signupName");
+
+const signupEmail =
+    document.getElementById("signupEmail");
+
+const signupPassword =
+    document.getElementById("signupPassword");
+
+const signupMessage =
+    document.getElementById("signupMessage");
 
 
 // ========================================
 // GOOGLE BUTTONS
 // ========================================
 
-const googleLoginBtn = document.querySelector(
-    "#loginForm .google-btn"
-);
+const googleLoginBtn =
+    document.getElementById("googleLoginBtn");
 
-const googleSignupBtn = document.getElementById("googleSignupBtn");
+const googleSignupBtn =
+    document.getElementById("googleSignupBtn");
 
 
 // ========================================
 // PHONE BUTTONS
 // ========================================
 
-const phoneLoginBtn = document.getElementById("phoneLoginBtn");
-const phoneSignupBtn = document.getElementById("phoneSignupBtn");
+const phoneLoginBtn =
+    document.getElementById("phoneLoginBtn");
+
+const phoneSignupBtn =
+    document.getElementById("phoneSignupBtn");
 
 
 // ========================================
-// SHOW SIGNUP
+// RECAPTCHA CONTAINER
+// ========================================
+
+const recaptchaContainer =
+    document.getElementById("recaptcha-container");
+
+
+// ========================================
+// CHECK ELEMENTS
+// ========================================
+
+console.log("Login JS loaded successfully.");
+
+
+// ========================================
+// SWITCH TO SIGNUP
 // ========================================
 
 showSignup.addEventListener("click", function () {
@@ -89,11 +121,15 @@ showSignup.addEventListener("click", function () {
 
     signupForm.classList.add("active");
 
+    loginMessage.textContent = "";
+
+    signupMessage.textContent = "";
+
 });
 
 
 // ========================================
-// SHOW LOGIN
+// SWITCH TO LOGIN
 // ========================================
 
 showLogin.addEventListener("click", function () {
@@ -102,57 +138,9 @@ showLogin.addEventListener("click", function () {
 
     loginForm.classList.add("active");
 
-});
+    loginMessage.textContent = "";
 
-
-// ========================================
-// EMAIL LOGIN
-// ========================================
-
-loginActualForm.addEventListener("submit", async function (event) {
-
-    event.preventDefault();
-
-    const email = loginEmail.value.trim();
-
-    const password = loginPassword.value;
-
-
-    try {
-
-        const userCredential =
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-
-        const user = userCredential.user;
-
-
-        console.log("Login successful:", user);
-
-
-        loginMessage.textContent =
-            "Login Successful!";
-
-
-        setTimeout(function () {
-
-            window.location.href = "index.html";
-
-        }, 1000);
-
-
-    } catch (error) {
-
-        console.log("Login Error:", error);
-
-        loginMessage.textContent =
-            error.message;
-
-    }
+    signupMessage.textContent = "";
 
 });
 
@@ -161,78 +149,170 @@ loginActualForm.addEventListener("submit", async function (event) {
 // EMAIL SIGNUP
 // ========================================
 
-signupActualForm.addEventListener("submit", async function (event) {
+signupActualForm.addEventListener(
+    "submit",
+    async function (event) {
 
-    event.preventDefault();
-
-    const name = signupName.value.trim();
-
-    const email = signupEmail.value.trim();
-
-    const password = signupPassword.value;
+        event.preventDefault();
 
 
-    try {
+        const name =
+            signupName.value.trim();
 
-        const userCredential =
-            await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
+        const email =
+            signupEmail.value.trim();
+
+        const password =
+            signupPassword.value;
+
+
+        signupMessage.textContent =
+            "Creating account...";
+
+
+        try {
+
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user =
+                userCredential.user;
+
+
+            // Save user's name
+
+            await updateProfile(
+                user,
+                {
+                    displayName: name
+                }
             );
 
 
-        const user = userCredential.user;
+            console.log(
+                "Signup successful:",
+                user
+            );
 
 
-        // Save full name
-
-        await updateProfile(user, {
-
-            displayName: name
-
-        });
+            signupMessage.textContent =
+                "Account created successfully!";
 
 
-        console.log("Signup successful:", user);
+            signupActualForm.reset();
 
 
-        signupMessage.textContent =
-            "Account Created Successfully!";
+            setTimeout(function () {
+
+                signupForm.classList.remove("active");
+
+                loginForm.classList.add("active");
+
+            }, 1000);
 
 
-        signupActualForm.reset();
+        } catch (error) {
+
+            console.error(
+                "Signup Error:",
+                error
+            );
 
 
-        setTimeout(function () {
+            signupMessage.textContent =
+                firebaseError(error);
 
-            signupForm.classList.remove("active");
-
-            loginForm.classList.add("active");
-
-        }, 1000);
-
-
-    } catch (error) {
-
-        console.log("Signup Error:", error);
-
-        signupMessage.textContent =
-            error.message;
+        }
 
     }
+);
 
-});
+
+// ========================================
+// EMAIL LOGIN
+// ========================================
+
+loginActualForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        const email =
+            loginEmail.value.trim();
+
+        const password =
+            loginPassword.value;
+
+
+        loginMessage.textContent =
+            "Logging in...";
+
+
+        try {
+
+            const userCredential =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user =
+                userCredential.user;
+
+
+            console.log(
+                "Login successful:",
+                user
+            );
+
+
+            loginMessage.textContent =
+                "Login successful!";
+
+
+            setTimeout(function () {
+
+                window.location.href =
+                    "index.html";
+
+            }, 1000);
+
+
+        } catch (error) {
+
+            console.error(
+                "Login Error:",
+                error
+            );
+
+
+            loginMessage.textContent =
+                firebaseError(error);
+
+        }
+
+    }
+);
 
 
 // ========================================
 // GOOGLE AUTH
 // ========================================
 
-const googleProvider = new GoogleAuthProvider();
+const googleProvider =
+    new GoogleAuthProvider();
 
 
-async function googleLogin() {
+async function googleAuth() {
 
     try {
 
@@ -243,37 +323,38 @@ async function googleLogin() {
             );
 
 
-        const user = result.user;
+        const user =
+            result.user;
 
 
-        console.log("Google Login Successful:", user);
+        console.log(
+            "Google login successful:",
+            user
+        );
 
 
-        if (loginMessage) {
-
-            loginMessage.textContent =
-                "Google Login Successful!";
-
-        }
+        loginMessage.textContent =
+            "Google login successful!";
 
 
         setTimeout(function () {
 
-            window.location.href = "index.html";
+            window.location.href =
+                "index.html";
 
         }, 1000);
 
 
     } catch (error) {
 
-        console.log("Google Login Error:", error);
+        console.error(
+            "Google Error:",
+            error
+        );
 
-        if (loginMessage) {
 
-            loginMessage.textContent =
-                error.message;
-
-        }
+        loginMessage.textContent =
+            firebaseError(error);
 
     }
 
@@ -284,55 +365,175 @@ async function googleLogin() {
 // GOOGLE LOGIN BUTTON
 // ========================================
 
-googleLoginBtn.addEventListener("click", googleLogin);
+googleLoginBtn.addEventListener(
+    "click",
+    googleAuth
+);
 
 
 // ========================================
 // GOOGLE SIGNUP BUTTON
 // ========================================
 
-googleSignupBtn.addEventListener("click", googleLogin);
+googleSignupBtn.addEventListener(
+    "click",
+    googleAuth
+);
 
 
 // ========================================
 // PHONE AUTH
 // ========================================
 
-// Firebase Phone Authentication needs reCAPTCHA.
+let confirmationResult = null;
 
-let confirmationResult;
+let recaptchaVerifier = null;
 
 
-// Create invisible reCAPTCHA
+// ========================================
+// CREATE RECAPTCHA
+// ========================================
 
-function setupRecaptcha() {
+function createRecaptcha() {
 
-    if (!window.recaptchaVerifier) {
+    if (recaptchaVerifier) {
 
-        window.recaptchaVerifier =
-            new RecaptchaVerifier(
-                auth,
-                "phoneLoginBtn",
-                {
-                    size: "invisible",
+        return recaptchaVerifier;
 
-                    callback: function () {
+    }
 
-                        console.log(
-                            "reCAPTCHA solved"
-                        );
 
-                    },
+    recaptchaVerifier =
+        new RecaptchaVerifier(
+            auth,
+            "recaptcha-container",
+            {
+                size: "normal",
 
-                    "expired-callback": function () {
+                callback: function () {
 
-                        console.log(
-                            "reCAPTCHA expired"
-                        );
+                    console.log(
+                        "reCAPTCHA solved"
+                    );
 
-                    }
+                },
+
+                "expired-callback": function () {
+
+                    console.log(
+                        "reCAPTCHA expired"
+                    );
+
                 }
+            }
+        );
+
+
+    return recaptchaVerifier;
+
+}
+
+
+// ========================================
+// PHONE AUTH FUNCTION
+// ========================================
+
+async function phoneAuth() {
+
+    const phoneNumber =
+        prompt(
+            "Enter phone number with country code:\nExample: +923001234567"
+        );
+
+
+    if (!phoneNumber) {
+
+        return;
+
+    }
+
+
+    try {
+
+        // Create reCAPTCHA
+
+        const appVerifier =
+            createRecaptcha();
+
+
+        // Send OTP
+
+        confirmationResult =
+            await signInWithPhoneNumber(
+                auth,
+                phoneNumber,
+                appVerifier
             );
+
+
+        console.log(
+            "OTP sent successfully."
+        );
+
+
+        const code =
+            prompt(
+                "Enter the OTP sent to your phone:"
+            );
+
+
+        if (!code) {
+
+            return;
+
+        }
+
+
+        // Confirm OTP
+
+        const result =
+            await confirmationResult.confirm(
+                code
+            );
+
+
+        console.log(
+            "Phone authentication successful:",
+            result.user
+        );
+
+
+        alert(
+            "Phone login successful!"
+        );
+
+
+        window.location.href =
+            "index.html";
+
+
+    } catch (error) {
+
+        console.error(
+            "Phone Error:",
+            error
+        );
+
+
+        alert(
+            firebaseError(error)
+        );
+
+
+        // Reset reCAPTCHA
+
+        if (recaptchaVerifier) {
+
+            recaptchaVerifier.clear();
+
+            recaptchaVerifier = null;
+
+        }
 
     }
 
@@ -343,185 +544,68 @@ function setupRecaptcha() {
 // PHONE LOGIN
 // ========================================
 
-async function phoneLogin() {
-
-    const phoneNumber =
-        prompt(
-            "Enter your phone number with country code:\nExample: +923001234567"
-        );
-
-
-    if (!phoneNumber) {
-
-        return;
-
-    }
-
-
-    try {
-
-        setupRecaptcha();
-
-
-        confirmationResult =
-            await signInWithPhoneNumber(
-                auth,
-                phoneNumber,
-                window.recaptchaVerifier
-            );
-
-
-        const code =
-            prompt(
-                "Enter the OTP sent to your phone:"
-            );
-
-
-        if (!code) {
-
-            return;
-
-        }
-
-
-        const result =
-            await confirmationResult.confirm(code);
-
-
-        console.log(
-            "Phone Login Successful:",
-            result.user
-        );
-
-
-        alert("Phone Login Successful!");
-
-
-        window.location.href =
-            "index.html";
-
-
-    } catch (error) {
-
-        console.log(
-            "Phone Login Error:",
-            error
-        );
-
-
-        alert(error.message);
-
-
-        if (window.recaptchaVerifier) {
-
-            window.recaptchaVerifier.clear();
-
-            window.recaptchaVerifier = null;
-
-        }
-
-    }
-
-}
+phoneLoginBtn.addEventListener(
+    "click",
+    phoneAuth
+);
 
 
 // ========================================
 // PHONE SIGNUP
 // ========================================
 
-async function phoneSignup() {
-
-    const phoneNumber =
-        prompt(
-            "Enter your phone number with country code:\nExample: +923001234567"
-        );
+phoneSignupBtn.addEventListener(
+    "click",
+    phoneAuth
+);
 
 
-    if (!phoneNumber) {
+// ========================================
+// FIREBASE ERROR HANDLER
+// ========================================
 
-        return;
+function firebaseError(error) {
 
-    }
+    switch (error.code) {
 
+        case "auth/email-already-in-use":
+            return "This email is already registered.";
 
-    try {
+        case "auth/invalid-email":
+            return "Please enter a valid email address.";
 
-        setupRecaptcha();
+        case "auth/weak-password":
+            return "Password must be at least 6 characters.";
 
+        case "auth/invalid-credential":
+            return "Email or password is incorrect.";
 
-        confirmationResult =
-            await signInWithPhoneNumber(
-                auth,
-                phoneNumber,
-                window.recaptchaVerifier
-            );
+        case "auth/user-not-found":
+            return "No account found with this email.";
 
+        case "auth/wrong-password":
+            return "Incorrect password.";
 
-        const code =
-            prompt(
-                "Enter the OTP sent to your phone:"
-            );
+        case "auth/popup-closed-by-user":
+            return "Google login was cancelled.";
 
+        case "auth/popup-blocked":
+            return "Please allow popups for this website.";
 
-        if (!code) {
+        case "auth/operation-not-allowed":
+            return "This login method is not enabled in Firebase.";
 
-            return;
+        case "auth/invalid-phone-number":
+            return "Please enter a valid phone number.";
 
-        }
+        case "auth/too-many-requests":
+            return "Too many attempts. Please try again later.";
 
+        case "auth/quota-exceeded":
+            return "Firebase SMS limit has been reached.";
 
-        const result =
-            await confirmationResult.confirm(code);
-
-
-        console.log(
-            "Phone Signup Successful:",
-            result.user
-        );
-
-
-        alert("Phone Account Created Successfully!");
-
-
-        window.location.href =
-            "index.html";
-
-
-    } catch (error) {
-
-        console.log(
-            "Phone Signup Error:",
-            error
-        );
-
-
-        alert(error.message);
-
-
-        if (window.recaptchaVerifier) {
-
-            window.recaptchaVerifier.clear();
-
-            window.recaptchaVerifier = null;
-
-        }
-
+        default:
+            return error.message;
     }
 
 }
-
-
-// ========================================
-// PHONE BUTTONS
-// ========================================
-
-phoneLoginBtn.addEventListener(
-    "click",
-    phoneLogin
-);
-
-
-phoneSignupBtn.addEventListener(
-    "click",
-    phoneSignup
-);
