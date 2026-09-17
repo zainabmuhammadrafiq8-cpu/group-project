@@ -8,10 +8,17 @@ import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     updateProfile,
+    sendPasswordResetEmail,
+
+    // GOOGLE
     GoogleAuthProvider,
-    signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
+
+    // PHONE
     RecaptchaVerifier,
     signInWithPhoneNumber
+
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
@@ -97,6 +104,14 @@ const phoneSignupBtn =
 
 
 // ========================================
+// FORGOT PASSWORD
+// ========================================
+
+const forgotPassword =
+    document.querySelector(".forgot-password");
+
+
+// ========================================
 // RECAPTCHA CONTAINER
 // ========================================
 
@@ -105,44 +120,56 @@ const recaptchaContainer =
 
 
 // ========================================
-// CHECK ELEMENTS
+// CHECK
 // ========================================
 
-console.log("Login JS loaded successfully.");
-
-
-// ========================================
-// SWITCH TO SIGNUP
-// ========================================
-
-showSignup.addEventListener("click", function () {
-
-    loginForm.classList.remove("active");
-
-    signupForm.classList.add("active");
-
-    loginMessage.textContent = "";
-
-    signupMessage.textContent = "";
-
-});
+console.log(
+    "LOGIN JS LOADED SUCCESSFULLY"
+);
 
 
 // ========================================
-// SWITCH TO LOGIN
+// LOGIN → SIGNUP
 // ========================================
 
-showLogin.addEventListener("click", function () {
+showSignup.addEventListener(
+    "click",
+    function (event) {
 
-    signupForm.classList.remove("active");
+        event.preventDefault();
 
-    loginForm.classList.add("active");
+        loginForm.classList.remove("active");
 
-    loginMessage.textContent = "";
+        signupForm.classList.add("active");
 
-    signupMessage.textContent = "";
+        loginMessage.textContent = "";
 
-});
+        signupMessage.textContent = "";
+
+    }
+);
+
+
+// ========================================
+// SIGNUP → LOGIN
+// ========================================
+
+showLogin.addEventListener(
+    "click",
+    function (event) {
+
+        event.preventDefault();
+
+        signupForm.classList.remove("active");
+
+        loginForm.classList.add("active");
+
+        loginMessage.textContent = "";
+
+        signupMessage.textContent = "";
+
+    }
+);
 
 
 // ========================================
@@ -155,7 +182,6 @@ signupActualForm.addEventListener(
 
         event.preventDefault();
 
-
         const name =
             signupName.value.trim();
 
@@ -164,6 +190,15 @@ signupActualForm.addEventListener(
 
         const password =
             signupPassword.value;
+
+
+        if (!name || !email || !password) {
+
+            signupMessage.textContent =
+                "Please fill all fields.";
+
+            return;
+        }
 
 
         signupMessage.textContent =
@@ -180,23 +215,11 @@ signupActualForm.addEventListener(
                 );
 
 
-            const user =
-                userCredential.user;
-
-
-            // Save user's name
-
             await updateProfile(
-                user,
+                userCredential.user,
                 {
                     displayName: name
                 }
-            );
-
-
-            console.log(
-                "Signup successful:",
-                user
             );
 
 
@@ -207,22 +230,28 @@ signupActualForm.addEventListener(
             signupActualForm.reset();
 
 
-            setTimeout(function () {
+            setTimeout(
+                function () {
 
-                signupForm.classList.remove("active");
+                    signupForm.classList.remove(
+                        "active"
+                    );
 
-                loginForm.classList.add("active");
+                    loginForm.classList.add(
+                        "active"
+                    );
 
-            }, 1000);
+                },
+                1000
+            );
 
 
         } catch (error) {
 
             console.error(
-                "Signup Error:",
+                "SIGNUP ERROR:",
                 error
             );
-
 
             signupMessage.textContent =
                 firebaseError(error);
@@ -251,27 +280,25 @@ loginActualForm.addEventListener(
             loginPassword.value;
 
 
+        if (!email || !password) {
+
+            loginMessage.textContent =
+                "Please enter email and password.";
+
+            return;
+        }
+
+
         loginMessage.textContent =
             "Logging in...";
 
 
         try {
 
-            const userCredential =
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-
-            const user =
-                userCredential.user;
-
-
-            console.log(
-                "Login successful:",
-                user
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
             );
 
 
@@ -279,21 +306,23 @@ loginActualForm.addEventListener(
                 "Login successful!";
 
 
-            setTimeout(function () {
+            setTimeout(
+                function () {
 
-                window.location.href =
-                    "index.html";
+                    window.location.href =
+                        "index.html";
 
-            }, 1000);
+                },
+                1000
+            );
 
 
         } catch (error) {
 
             console.error(
-                "Login Error:",
+                "LOGIN ERROR:",
                 error
             );
-
 
             loginMessage.textContent =
                 firebaseError(error);
@@ -305,50 +334,175 @@ loginActualForm.addEventListener(
 
 
 // ========================================
+// FORGOT PASSWORD
+// ========================================
+
+if (forgotPassword) {
+
+    forgotPassword.addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const email =
+                loginEmail.value.trim();
+
+
+            if (!email) {
+
+                loginMessage.textContent =
+                    "Pehle apna email enter karo.";
+
+                loginEmail.focus();
+
+                return;
+            }
+
+
+            loginMessage.textContent =
+                "Sending reset email...";
+
+
+            try {
+
+                await sendPasswordResetEmail(
+                    auth,
+                    email
+                );
+
+
+                loginMessage.textContent =
+                    "Password reset email sent. Check your inbox.";
+
+            } catch (error) {
+
+                console.error(
+                    "FORGOT PASSWORD ERROR:",
+                    error
+                );
+
+                loginMessage.textContent =
+                    firebaseError(error);
+
+            }
+
+        }
+    );
+
+
+    console.log(
+        "Forgot Password loaded successfully."
+    );
+
+}
+
+
+// ========================================
 // GOOGLE AUTH
+// REDIRECT METHOD
 // ========================================
 
 const googleProvider =
     new GoogleAuthProvider();
 
 
-async function googleAuth() {
+googleProvider.setCustomParameters({
+    prompt: "select_account"
+});
+
+
+// Prevent duplicate Google requests
+
+let googleAuthRunning = false;
+
+
+// ========================================
+// GOOGLE AUTH FUNCTION
+// ========================================
+
+async function googleAuth(messageElement) {
+
+    if (googleAuthRunning) {
+
+        return;
+    }
+
+
+    googleAuthRunning = true;
+
+
+    messageElement.textContent =
+        "Opening Google...";
+
 
     try {
 
-        const result =
-            await signInWithPopup(
-                auth,
-                googleProvider
-            );
-
-
-        const user =
-            result.user;
-
-
-        console.log(
-            "Google login successful:",
-            user
+        await signInWithRedirect(
+            auth,
+            googleProvider
         );
-
-
-        loginMessage.textContent =
-            "Google login successful!";
-
-
-        setTimeout(function () {
-
-            window.location.href =
-                "index.html";
-
-        }, 1000);
-
 
     } catch (error) {
 
         console.error(
-            "Google Error:",
+            "GOOGLE REDIRECT ERROR:",
+            error
+        );
+
+
+        messageElement.textContent =
+            firebaseError(error);
+
+
+        googleAuthRunning = false;
+
+    }
+
+}
+
+
+// ========================================
+// CHECK GOOGLE REDIRECT RESULT
+// ========================================
+
+async function checkGoogleRedirect() {
+
+    try {
+
+        const result =
+            await getRedirectResult(auth);
+
+
+        if (result) {
+
+            console.log(
+                "GOOGLE LOGIN SUCCESS:",
+                result.user
+            );
+
+
+            loginMessage.textContent =
+                "Google login successful!";
+
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "index.html";
+
+                },
+                1000
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "GOOGLE REDIRECT RESULT ERROR:",
             error
         );
 
@@ -361,13 +515,24 @@ async function googleAuth() {
 }
 
 
+// Run redirect check
+
+checkGoogleRedirect();
+
+
 // ========================================
 // GOOGLE LOGIN BUTTON
 // ========================================
 
 googleLoginBtn.addEventListener(
     "click",
-    googleAuth
+    function (event) {
+
+        event.preventDefault();
+
+        googleAuth(loginMessage);
+
+    }
 );
 
 
@@ -377,7 +542,13 @@ googleLoginBtn.addEventListener(
 
 googleSignupBtn.addEventListener(
     "click",
-    googleAuth
+    function (event) {
+
+        event.preventDefault();
+
+        googleAuth(signupMessage);
+
+    }
 );
 
 
@@ -389,6 +560,8 @@ let confirmationResult = null;
 
 let recaptchaVerifier = null;
 
+let phoneAuthRunning = false;
+
 
 // ========================================
 // CREATE RECAPTCHA
@@ -398,7 +571,20 @@ function createRecaptcha() {
 
     if (recaptchaVerifier) {
 
-        return recaptchaVerifier;
+        try {
+
+            recaptchaVerifier.clear();
+
+        } catch (error) {
+
+            console.log(
+                "Old reCAPTCHA cleanup:",
+                error
+            );
+
+        }
+
+        recaptchaVerifier = null;
 
     }
 
@@ -406,9 +592,10 @@ function createRecaptcha() {
     recaptchaVerifier =
         new RecaptchaVerifier(
             auth,
-            "recaptcha-container",
+            recaptchaContainer,
             {
-                size: "normal",
+
+                size: "invisible",
 
                 callback: function () {
 
@@ -418,13 +605,15 @@ function createRecaptcha() {
 
                 },
 
-                "expired-callback": function () {
+                "expired-callback":
+                    function () {
 
-                    console.log(
-                        "reCAPTCHA expired"
-                    );
+                        console.log(
+                            "reCAPTCHA expired"
+                        );
 
-                }
+                    }
+
             }
         );
 
@@ -438,7 +627,16 @@ function createRecaptcha() {
 // PHONE AUTH FUNCTION
 // ========================================
 
-async function phoneAuth() {
+async function phoneAuth(messageElement) {
+
+    if (phoneAuthRunning) {
+
+        return;
+    }
+
+
+    phoneAuthRunning = true;
+
 
     const phoneNumber =
         prompt(
@@ -448,32 +646,36 @@ async function phoneAuth() {
 
     if (!phoneNumber) {
 
-        return;
+        phoneAuthRunning = false;
 
+        return;
     }
 
 
-    try {
+    const cleanPhoneNumber =
+        phoneNumber.trim();
 
-        // Create reCAPTCHA
+
+    messageElement.textContent =
+        "Sending OTP...";
+
+
+    try {
 
         const appVerifier =
             createRecaptcha();
 
 
-        // Send OTP
-
         confirmationResult =
             await signInWithPhoneNumber(
                 auth,
-                phoneNumber,
+                cleanPhoneNumber,
                 appVerifier
             );
 
 
-        console.log(
-            "OTP sent successfully."
-        );
+        messageElement.textContent =
+            "OTP sent. Check your phone.";
 
 
         const code =
@@ -484,52 +686,64 @@ async function phoneAuth() {
 
         if (!code) {
 
-            return;
+            messageElement.textContent =
+                "OTP verification cancelled.";
 
+            return;
         }
 
 
-        // Confirm OTP
-
-        const result =
-            await confirmationResult.confirm(
-                code
-            );
-
-
-        console.log(
-            "Phone authentication successful:",
-            result.user
+        await confirmationResult.confirm(
+            code.trim()
         );
 
 
-        alert(
-            "Phone login successful!"
+        messageElement.textContent =
+            "Phone login successful!";
+
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "index.html";
+
+            },
+            1000
         );
-
-
-        window.location.href =
-            "index.html";
 
 
     } catch (error) {
 
         console.error(
-            "Phone Error:",
+            "PHONE ERROR:",
             error
         );
 
 
-        alert(
-            firebaseError(error)
-        );
+        messageElement.textContent =
+            firebaseError(error);
 
 
-        // Reset reCAPTCHA
+    } finally {
+
+        phoneAuthRunning = false;
+
 
         if (recaptchaVerifier) {
 
-            recaptchaVerifier.clear();
+            try {
+
+                recaptchaVerifier.clear();
+
+            } catch (error) {
+
+                console.log(
+                    "reCAPTCHA cleanup:",
+                    error
+                );
+
+            }
 
             recaptchaVerifier = null;
 
@@ -541,22 +755,34 @@ async function phoneAuth() {
 
 
 // ========================================
-// PHONE LOGIN
+// PHONE LOGIN BUTTON
 // ========================================
 
 phoneLoginBtn.addEventListener(
     "click",
-    phoneAuth
+    function (event) {
+
+        event.preventDefault();
+
+        phoneAuth(loginMessage);
+
+    }
 );
 
 
 // ========================================
-// PHONE SIGNUP
+// PHONE SIGNUP BUTTON
 // ========================================
 
 phoneSignupBtn.addEventListener(
     "click",
-    phoneAuth
+    function (event) {
+
+        event.preventDefault();
+
+        phoneAuth(signupMessage);
+
+    }
 );
 
 
@@ -566,46 +792,123 @@ phoneSignupBtn.addEventListener(
 
 function firebaseError(error) {
 
+    console.error(
+        "Firebase Error Code:",
+        error.code
+    );
+
+
     switch (error.code) {
 
+
+        // EMAIL
+
         case "auth/email-already-in-use":
+
             return "This email is already registered.";
 
+
         case "auth/invalid-email":
+
             return "Please enter a valid email address.";
 
+
         case "auth/weak-password":
+
             return "Password must be at least 6 characters.";
 
+
         case "auth/invalid-credential":
+
             return "Email or password is incorrect.";
 
+
         case "auth/user-not-found":
+
             return "No account found with this email.";
 
+
         case "auth/wrong-password":
+
             return "Incorrect password.";
 
+
+        // GOOGLE
+
         case "auth/popup-closed-by-user":
+
             return "Google login was cancelled.";
 
+
         case "auth/popup-blocked":
-            return "Please allow popups for this website.";
+
+            return "Google popup was blocked.";
+
+
+        case "auth/cancelled-popup-request":
+
+            return "Google login request was cancelled. Please try again.";
+
+
+        case "auth/unauthorized-domain":
+
+            return "This website domain is not authorized in Firebase.";
+
 
         case "auth/operation-not-allowed":
+
             return "This login method is not enabled in Firebase.";
 
-        case "auth/invalid-phone-number":
-            return "Please enter a valid phone number.";
 
-        case "auth/too-many-requests":
-            return "Too many attempts. Please try again later.";
+        // PHONE
+
+        case "auth/invalid-phone-number":
+
+            return "Enter a valid phone number like +923001234567.";
+
+
+        case "auth/invalid-verification-code":
+
+            return "The OTP is incorrect.";
+
+
+        case "auth/code-expired":
+
+            return "The OTP has expired. Try again.";
+
+
+        case "auth/captcha-check-failed":
+
+            return "reCAPTCHA verification failed. Try again.";
+
+
+        case "auth/missing-phone-number":
+
+            return "Please enter your phone number.";
+
 
         case "auth/quota-exceeded":
+
             return "Firebase SMS limit has been reached.";
 
+
+        case "auth/too-many-requests":
+
+            return "Too many attempts. Please try again later.";
+
+
+        // NETWORK
+
+        case "auth/network-request-failed":
+
+            return "Internet connection problem.";
+
+
         default:
-            return error.message;
+
+            return error.message ||
+                "Something went wrong.";
+
     }
 
 }
