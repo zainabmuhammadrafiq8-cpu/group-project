@@ -1,11 +1,3716 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Glamora Beauty Salon | Person 2</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+:root {
+    --bg: #10081c;
+    --bg2: #1b1030;
+    --bg3: #24143d;
+
+    --card: rgba(255,255,255,.055);
+
+    --pink: #ff4e8a;
+    --pink-light: #ff9abb;
+    --purple: #8b2fd6;
+
+    --text: #fff5fc;
+    --muted: #bcaecb;
+
+    --border: rgba(255,255,255,.13);
+
+    --gradient:
+        linear-gradient(135deg,#ff4e8a,#8b2fd6);
+
+    --shadow:
+        0 20px 60px rgba(0,0,0,.25);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(139,47,214,.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 70%,
+            rgba(255,78,138,.08),
+            transparent 30%
+        );
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+    width: min(1180px,90%);
+    margin: auto;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+header {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    background:
+        rgba(16,8,28,.78);
+
+    backdrop-filter: blur(22px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+    transition:
+        background .4s ease,
+        box-shadow .4s ease;
+}
+
+header.scrolled {
+    background:
+        rgba(12,5,21,.94);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.25);
+}
+
+.navbar {
+    width: min(1180px,90%);
+
+    min-height: 82px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+.logo {
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    background:
+        var(--gradient);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    transition:
+        transform .3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.04);
+}
+
+.nav-links {
+    list-style: none;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+.nav-links a {
+    position: relative;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    transition:
+        color .3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+    height: 2px;
+
+    left: 0;
+    bottom: -8px;
+
+    background:
+        var(--pink);
+
+    border-radius: 5px;
+
+    transition:
+        width .3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: white;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+
+/* MOBILE MENU */
+
+.menu-btn {
+    display: none;
+
+    width: 43px;
+    height: 43px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background:
+        var(--card);
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition:
+        .3s ease;
+}
+
+.menu-btn:hover {
+    background:
+        rgba(255,78,138,.15);
+
+    border-color:
+        var(--pink);
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 14px 25px;
+
+    border:
+        1px solid transparent;
+
+    border-radius: 40px;
+
+    background:
+        var(--gradient);
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+
+    box-shadow:
+        0 10px 30px rgba(255,78,138,.16);
+
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(255,78,138,.32);
+}
+
+.btn:active {
+    transform:
+        translateY(-1px);
+}
+
+.btn-outline {
+    background:
+        rgba(255,255,255,.035);
+
+    border-color:
+        rgba(255,255,255,.25);
+
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background:
+        var(--gradient);
+
+    border-color:
+        transparent;
+}
+
+.btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent,
+            rgba(255,255,255,.30),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left .7s ease;
+}
+
+.btn:hover::before {
+    left: 140%;
+}
+
+
+/* =========================================================
+   PREMIUM HERO SLIDER
+========================================================= */
+
+.person2-hero {
+    min-height: 86vh;
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        #10081c;
+}
+
+
+/* Slider container */
+
+.hero-slider {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Individual slides */
+
+.hero-slide {
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    background-size: cover;
+
+    background-position: center;
+
+    transform:
+        scale(1.10);
+
+    transition:
+        opacity 1s ease,
+        transform 6s ease,
+        visibility 1s ease;
+}
+
+.hero-slide::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(16,8,28,.95),
+            rgba(16,8,28,.56),
+            rgba(16,8,28,.88)
+        );
+}
+
+.hero-slide.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        scale(1);
+}
+
+
+/* Slide backgrounds */
+
+.hero-slide:nth-child(1) {
+    background-image:
+        url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=90");
+}
+
+.hero-slide:nth-child(2) {
+    background-image:
+        url("https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1920&q=90");
+}
+
+.hero-slide:nth-child(3) {
+    background-image:
+        url("https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1920&q=90");
+}
+
+
+/* Decorative glow */
+
+.person2-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,78,138,.18),
+            transparent 68%
+        );
+
+    top: -250px;
+    left: -200px;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    animation:
+        heroGlow 8s ease-in-out infinite alternate;
+}
+
+.person2-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139,47,214,.18),
+            transparent 68%
+        );
+
+    right: -220px;
+    bottom: -250px;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    animation:
+        heroGlow 10s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes heroGlow {
+
+    from {
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    to {
+        transform:
+            translate(40px,30px)
+            scale(1.12);
+    }
+}
+
+
+/* Hero content */
+
+.person2-hero-content {
+    position: relative;
+
+    z-index: 5;
+
+    width: min(850px,90%);
+
+    text-align: center;
+
+    padding-top: 80px;
+}
+
+
+/* Hero text slides */
+
+.hero-content-item {
+    display: none;
+}
+
+.hero-content-item.active {
+    display: block;
+
+    animation:
+        heroTextIn 1s ease both;
+}
+
+@keyframes heroTextIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* Eyebrow */
+
+.eyebrow {
+    color:
+        var(--pink-light);
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 15px;
+
+    font-weight: 600;
+
+    animation:
+        eyebrowGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes eyebrowGlow {
+
+    from {
+        opacity: .75;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Hero heading */
+
+.person2-hero h1 {
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(55px,8vw,95px);
+
+    line-height: .9;
+
+    font-weight: 600;
+
+    margin-bottom: 25px;
+
+    text-shadow:
+        0 10px 40px rgba(0,0,0,.35);
+}
+
+.person2-hero h1 span {
+    background:
+        var(--gradient);
+
+    background-size:
+        200% auto;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        gradientMove 4s ease infinite;
+}
+
+@keyframes gradientMove {
+
+    0% {
+        background-position:
+            0% center;
+    }
+
+    50% {
+        background-position:
+            100% center;
+    }
+
+    100% {
+        background-position:
+            0% center;
+    }
+}
+
+.person2-hero p {
+    max-width: 650px;
+
+    margin:
+        0 auto 30px;
+
+    color:
+        #d4c7dd;
+
+    font-size: 13px;
+
+    line-height: 2;
+
+    text-shadow:
+        0 3px 15px rgba(0,0,0,.5);
+}
+
+
+/* Hero actions */
+
+.hero-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 13px;
+
+    flex-wrap: wrap;
+}
+
+.hero-actions .btn {
+    animation:
+        buttonFloat 4s ease-in-out infinite;
+}
+
+.hero-actions .btn:nth-child(2) {
+    animation-delay:
+        .5s;
+}
+
+.hero-actions .btn:hover {
+    animation: none;
+}
+
+@keyframes buttonFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-4px);
+    }
+}
+
+
+/* Hero arrows */
+
+.hero-arrow {
+    position: absolute;
+
+    z-index: 10;
+
+    top: 50%;
+
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+
+    place-items: center;
+
+    transform:
+        translateY(-50%);
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    border-radius: 50%;
+
+    color: white;
+
+    background:
+        rgba(255,255,255,.06);
+
+    backdrop-filter:
+        blur(12px);
+
+    cursor: pointer;
+
+    transition:
+        .35s ease;
+}
+
+.hero-arrow:hover {
+    background:
+        var(--gradient);
+
+    border-color:
+        transparent;
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+
+    box-shadow:
+        0 10px 30px rgba(255,78,138,.3);
+}
+
+.hero-prev {
+    left: 30px;
+}
+
+.hero-next {
+    right: 30px;
+}
+
+
+/* Hero dots */
+
+.hero-slider-controls {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+
+    bottom: 34px;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.slider-dot {
+    width: 9px;
+    height: 9px;
+
+    padding: 0;
+
+    border:
+        1px solid rgba(255,255,255,.5);
+
+    border-radius: 50%;
+
+    background:
+        transparent;
+
+    cursor: pointer;
+
+    transition:
+        .35s ease;
+}
+
+.slider-dot:hover {
+    transform:
+        scale(1.3);
+}
+
+.slider-dot.active {
+    width: 30px;
+
+    border-radius: 20px;
+
+    background:
+        var(--pink);
+
+    border-color:
+        var(--pink);
+
+    box-shadow:
+        0 0 15px rgba(255,78,138,.55);
+}
+
+
+/* Scroll indicator */
+
+.hero-scroll {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+
+    bottom: 72px;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    animation:
+        scrollBounce 2s ease-in-out infinite;
+}
+
+.hero-scroll i {
+    display: block;
+
+    margin-top: 7px;
+
+    text-align: center;
+}
+
+@keyframes scrollBounce {
+
+    0%,
+    100% {
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            translateY(8px);
+    }
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+    text-align: center;
+
+    max-width: 680px;
+
+    margin:
+        0 auto 55px;
+}
+
+.section-heading h2 {
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(42px,5vw,64px);
+
+    line-height: 1;
+
+    font-weight: 600;
+}
+
+.section-heading p {
+    color:
+        var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.9;
+
+    margin-top: 18px;
+}
+
+
+/* =========================================================
+   PAGE CARDS
+========================================================= */
+
+.person2-pages {
+    padding: 100px 0;
+
+    background:
+        var(--bg2);
+}
+
+.page-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 20px;
+}
+
+.page-card {
+    position: relative;
+
+    padding: 35px 22px;
+
+    text-align: center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.025)
+        );
+
+    backdrop-filter:
+        blur(15px);
+
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        border-color .4s ease,
+        box-shadow .4s ease;
+
+    overflow: hidden;
+}
+
+.page-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(255,255,255,.08),
+            transparent 70%
+        );
+
+    transform:
+        translateX(-120%);
+
+    transition:
+        transform .8s ease;
+}
+
+.page-card:hover::before {
+    transform:
+        translateX(120%);
+}
+
+.page-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    top: -70px;
+    right: -70px;
+
+    border-radius: 50%;
+
+    background:
+        var(--pink);
+
+    filter:
+        blur(60px);
+
+    opacity: 0;
+
+    transition:
+        .4s;
+}
+
+.page-card:hover {
+    transform:
+        translateY(-12px);
+
+    border-color:
+        rgba(255,78,138,.6);
+
+    box-shadow:
+        0 20px 50px rgba(255,78,138,.12);
+}
+
+.page-card:hover::after {
+    opacity: .35;
+}
+
+.page-icon {
+    position: relative;
+
+    z-index: 2;
+
+    width: 70px;
+    height: 70px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin:
+        0 auto 22px;
+
+    border-radius: 20px;
+
+    color:
+        var(--pink-light);
+
+    background:
+        rgba(255,78,138,.10);
+
+    border:
+        1px solid rgba(255,78,138,.18);
+
+    font-size: 25px;
+
+    transition:
+        .45s cubic-bezier(.2,.8,.2,1);
+}
+
+.page-card:hover .page-icon {
+    color: white;
+
+    background:
+        var(--gradient);
+
+    transform:
+        rotate(-6deg)
+        scale(1.08);
+
+    box-shadow:
+        0 10px 25px rgba(255,78,138,.25);
+}
+
+.page-card h3 {
+    position: relative;
+
+    z-index: 2;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 29px;
+
+    margin-bottom: 12px;
+}
+
+.page-card p {
+    position: relative;
+
+    z-index: 2;
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+    margin-bottom: 20px;
+}
+
+.page-card .btn {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery-preview {
+    padding: 100px 0;
+
+    background:
+        var(--bg);
+}
+
+.gallery-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 22px;
+}
+
+.gallery-card {
+    position: relative;
+
+    height: 320px;
+
+    overflow: hidden;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 24px;
+
+    transition:
+        transform .5s ease,
+        box-shadow .5s ease;
+}
+
+.gallery-card:hover {
+    transform:
+        translateY(-9px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+.gallery-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 24px;
+
+    border:
+        1px solid transparent;
+
+    transition:
+        border-color .4s ease;
+
+    pointer-events: none;
+}
+
+.gallery-card:hover::after {
+    border-color:
+        rgba(255,78,138,.45);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform .8s cubic-bezier(.2,.8,.2,1),
+        filter .5s ease;
+}
+
+.gallery-card:hover img {
+    transform:
+        scale(1.12);
+
+    filter:
+        brightness(1.08);
+}
+
+.gallery-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    padding: 26px;
+
+    background:
+        linear-gradient(
+            transparent 25%,
+            rgba(16,8,28,.96)
+        );
+
+    transition:
+        padding .4s ease;
+}
+
+.gallery-card:hover .gallery-overlay {
+    padding-bottom:
+        31px;
+}
+
+.gallery-overlay span {
+    color:
+        var(--pink-light);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.gallery-overlay h3 {
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 29px;
+
+    margin-top: 5px;
+}
+
+.gallery-overlay p {
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   PACKAGES
+========================================================= */
+
+.packages-preview {
+    padding: 100px 0;
+
+    background:
+        var(--bg2);
+}
+
+.packages-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 25px;
+}
+
+.package-card {
+    position: relative;
+
+    padding: 42px 30px;
+
+    text-align: center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.025)
+        );
+
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        border-color .4s ease,
+        box-shadow .4s ease;
+}
+
+.package-card:hover {
+    transform:
+        translateY(-12px);
+
+    border-color:
+        var(--pink);
+
+    box-shadow:
+        0 20px 55px rgba(255,78,138,.12);
+}
+
+.package-card.popular {
+    border-color:
+        var(--pink);
+
+    box-shadow:
+        0 15px 55px rgba(255,78,138,.12);
+}
+
+.package-card.popular::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 1px;
+
+    border-radius: 27px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255,78,138,.10),
+            transparent,
+            rgba(139,47,214,.08)
+        );
+
+    pointer-events: none;
+}
+
+.popular-label {
+    position: absolute;
+
+    top: -14px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    padding: 7px 23px;
+
+    white-space: nowrap;
+
+    border-radius: 30px;
+
+    background:
+        var(--gradient);
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 20px rgba(255,78,138,.25);
+}
+
+.package-card h3 {
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 34px;
+
+    margin-bottom: 20px;
+}
+
+.package-price {
+    color:
+        var(--pink-light);
+
+    font-size: 44px;
+
+    font-weight: 600;
+
+    margin-bottom: 27px;
+}
+
+.package-price span {
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 400;
+}
+
+.package-features {
+    list-style: none;
+
+    text-align: left;
+
+    margin-bottom: 30px;
+}
+
+.package-features li {
+    color:
+        var(--muted);
+
+    font-size: 12px;
+
+    padding: 13px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
+
+    transition:
+        color .3s ease,
+        padding-left .3s ease;
+}
+
+.package-card:hover
+.package-features li {
+    padding-left: 4px;
+
+    color:
+        #ddd1e5;
+}
+
+.package-features i {
+    color:
+        var(--pink-light);
+
+    margin-right: 9px;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact {
+    padding: 100px 0;
+
+    background:
+        var(--bg);
+}
+
+.contact-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 30px;
+}
+
+.contact-box {
+    padding: 42px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 28px;
+
+    background:
+        var(--card);
+
+    backdrop-filter:
+        blur(15px);
+
+    transition:
+        transform .45s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+}
+
+.contact-box:hover {
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(255,78,138,.35);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.20);
+}
+
+.contact-box h2 {
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 39px;
+
+    margin-bottom: 28px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-control {
+    width: 100%;
+
+    padding: 15px 17px;
+
+    color: white;
+
+    background:
+        rgba(255,255,255,.04);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 13px;
+
+    outline: none;
+
+    font-size: 12px;
+
+    transition:
+        .3s ease;
+}
+
+.form-control:focus {
+    border-color:
+        var(--pink);
+
+    background:
+        rgba(255,78,138,.035);
+
+    box-shadow:
+        0 0 20px rgba(255,78,138,.1);
+
+    transform:
+        translateY(-1px);
+}
+
+.form-control::placeholder {
+    color:
+        #95869e;
+}
+
+textarea.form-control {
+    min-height: 130px;
+
+    resize: vertical;
+}
+
+.info-item {
+    display: flex;
+
+    gap: 16px;
+
+    margin-bottom: 26px;
+
+    transition:
+        transform .3s ease;
+}
+
+.info-item:hover {
+    transform:
+        translateX(5px);
+}
+
+.info-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    color: white;
+
+    background:
+        var(--gradient);
+
+    box-shadow:
+        0 8px 20px rgba(255,78,138,.16);
+}
+
+.info-item h4 {
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.8;
+}
+
+.contact-actions {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.contact-action {
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 13px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 13px;
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    transition:
+        .3s ease;
+}
+
+.contact-action:hover {
+    color: white;
+
+    border-color:
+        var(--pink);
+
+    background:
+        rgba(255,78,138,.08);
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding:
+        70px 0 25px;
+
+    background:
+        #09040f;
+
+    border-top:
+        1px solid var(--border);
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr 1.3fr;
+
+    gap: 38px;
+
+    margin-bottom: 55px;
+}
+
+.footer-col h3 {
+    font-size: 14px;
+
+    margin-bottom: 22px;
+}
+
+.footer-col p,
+.footer-col a {
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    line-height: 2;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col li {
+    margin-bottom: 7px;
+}
+
+.footer-col a:hover {
+    color:
+        var(--pink-light);
+}
+
+.socials {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.socials a {
+    width: 37px;
+    height: 37px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 50%;
+
+    transition:
+        .35s ease;
+}
+
+.socials a:hover {
+    color: white;
+
+    border-color:
+        transparent;
+
+    background:
+        var(--gradient);
+
+    transform:
+        translateY(-4px)
+        rotate(5deg);
+
+    box-shadow:
+        0 10px 20px rgba(255,78,138,.2);
+}
+
+.footer-bottom {
+    padding-top: 25px;
+
+    border-top:
+        1px solid var(--border);
+
+    text-align: center;
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(45px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* Stagger animation */
+
+.page-grid .page-card:nth-child(1) {
+    transition-delay:
+        .05s;
+}
+
+.page-grid .page-card:nth-child(2) {
+    transition-delay:
+        .12s;
+}
+
+.page-grid .page-card:nth-child(3) {
+    transition-delay:
+        .19s;
+}
+
+.page-grid .page-card:nth-child(4) {
+    transition-delay:
+        .26s;
+}
+
+.gallery-grid .gallery-card:nth-child(2) {
+    transition-delay:
+        .10s;
+}
+
+.gallery-grid .gallery-card:nth-child(3) {
+    transition-delay:
+        .20s;
+}
+
+.packages-grid .package-card:nth-child(2) {
+    transition-delay:
+        .12s;
+}
+
+.packages-grid .package-card:nth-child(3) {
+    transition-delay:
+        .24s;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px) {
+
+    .page-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+
+@media(max-width:850px) {
+
+    .navbar {
+        min-height:
+            72px;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .nav-links {
+        position: absolute;
+
+        top: 72px;
+        left: 0;
+
+        width: 100%;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        padding:
+            12px 5%;
+
+        background:
+            #160b25;
+
+        border-bottom:
+            1px solid var(--border);
+
+        box-shadow:
+            0 20px 30px rgba(0,0,0,.2);
+    }
+
+    .nav-links.open {
+        display: flex;
+
+        animation:
+            menuReveal .35s ease both;
+    }
+
+    @keyframes menuReveal {
+
+        from {
+            opacity: 0;
+            transform:
+                translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform:
+                translateY(0);
+        }
+    }
+
+    .nav-links a {
+        display: block;
+
+        padding:
+            14px 0;
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .contact-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .hero-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .hero-prev {
+        left: 15px;
+    }
+
+    .hero-next {
+        right: 15px;
+    }
+}
+
+
+@media(max-width:600px) {
+
+    .logo {
+        font-size:
+            32px;
+    }
+
+    .person2-hero {
+        min-height:
+            78vh;
+    }
+
+    .person2-hero-content {
+        padding-top:
+            45px;
+    }
+
+    .person2-hero h1 {
+        font-size:
+            51px;
+
+        line-height:
+            .94;
+    }
+
+    .person2-hero p {
+        font-size:
+            12px;
+
+        line-height:
+            1.8;
+    }
+
+    .hero-actions {
+        flex-direction:
+            column;
+
+        width:
+            min(100%,320px);
+
+        margin:
+            auto;
+    }
+
+    .hero-actions .btn {
+        width:
+            100%;
+    }
+
+    .hero-arrow {
+        width: 38px;
+        height: 38px;
+
+        font-size:
+            11px;
+    }
+
+    .hero-prev {
+        left:
+            12px;
+    }
+
+    .hero-next {
+        right:
+            12px;
+    }
+
+    .hero-slider-controls {
+        bottom:
+            25px;
+    }
+
+    .hero-scroll {
+        display:
+            none;
+    }
+
+    .page-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .gallery-card {
+        height:
+            290px;
+    }
+
+    .packages-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .contact-box {
+        padding:
+            28px 22px;
+    }
+
+    .contact-actions {
+        flex-direction:
+            column;
+    }
+
+    .footer-grid {
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior:
+            auto !important;
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition:
+            none !important;
+    }
+
+    .reveal {
+        opacity: 1;
+
+        transform:
+            none;
+    }
+}
+
+</style>
 </head>
+
+
 <body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header id="mainHeader">
+
+    <div class="navbar">
+
+        <a href="index.html" class="logo">
+            Glamora.
+        </a>
+
+        <nav>
+
+            <ul class="nav-links" id="navLinks">
+
+                <li>
+                    <a href="gallery.html">
+                        Gallery
+                    </a>
+                </li>
+
+                <li>
+                    <a href="packages.html">
+                        Packages
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+                <li>
+                    <a href="my-bookings.html">
+                        My Bookings
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <a href="contact.html"
+           class="btn nav-cta">
+
+            Book Appointment
+
+        </a>
+
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            aria-label="Open menu"
+            aria-expanded="false">
+
+            <i class="fas fa-bars"></i>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     PREMIUM HERO SLIDER
+========================================================= -->
+
+<section class="person2-hero">
+
+
+    <!-- BACKGROUND SLIDES -->
+
+    <div class="hero-slider">
+
+        <div class="hero-slide active"></div>
+
+        <div class="hero-slide"></div>
+
+        <div class="hero-slide"></div>
+
+    </div>
+
+
+    <!-- HERO CONTENT -->
+
+    <div class="person2-hero-content">
+
+
+        <!-- SLIDE 1 -->
+
+        <div class="hero-content-item active">
+
+            <div class="eyebrow">
+                Glamora Beauty Salon
+            </div>
+
+            <h1>
+                Your Beauty,
+                <span>Your Way</span>
+            </h1>
+
+            <p>
+                Discover elegant beauty experiences,
+                professional styling and personalized
+                care designed especially for you.
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="gallery.html"
+                   class="btn">
+
+                    Explore Gallery
+
+                    <i class="fas fa-images"></i>
+
+                </a>
+
+                <a href="packages.html"
+                   class="btn btn-outline">
+
+                    View Packages
+
+                    <i class="fas fa-gem"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- SLIDE 2 -->
+
+        <div class="hero-content-item">
+
+            <div class="eyebrow">
+                Glamora Collection
+            </div>
+
+            <h1>
+                Beauty
+                <span>In Every Detail</span>
+            </h1>
+
+            <p>
+                From glamorous makeup to stunning
+                hair transformations, explore the
+                artistry behind every Glamora look.
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="gallery.html"
+                   class="btn">
+
+                    View Our Work
+
+                    <i class="fas fa-sparkles"></i>
+
+                </a>
+
+                <a href="contact.html"
+                   class="btn btn-outline">
+
+                    Contact Us
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- SLIDE 3 -->
+
+        <div class="hero-content-item">
+
+            <div class="eyebrow">
+                Luxury Beauty Experience
+            </div>
+
+            <h1>
+                Feel
+                <span>Beautiful</span>
+            </h1>
+
+            <p>
+                Choose your perfect beauty package
+                and enjoy a personalized salon
+                experience created to make you
+                feel extraordinary.
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="packages.html"
+                   class="btn">
+
+                    Explore Packages
+
+                    <i class="fas fa-gem"></i>
+
+                </a>
+
+                <a href="my-bookings.html"
+                   class="btn btn-outline">
+
+                    My Bookings
+
+                    <i class="fas fa-calendar-check"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PREVIOUS -->
+
+    <button
+        class="hero-arrow hero-prev"
+        id="heroPrev"
+        aria-label="Previous slide">
+
+        <i class="fas fa-chevron-left"></i>
+
+    </button>
+
+
+    <!-- NEXT -->
+
+    <button
+        class="hero-arrow hero-next"
+        id="heroNext"
+        aria-label="Next slide">
+
+        <i class="fas fa-chevron-right"></i>
+
+    </button>
+
+
+    <!-- DOTS -->
+
+    <div class="hero-slider-controls">
+
+        <button
+            class="slider-dot active"
+            data-slide="0"
+            aria-label="Slide 1">
+        </button>
+
+        <button
+            class="slider-dot"
+            data-slide="1"
+            aria-label="Slide 2">
+        </button>
+
+        <button
+            class="slider-dot"
+            data-slide="2"
+            aria-label="Slide 3">
+        </button>
+
+    </div>
+
+
+    <!-- SCROLL INDICATOR -->
+
+    <div class="hero-scroll">
+
+        Explore
+
+        <i class="fas fa-chevron-down"></i>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PERSON 2 PAGES
+========================================================= -->
+
+<section class="person2-pages">
+
+    <div class="container">
+
+
+        <div class="section-heading reveal">
+
+            <div class="eyebrow">
+                Explore Glamora
+            </div>
+
+            <h2>
+                Beauty Experiences
+            </h2>
+
+            <p>
+                Everything you need to explore our work,
+                choose a package, contact Glamora and
+                manage your appointments.
+            </p>
+
+        </div>
+
+
+        <div class="page-grid">
+
+
+            <!-- GALLERY -->
+
+            <div class="page-card reveal">
+
+                <div class="page-icon">
+                    <i class="fas fa-images"></i>
+                </div>
+
+                <h3>
+                    Gallery
+                </h3>
+
+                <p>
+                    Explore our beauty transformations,
+                    hairstyles, makeup, skincare and
+                    nail art.
+                </p>
+
+                <a href="gallery.html"
+                   class="btn">
+
+                    View Gallery
+
+                </a>
+
+            </div>
+
+
+            <!-- PACKAGES -->
+
+            <div class="page-card reveal">
+
+                <div class="page-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+
+                <h3>
+                    Packages
+                </h3>
+
+                <p>
+                    Discover our curated beauty packages
+                    designed for different occasions.
+                </p>
+
+                <a href="packages.html"
+                   class="btn">
+
+                    View Packages
+
+                </a>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="page-card reveal">
+
+                <div class="page-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    Get in touch with Glamora for
+                    questions, appointments and
+                    beauty consultations.
+                </p>
+
+                <a href="contact.html"
+                   class="btn">
+
+                    Contact Us
+
+                </a>
+
+            </div>
+
+
+            <!-- MY BOOKINGS -->
+
+            <div class="page-card reveal">
+
+                <div class="page-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+
+                <h3>
+                    My Bookings
+                </h3>
+
+                <p>
+                    Login to view your previous and
+                    current appointment booking history.
+                </p>
+
+                <a href="my-bookings.html"
+                   class="btn">
+
+                    My Bookings
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     GALLERY PREVIEW
+========================================================= -->
+
+<section class="gallery-preview">
+
+    <div class="container">
+
+
+        <div class="section-heading reveal">
+
+            <div class="eyebrow">
+                Our Work
+            </div>
+
+            <h2>
+                Beauty Transformations
+            </h2>
+
+            <p>
+                A preview of our latest beauty work.
+                Visit the complete gallery for more.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+
+            <!-- HAIR -->
+
+            <div class="gallery-card reveal">
+
+                <img
+                    src="https://img.magnific.com/free-photo/female-hairdresser-making-hairstyle-blonde-woman-beauty-salon_176420-4458.jpg?semt=ais_hybrid&w=740&q=80"
+                    alt="Luxury hair styling"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+
+                    <span>
+                        Hair
+                    </span>
+
+                    <h3>
+                        Luxury Hair Styling
+                    </h3>
+
+                    <p>
+                        Elegant hair transformations
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MAKEUP -->
+
+            <div class="gallery-card reveal">
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0r7W02S-cT6MmB7ktohyBDubtQ2yfG0h4FbQaPNejRg&s=10"
+                    alt="Professional makeup"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+
+                    <span>
+                        Makeup
+                    </span>
+
+                    <h3>
+                        Glam Makeup
+                    </h3>
+
+                    <p>
+                        Elegant beauty looks
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAILS -->
+
+            <div class="gallery-card reveal">
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQMXmV7dBALST1sH1MfkkPbK-6PxZlLwPAhfDFZeqiNg&s"
+                    alt="Elegant nail art"
+                    loading="lazy">
+
+                <div class="gallery-overlay">
+
+                    <span>
+                        Nails
+                    </span>
+
+                    <h3>
+                        Elegant Nail Art
+                    </h3>
+
+                    <p>
+                        Creative nail styling
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div style="
+            text-align:center;
+            margin-top:38px;
+        ">
+
+            <a href="gallery.html"
+               class="btn">
+
+                View Full Gallery
+
+                <i class="fas fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PACKAGES PREVIEW
+========================================================= -->
+
+<section class="packages-preview">
+
+    <div class="container">
+
+
+        <div class="section-heading reveal">
+
+            <div class="eyebrow">
+                Curated For You
+            </div>
+
+            <h2>
+                Our Beauty Packages
+            </h2>
+
+            <p>
+                Choose a package that matches your
+                beauty needs and occasion.
+            </p>
+
+        </div>
+
+
+        <div class="packages-grid">
+
+
+            <!-- BRIDAL -->
+
+            <div class="package-card reveal">
+
+                <h3>
+                    Bridal Glow
+                </h3>
+
+                <div class="package-price">
+
+                    $250
+
+                    <span>
+                        / package
+                    </span>
+
+                </div>
+
+                <ul class="package-features">
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        HD Bridal Makeup
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Designer Hair Styling
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Premium Nail Care
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Personalized Consultation
+                    </li>
+
+                </ul>
+
+                <a
+                    href="packages.html"
+                    class="btn"
+                    style="width:100%;">
+
+                    View Package
+
+                </a>
+
+            </div>
+
+
+            <!-- PARTY -->
+
+            <div class="package-card popular reveal">
+
+                <div class="popular-label">
+                    MOST POPULAR
+                </div>
+
+                <h3>
+                    Party Perfection
+                </h3>
+
+                <div class="package-price">
+
+                    $120
+
+                    <span>
+                        / package
+                    </span>
+
+                </div>
+
+                <ul class="package-features">
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Party Makeup & Lashes
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Curls or Straight Styling
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Express Facial Glow
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Finishing Touches
+                    </li>
+
+                </ul>
+
+                <a
+                    href="packages.html"
+                    class="btn"
+                    style="width:100%;">
+
+                    View Package
+
+                </a>
+
+            </div>
+
+
+            <!-- SPA -->
+
+            <div class="package-card reveal">
+
+                <h3>
+                    Rejuvenation Spa
+                </h3>
+
+                <div class="package-price">
+
+                    $90
+
+                    <span>
+                        / package
+                    </span>
+
+                </div>
+
+                <ul class="package-features">
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Organic Deep Facial
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Relaxing Spa Treatment
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Hair Spa Treatment
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Skin Hydration Care
+                    </li>
+
+                </ul>
+
+                <a
+                    href="packages.html"
+                    class="btn"
+                    style="width:100%;">
+
+                    View Package
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT PREVIEW
+========================================================= -->
+
+<section class="contact">
+
+    <div class="container">
+
+
+        <div class="section-heading reveal">
+
+            <div class="eyebrow">
+                Get In Touch
+            </div>
+
+            <h2>
+                Let's Make Something Beautiful
+            </h2>
+
+            <p>
+                Have a question or want to book an appointment?
+                Contact Glamora.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+
+            <!-- FORM -->
+
+            <div class="contact-box reveal">
+
+                <h2>
+                    Send Us a Message
+                </h2>
+
+                <form id="contactForm">
+
+
+                    <div class="form-group">
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Your Name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <input
+                            type="tel"
+                            class="form-control"
+                            placeholder="Phone Number"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            placeholder="Your Email"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <textarea
+                            class="form-control"
+                            placeholder="Your Message"
+                            required></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn"
+                        style="width:100%;">
+
+                        Send Message
+
+                        <i class="fas fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- CONTACT INFO -->
+
+            <div class="contact-box reveal">
+
+                <h2>
+                    Contact Information
+                </h2>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+
+                        <i class="fas fa-map-marker-alt"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Visit Us
+                        </h4>
+
+                        <p>
+                            123 Beauty Street,
+                            Karachi, Pakistan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+
+                        <i class="fas fa-phone"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Call Us
+                        </h4>
+
+                        <p>
+                            +92 331 2245034
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+
+                        <i class="fas fa-envelope"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Email Us
+                        </h4>
+
+                        <p>
+                            zainab090@gmail.com
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+
+                        <i class="fas fa-clock"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Opening Hours
+                        </h4>
+
+                        <p>
+                            Monday – Saturday:
+                            9 AM – 8 PM
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-actions">
+
+                    <a
+                        href="tel:+923312245034"
+                        class="contact-action">
+
+                        <i class="fas fa-phone"></i>
+
+                        Call Us
+
+                    </a>
+
+
+                    <a
+                        href="mailto:zainab090@gmail.com"
+                        class="contact-action">
+
+                        <i class="fas fa-envelope"></i>
+
+                        Email Us
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+
+        <div class="footer-grid">
+
+
+            <!-- BRAND -->
+
+            <div class="footer-col">
+
+                <div
+                    class="logo"
+                    style="margin-bottom:15px;">
+
+                    Glamora.
+
+                </div>
+
+                <p>
+                    Luxury beauty care with
+                    personalized service and
+                    professional expertise.
+                </p>
+
+                <div class="socials">
+
+                    <a href="#"
+                       aria-label="Instagram">
+
+                        <i class="fab fa-instagram"></i>
+
+                    </a>
+
+                    <a href="#"
+                       aria-label="Facebook">
+
+                        <i class="fab fa-facebook-f"></i>
+
+                    </a>
+
+                    <a href="#"
+                       aria-label="WhatsApp">
+
+                        <i class="fab fa-whatsapp"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PERSON 2 -->
+
+            <div class="footer-col">
+
+                <h3>
+                    Person 2 Pages
+                </h3>
+
+                <ul>
+
+                    <li>
+                        <a href="gallery.html">
+                            Gallery
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="packages.html">
+                            Packages
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="contact.html">
+                            Contact
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="my-bookings.html">
+                            My Bookings
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- GALLERY -->
+
+            <div class="footer-col">
+
+                <h3>
+                    Gallery
+                </h3>
+
+                <ul>
+
+                    <li>
+                        <a href="gallery.html">
+                            Hair
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="gallery.html">
+                            Makeup
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="gallery.html">
+                            Skin
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="gallery.html">
+                            Nails
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- BOOKINGS -->
+
+            <div class="footer-col">
+
+                <h3>
+                    My Bookings
+                </h3>
+
+                <p>
+                    Login to view your appointment
+                    history and booking status.
+                </p>
+
+                <a
+                    href="my-bookings.html"
+                    class="btn"
+                    style="
+                        margin-top:18px;
+                        width:100%;
+                    ">
+
+                    View My Bookings
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 Glamora Beauty Salon.
+                All Rights Reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuBtn.addEventListener("click", () => {
+
+    const isOpen =
+        navLinks.classList.toggle("open");
+
+    menuBtn.setAttribute(
+        "aria-expanded",
+        isOpen
+    );
+
+    menuBtn.innerHTML =
+        isOpen
+            ? '<i class="fas fa-xmark"></i>'
+            : '<i class="fas fa-bars"></i>';
+
+});
+
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                navLinks.classList.remove("open");
+
+                menuBtn.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                menuBtn.innerHTML =
+                    '<i class="fas fa-bars"></i>';
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   NAVBAR SCROLL EFFECT
+========================================================= */
+
+const mainHeader =
+    document.getElementById("mainHeader");
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (window.scrollY > 30) {
+
+            mainHeader.classList.add(
+                "scrolled"
+            );
+
+        } else {
+
+            mainHeader.classList.remove(
+                "scrolled"
+            );
+
+        }
+
+    },
+    { passive: true }
+);
+
+
+/* =========================================================
+   PREMIUM HERO SLIDER
+========================================================= */
+
+const heroSlides =
+    document.querySelectorAll(".hero-slide");
+
+const heroContents =
+    document.querySelectorAll(
+        ".hero-content-item"
+    );
+
+const heroDots =
+    document.querySelectorAll(".slider-dot");
+
+const heroPrev =
+    document.getElementById("heroPrev");
+
+const heroNext =
+    document.getElementById("heroNext");
+
+let currentSlide = 0;
+
+let sliderTimer;
+
+
+/* SHOW SLIDE */
+
+function showHeroSlide(index) {
+
+    if (index < 0) {
+
+        index =
+            heroSlides.length - 1;
+
+    }
+
+    if (index >= heroSlides.length) {
+
+        index = 0;
+
+    }
+
+    currentSlide = index;
+
+
+    heroSlides.forEach(
+        (slide, i) => {
+
+            slide.classList.toggle(
+                "active",
+                i === currentSlide
+            );
+
+        }
+    );
+
+
+    heroContents.forEach(
+        (content, i) => {
+
+            content.classList.toggle(
+                "active",
+                i === currentSlide
+            );
+
+        }
+    );
+
+
+    heroDots.forEach(
+        (dot, i) => {
+
+            dot.classList.toggle(
+                "active",
+                i === currentSlide
+            );
+
+        }
+    );
+
+}
+
+
+/* NEXT */
+
+function nextHeroSlide() {
+
+    showHeroSlide(
+        currentSlide + 1
+    );
+
+}
+
+
+/* PREVIOUS */
+
+function previousHeroSlide() {
+
+    showHeroSlide(
+        currentSlide - 1
+    );
+
+}
+
+
+/* AUTO PLAY */
+
+function startHeroSlider() {
+
+    clearInterval(sliderTimer);
+
+    sliderTimer =
+        setInterval(
+            () => {
+
+                nextHeroSlide();
+
+            },
+            5500
+        );
+
+}
+
+
+/* NEXT BUTTON */
+
+heroNext.addEventListener(
+    "click",
+    () => {
+
+        nextHeroSlide();
+
+        startHeroSlider();
+
+    }
+);
+
+
+/* PREVIOUS BUTTON */
+
+heroPrev.addEventListener(
+    "click",
+    () => {
+
+        previousHeroSlide();
+
+        startHeroSlider();
+
+    }
+);
+
+
+/* DOTS */
+
+heroDots.forEach(
+    dot => {
+
+        dot.addEventListener(
+            "click",
+            () => {
+
+                const slideIndex =
+                    Number(
+                        dot.dataset.slide
+                    );
+
+                showHeroSlide(
+                    slideIndex
+                );
+
+                startHeroSlider();
+
+            }
+        );
+
+    }
+);
+
+
+/* START */
+
+showHeroSlide(0);
+
+startHeroSlider();
+
+
+/* PAUSE WHEN TAB IS HIDDEN */
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+
+        if (document.hidden) {
+
+            clearInterval(
+                sliderTimer
+            );
+
+        } else {
+
+            startHeroSlider();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealElements =
+    document.querySelectorAll(
+        ".reveal"
+    );
+
+
+const revealObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "show"
+                        );
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+revealElements.forEach(
+    element => {
+
+        revealObserver.observe(
+            element
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CONTACT FORM
+========================================================= */
+
+const contactForm =
+    document.getElementById(
+        "contactForm"
+    );
+
+
+contactForm.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+        alert(
+            "Thank you! Your message has been received."
+        );
+
+        contactForm.reset();
+
+    }
+);
+
+</script>
+
 </body>
 </html>
