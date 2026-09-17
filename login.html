@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -7,173 +8,267 @@
 
     <title>Login | LuxeAura Salon</title>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
 
+    <!-- Login CSS -->
     <link rel="stylesheet" href="login.css">
 
 </head>
 
+
 <body>
 
-
-<div class="auth-container">
-
-
-    <div class="auth-image">
-
-        <div class="image-content">
-
-            <div class="logo">
-                Luxe<span>Aura</span>
-            </div>
-
-            <h1>Beauty Begins With <span>Confidence</span></h1>
-
-            <p>
-                Join LuxeAura and enjoy a personalized
-                luxury beauty experience.
-            </p>
-
-        </div>
-
-    </div>
+    <div class="auth-container">
 
 
-    <div class="auth-box">
+        <!-- ================= IMAGE SECTION ================= -->
 
+        <div class="auth-image">
 
-        <!-- LOGIN -->
+            <div class="image-content">
 
-        <div class="form-box active" id="loginForm">
-
-            <p class="small-title">WELCOME BACK</p>
-
-            <h2>Login</h2>
-
-            <p class="subtitle">
-                Sign in to your LuxeAura account
-            </p>
-
-
-            <form>
-
-                <input
-                    type="email"
-                    placeholder="Email Address"
-                    required
-                >
-
-                <input
-                    type="password"
-                    placeholder="Password"
-                    required
-                >
-
-                <div class="forgot">
-                    <a href="#">Forgot Password?</a>
+                <div class="logo">
+                    Luxe<span>Aura</span>
                 </div>
 
-                <button type="submit">
-                    Login
-                </button>
+                <h1>
+                    Beauty Begins With <span>Confidence</span>
+                </h1>
 
-            </form>
+                <p>
+                    Join LuxeAura and enjoy a personalized
+                    luxury beauty experience.
+                </p>
 
-
-            <div class="divider">
-                <span>OR</span>
             </div>
-
-
-            <button class="google-btn" type="button">
-                Continue with Google
-            </button>
-
-
-            <button class="phone-btn" type="button">
-                Continue with Phone
-            </button>
-
-
-            <p class="switch">
-                Don't have an account?
-                <span id="showSignup">Create Account</span>
-            </p>
 
         </div>
 
 
-        <!-- SIGNUP -->
+        <!-- ================= AUTH BOX ================= -->
 
-        <div class="form-box" id="signupForm">
-
-            <p class="small-title">JOIN US</p>
-
-            <h2>Create Account</h2>
-
-            <p class="subtitle">
-                Create your LuxeAura account
-            </p>
+        <div class="auth-box">
 
 
-            <form>
+            <!-- ================= LOGIN ================= -->
 
-                <input
-                    type="text"
-                    placeholder="Full Name"
-                    required
+            <div class="form-box active" id="loginForm">
+
+                <p class="small-title">
+                    WELCOME BACK
+                </p>
+
+                <h2>
+                    Login
+                </h2>
+
+                <p class="subtitle">
+                    Sign in to your LuxeAura account
+                </p>
+
+
+                <!-- LOGIN FORM -->
+
+                <form id="loginActualForm">
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Email Address"
+                        required
+                    >
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Password"
+                        required
+                    >
+
+
+                    <div class="forgot">
+
+                        <a href="#">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <button type="submit">
+                        Login
+                    </button>
+
+
+                    <!-- Firebase Login Message -->
+
+                    <p id="loginMessage"></p>
+
+                </form>
+
+
+                <!-- OR -->
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+
+                <!-- GOOGLE LOGIN -->
+
+                <button
+                    class="google-btn"
+                    type="button"
+                    id="googleLoginBtn"
                 >
-
-                <input
-                    type="email"
-                    placeholder="Email Address"
-                    required
-                >
-
-                <input
-                    type="password"
-                    placeholder="Password"
-                    required
-                >
-
-                <button type="submit">
-                    Create Account
+                    Continue with Google
                 </button>
 
-            </form>
+
+                <!-- PHONE LOGIN -->
+
+                <button
+                    class="phone-btn"
+                    type="button"
+                    id="phoneLoginBtn"
+                >
+                    Continue with Phone
+                </button>
 
 
-            <div class="divider">
-                <span>OR</span>
+                <!-- SWITCH TO SIGNUP -->
+
+                <p class="switch">
+
+                    Don't have an account?
+
+                    <span id="showSignup">
+                        Create Account
+                    </span>
+
+                </p>
+
             </div>
 
 
-            <button class="google-btn" type="button">
-                Sign up with Google
-            </button>
+            <!-- ================= SIGNUP ================= -->
+
+            <div class="form-box" id="signupForm">
+
+                <p class="small-title">
+                    JOIN US
+                </p>
+
+                <h2>
+                    Create Account
+                </h2>
+
+                <p class="subtitle">
+                    Create your LuxeAura account
+                </p>
 
 
-            <button class="phone-btn" type="button">
-                Sign up with Phone
-            </button>
+                <!-- SIGNUP FORM -->
+
+                <form id="signupActualForm">
+
+                    <input
+                        type="text"
+                        id="signupName"
+                        placeholder="Full Name"
+                        required
+                    >
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="Email Address"
+                        required
+                    >
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        placeholder="Password"
+                        required
+                    >
 
 
-            <p class="switch">
-                Already have an account?
-                <span id="showLogin">Login</span>
-            </p>
+                    <button type="submit">
+                        Create Account
+                    </button>
+
+
+                    <!-- Firebase Signup Message -->
+
+                    <p id="signupMessage"></p>
+
+                </form>
+
+
+                <!-- OR -->
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+
+                <!-- GOOGLE SIGNUP -->
+
+                <button
+                    class="google-btn"
+                    type="button"
+                    id="googleSignupBtn"
+                >
+                    Sign up with Google
+                </button>
+
+
+                <!-- PHONE SIGNUP -->
+
+                <button
+                    class="phone-btn"
+                    type="button"
+                    id="phoneSignupBtn"
+                >
+                    Sign up with Phone
+                </button>
+
+
+                <!-- SWITCH TO LOGIN -->
+
+                <p class="switch">
+
+                    Already have an account?
+
+                    <span id="showLogin">
+                        Login
+                    </span>
+
+                </p>
+
+            </div>
+
 
         </div>
 
     </div>
 
-</div>
 
+    <!-- ================= JAVASCRIPT ================= -->
 
-<script src="login.js"></script>
+    <script
+        type="module"
+        src="login.js"
+    ></script>
 
 </body>
+
 </html>
