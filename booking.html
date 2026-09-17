@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Booking | LuxeAura Salon</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="booking.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Luxe<span>Aura</span>
+    </div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="booking.html" class="active">Booking</a>
+        <a href="login.html" class="login-btn">Login</a>
+
+    </nav>
+
+</header>
+
+
+<section class="booking-page">
+
+    <div class="booking-info">
+
+        <p class="small-title">LUXEAURA SALON</p>
+
+        <h1>Book Your <span>Beauty</span> Experience</h1>
+
+        <p>
+            Choose your preferred service and appointment time.
+            Our team will be ready to welcome you.
+        </p>
+
+        <div class="contact-info">
+
+            <p>✦ Professional Beauty Experts</p>
+            <p>✦ Premium Beauty Products</p>
+            <p>✦ Comfortable Luxury Environment</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="booking-card glass">
+
+        <h2>Book Appointment</h2>
+
+        <form id="bookingForm">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email Address"
+                required
+            >
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Phone Number"
+                required
+            >
+
+            <select id="service" required>
+
+                <option value="">Select Service</option>
+
+                <option>Hair Styling</option>
+                <option>Hair Treatment</option>
+                <option>Party Makeup</option>
+                <option>Bridal Makeup</option>
+                <option>Facial</option>
+                <option>Manicure</option>
+                <option>Pedicure</option>
+                <option>Spa</option>
+
+            </select>
+
+
+            <input
+                type="date"
+                id="date"
+                required
+            >
+
+
+            <input
+                type="time"
+                id="time"
+                required
+            >
+
+
+            <textarea
+                id="message"
+                placeholder="Any special request?"
+                rows="4"
+            ></textarea>
+
+
+            <button type="submit">
+                Request Appointment
+            </button>
+
+        </form>
+
+        <p id="successMessage"></p>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="logo">Luxe<span>Aura</span></div>
+
+    <p>Luxury beauty. Timeless confidence.</p>
+
+    <p>© 2026 LuxeAura Salon. All Rights Reserved.</p>
+
+</footer>
+
+
+<script src="booking.js"></script>
+
+</body>
+</html>

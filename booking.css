@@ -1,0 +1,814 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 47, 158, 0.16), transparent 30%),
+        radial-gradient(circle at 85% 35%, rgba(174, 47, 255, 0.13), transparent 30%),
+        linear-gradient(135deg, #09030b, #120713 45%, #08030a);
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 550px;
+    height: 550px;
+    background: rgba(255, 45, 157, 0.12);
+    border-radius: 50%;
+    filter: blur(150px);
+    left: -220px;
+    top: 80px;
+    z-index: -2;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: rgba(169, 55, 255, 0.11);
+    border-radius: 50%;
+    filter: blur(150px);
+    right: -220px;
+    bottom: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+/* .navbar {
+    width: 94%;
+    margin: 14px auto 0;
+    padding: 16px 28px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(20, 7, 25, 0.65);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255, 75, 185, 0.28);
+    border-radius: 40px;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.45),
+        inset 0 0 25px rgba(255, 73, 181, 0.04);
+
+    position: sticky;
+    top: 14px;
+    z-index: 100;
+} */
+
+.navbar {
+    position: fixed;
+
+    top: 15px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 94%;
+    max-width: 1220px;
+
+    padding: 16px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 45px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.025)
+        );
+
+    border: 1px solid rgba(255, 78, 177, .35);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.07);
+
+    z-index: 1000;
+
+    transition: .4s ease;
+}
+
+.navbar:hover {
+    border-color: rgba(255, 75, 180, .55);
+
+    box-shadow:
+        0 15px 55px rgba(0,0,0,.5),
+        0 0 30px rgba(255,40,160,.08);
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+
+.logo span,
+h1 span {
+    background: linear-gradient(
+        90deg,
+        #ff6f9f,
+        #ff36d0,
+        #b84dff
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: -8px;
+
+    background: linear-gradient(
+        90deg,
+        #ff5f9e,
+        #c43cff
+    );
+
+    transform: translateX(-50%);
+    transition: 0.3s ease;
+    border-radius: 10px;
+}
+
+nav a:hover,
+nav a.active {
+    color: #ff70bd;
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 100%;
+}
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-btn {
+    border: 1px solid #ff55b5;
+    padding: 10px 23px;
+    border-radius: 30px;
+
+    background: rgba(255, 45, 160, 0.04);
+
+    box-shadow:
+        0 0 15px rgba(255, 45, 160, 0.12),
+        inset 0 0 15px rgba(255, 45, 160, 0.04);
+
+    transition: 0.3s ease;
+}
+
+.login-btn:hover {
+    color: #fff !important;
+
+    background: linear-gradient(
+        90deg,
+        #ff4d8d,
+        #c238e9
+    );
+
+    border-color: transparent;
+
+    box-shadow:
+        0 0 25px rgba(255, 52, 175, 0.35);
+
+    transform: translateY(-2px);
+}
+
+/* =========================
+   BOOKING PAGE
+========================= */
+
+.booking-page {
+    width: 86%;
+    max-width: 1150px;
+
+    margin: 90px auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 70px;
+    align-items: center;
+}
+
+/* =========================
+   BOOKING INFORMATION
+========================= */
+
+.booking-info {
+    animation: fadeLeft 0.9s ease forwards;
+}
+
+.booking-info h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(45px, 5vw, 70px);
+    line-height: 1.08;
+    margin-bottom: 22px;
+    letter-spacing: -1px;
+}
+
+.small-title {
+    color: #ff72b8;
+    letter-spacing: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 18px;
+
+    text-transform: uppercase;
+}
+
+.booking-info > p {
+    color: #bdb5c0;
+    line-height: 1.9;
+    max-width: 520px;
+    font-size: 15px;
+}
+
+/* =========================
+   CONTACT INFO
+========================= */
+
+.contact-info {
+    margin-top: 32px;
+    color: #c8bdc7;
+    line-height: 2.4;
+    font-size: 14px;
+}
+
+.contact-info p {
+    transition: 0.3s ease;
+}
+
+.contact-info p:hover {
+    color: #ff6db5;
+    transform: translateX(5px);
+}
+
+/* =========================
+   GLASS EFFECT
+========================= */
+
+.glass {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.09),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border: 1px solid rgba(255, 113, 194, 0.28);
+
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        inset 0 0 30px rgba(255, 85, 180, 0.035);
+}
+
+/* =========================
+   BOOKING CARD
+========================= */
+
+.booking-card {
+    padding: 40px;
+
+    border-radius: 28px;
+
+    position: relative;
+    overflow: hidden;
+
+    animation: fadeRight 0.9s ease forwards;
+
+    transition: 0.4s ease;
+}
+
+.booking-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    background: rgba(255, 53, 172, 0.14);
+
+    border-radius: 50%;
+
+    filter: blur(60px);
+
+    top: -70px;
+    right: -70px;
+
+    pointer-events: none;
+}
+
+.booking-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+    height: 160px;
+
+    background: rgba(174, 54, 255, 0.10);
+
+    border-radius: 50%;
+
+    filter: blur(60px);
+
+    bottom: -80px;
+    left: -60px;
+
+    pointer-events: none;
+}
+
+.booking-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(255, 85, 190, 0.5);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 35px rgba(255, 45, 170, 0.08);
+}
+
+/* =========================
+   CARD HEADING
+========================= */
+
+.booking-card h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 34px;
+    margin-bottom: 28px;
+
+    background: linear-gradient(
+        90deg,
+        #fff,
+        #ffb2d6
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* =========================
+   FORM
+========================= */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 15px 17px;
+
+    border-radius: 13px;
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+
+    background: rgba(255, 255, 255, 0.055);
+
+    color: #fff;
+
+    outline: none;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    transition: 0.3s ease;
+
+    backdrop-filter: blur(10px);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #918792;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: rgba(255, 89, 182, 0.35);
+    background: rgba(255, 255, 255, 0.075);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #ff5db5;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 62, 175, 0.08),
+        0 0 20px rgba(255, 45, 170, 0.08);
+}
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    background: #211020;
+    color: white;
+}
+
+textarea {
+    resize: none;
+    min-height: 120px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+    padding: 15px 22px;
+
+    border: none;
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #ff668f,
+            #ff38b8,
+            #a943f5
+        );
+
+    color: #fff;
+
+    font-weight: 600;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: 0.35s ease;
+
+    box-shadow:
+        0 8px 25px rgba(255, 43, 168, 0.22);
+
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: "";
+
+    position: absolute;
+
+    width: 60px;
+    height: 100%;
+
+    top: 0;
+    left: -100px;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    transform: skewX(-20deg);
+
+    transition: 0.5s;
+}
+
+button:hover::before {
+    left: 120%;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.01);
+
+    box-shadow:
+        0 12px 35px rgba(255, 43, 168, 0.35),
+        0 0 20px rgba(194, 54, 255, 0.2);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+
+#successMessage {
+    color: #ff77bd;
+
+    margin-top: 18px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    text-shadow:
+        0 0 12px rgba(255, 75, 180, 0.3);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 45px 20px;
+
+    border-top: 1px solid rgba(255, 91, 182, 0.13);
+
+    color: #8f858f;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 45, 160, 0.015),
+            rgba(0, 0, 0, 0.2)
+        );
+}
+
+footer p {
+    margin: 7px;
+}
+
+footer p:first-child {
+    color: #d7ccd5;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-45px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeRight {
+    from {
+        opacity: 0;
+        transform: translateX(45px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        width: 92%;
+        padding: 15px 22px;
+    }
+
+    nav {
+        gap: 20px;
+    }
+
+    .booking-page {
+        width: 90%;
+        grid-template-columns: 1fr;
+        gap: 50px;
+        margin: 70px auto;
+    }
+
+    .booking-info {
+        text-align: center;
+    }
+
+    .booking-info > p {
+        margin: auto;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
+
+    .booking-card {
+        max-width: 650px;
+        width: 100%;
+        margin: auto;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    .navbar {
+        width: 94%;
+        padding: 14px 18px;
+
+        border-radius: 25px;
+
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    nav {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 13px 20px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .login-btn {
+        padding: 8px 17px;
+    }
+
+    .booking-page {
+        width: 90%;
+        margin: 55px auto;
+        gap: 40px;
+    }
+
+    .booking-info h1 {
+        font-size: 43px;
+    }
+
+    .small-title {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .booking-info > p {
+        font-size: 13px;
+    }
+
+    .booking-card {
+        padding: 27px 20px;
+        border-radius: 22px;
+    }
+
+    .booking-card h2 {
+        font-size: 29px;
+    }
+
+    input,
+    select,
+    textarea {
+        padding: 14px;
+    }
+
+    footer {
+        padding: 35px 15px;
+    }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 400px) {
+
+    .navbar {
+        position: relative;
+        top: 0;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    nav {
+        gap: 10px 15px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .booking-page {
+        width: 92%;
+        margin-top: 45px;
+    }
+
+    .booking-info h1 {
+        font-size: 38px;
+    }
+
+    .booking-card {
+        padding: 23px 17px;
+    }
+
+    .booking-card h2 {
+        font-size: 27px;
+    }
+
+    button {
+        padding: 14px;
+    }
+}
