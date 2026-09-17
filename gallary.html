@@ -1,929 +1,653 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Gallery | Glamora Beauty Salon</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <style>
-
-        /* =========================
-           GLOBAL
-        ========================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Poppins", sans-serif;
-            background:
-                radial-gradient(circle at 10% 10%, rgba(139, 47, 214, 0.18), transparent 28%),
-                radial-gradient(circle at 90% 30%, rgba(255, 78, 138, 0.13), transparent 30%),
-                linear-gradient(135deg, #12091f, #1a0f2e 45%, #24123c);
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.07), transparent 25%),
-                radial-gradient(circle at 80% 90%, rgba(139, 47, 214, 0.08), transparent 25%);
-            z-index: -1;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        button {
-            font-family: inherit;
-        }
-
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 999;
-
-            background: rgba(15, 7, 27, 0.72);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .nav {
-            width: min(1180px, 92%);
-            margin: auto;
-
-            min-height: 76px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-family: "Cormorant Garamond", serif;
-            font-size: 34px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: #ff6b9d;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 34px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            position: relative;
-
-            font-size: 14px;
-            color: rgba(255,255,255,0.72);
-
-            transition: 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-
-            width: 0;
-            height: 2px;
-
-            border-radius: 20px;
-
-            background: linear-gradient(
-                90deg,
-                #ff4e8a,
-                #8b2fd6
-            );
-
-            transition: 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #fff;
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .menu-btn {
-            display: none;
-
-            width: 44px;
-            height: 44px;
-
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-
-            background: rgba(255,255,255,0.05);
-
-            color: white;
-            font-size: 21px;
-
-            cursor: pointer;
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 470px;
-
-            padding: 145px 20px 80px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-
-            position: absolute;
-
-            width: 420px;
-            height: 420px;
-
-            border-radius: 50%;
-
-            background: rgba(255, 78, 138, 0.10);
-
-            filter: blur(80px);
-
-            top: 60px;
-            left: 50%;
-
-            transform: translateX(-50%);
-        }
-
-        .hero-content {
-            position: relative;
-            max-width: 760px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-
-            padding: 9px 18px;
-
-            margin-bottom: 22px;
-
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 50px;
-
-            background: rgba(255,255,255,0.045);
-
-            color: #ff9fbd;
-
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .eyebrow::before,
-        .eyebrow::after {
-            content: "";
-            width: 18px;
-            height: 1px;
-            background: #ff6b9d;
-        }
-
-        .hero h1 {
-            font-family: "Cormorant Garamond", serif;
-
-            font-size: clamp(55px, 8vw, 90px);
-
-            line-height: 0.95;
-
-            font-weight: 600;
-
-            margin-bottom: 25px;
-
-            background: linear-gradient(
-                110deg,
-                #fff,
-                #ffb1ca,
-                #d9a7ff
-            );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            max-width: 620px;
-            margin: auto;
-
-            color: rgba(255,255,255,0.63);
-
-            line-height: 1.9;
-            font-size: 15px;
-        }
-
-
-        /* =========================
-           GALLERY SECTION
-        ========================= */
-
-        .gallery-section {
-            width: min(1180px, 92%);
-            margin: auto;
-
-            padding: 20px 0 110px;
-        }
-
-        .section-heading {
-            text-align: center;
-            margin-bottom: 42px;
-        }
-
-        .section-heading h2 {
-            font-family: "Cormorant Garamond", serif;
-
-            font-size: clamp(38px, 5vw, 55px);
-
-            font-weight: 600;
-
-            margin-bottom: 10px;
-        }
-
-        .section-heading p {
-            color: rgba(255,255,255,0.5);
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           FILTERS
-        ========================= */
-
-        .filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            gap: 12px;
-
-            margin-bottom: 48px;
-        }
-
-        .filter-btn {
-            position: relative;
-
-            padding: 11px 23px;
-
-            border-radius: 50px;
-
-            border: 1px solid rgba(255,255,255,0.1);
-
-            background: rgba(255,255,255,0.045);
-
-            color: rgba(255,255,255,0.65);
-
-            cursor: pointer;
-
-            transition:
-                transform 0.3s ease,
-                background 0.3s ease,
-                color 0.3s ease,
-                border 0.3s ease,
-                box-shadow 0.3s ease;
-        }
-
-        .filter-btn:hover {
-            transform: translateY(-3px);
-
-            color: white;
-
-            border-color: rgba(255,107,157,0.4);
-
-            background: rgba(255,107,157,0.08);
-        }
-
-        .filter-btn.active {
-            color: white;
-
-            border-color: transparent;
-
-            background:
-                linear-gradient(
-                    110deg,
-                    #ff4e8a,
-                    #8b2fd6
-                );
-
-            box-shadow:
-                0 10px 30px rgba(255,78,138,0.2);
-        }
-
-
-        /* =========================
-           GALLERY GRID
-        ========================= */
-
-        .gallery-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 24px;
-        }
-
-
-        /* =========================
-           CARD
-        ========================= */
-
-        .gallery-card {
-            position: relative;
-
-            min-height: 360px;
-
-            border-radius: 24px;
-
-            overflow: hidden;
-
-            border: 1px solid rgba(255,255,255,0.09);
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,0.08),
-                    rgba(255,255,255,0.025)
-                );
-
-            box-shadow:
-                0 20px 50px rgba(0,0,0,0.25);
-
-            cursor: pointer;
-
-            opacity: 0;
-
-            transform:
-                translateY(35px)
-                scale(0.97);
-
-            transition:
-                transform 0.55s cubic-bezier(.2,.8,.2,1),
-                opacity 0.55s ease,
-                border-color 0.4s ease,
-                box-shadow 0.4s ease;
-        }
-
-        .gallery-card.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .gallery-card:hover {
-            transform:
-                translateY(-10px)
-                scale(1.015);
-
-            border-color: rgba(255,107,157,0.38);
-
-            box-shadow:
-                0 30px 70px rgba(0,0,0,0.4),
-                0 0 35px rgba(255,78,138,0.08);
-        }
-
-        .card-image {
-            position: absolute;
-            inset: 0;
-
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            transition:
-                transform 0.8s cubic-bezier(.2,.8,.2,1),
-                filter 0.5s ease;
-        }
-
-        .gallery-card:hover .card-image img {
-            transform: scale(1.09);
-            filter: brightness(0.78);
-        }
-
-        .card-image::after {
-            content: "";
-
-            position: absolute;
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(13,6,22,0.95) 0%,
-                    rgba(13,6,22,0.35) 45%,
-                    rgba(13,6,22,0.05) 100%
-                );
-        }
-
-
-        /* =========================
-           CARD CONTENT
-        ========================= */
-
-        .card-content {
-            position: absolute;
-
-            left: 0;
-            right: 0;
-            bottom: 0;
-
-            padding: 27px;
-            z-index: 2;
-        }
-
-        .card-category {
-            display: inline-block;
-
-            padding: 6px 12px;
-
-            margin-bottom: 12px;
-
-            border-radius: 30px;
-
-            background: rgba(255,107,157,0.12);
-
-            border: 1px solid rgba(255,107,157,0.2);
-
-            color: #ff9fbd;
-
-            font-size: 10px;
-
-            letter-spacing: 1.5px;
-
-            text-transform: uppercase;
-        }
-
-        .card-content h3 {
-            font-family: "Cormorant Garamond", serif;
-
-            font-size: 29px;
-
-            font-weight: 600;
-
-            margin-bottom: 6px;
-        }
-
-        .card-content p {
-            color: rgba(255,255,255,0.6);
-
-            font-size: 12px;
-
-            line-height: 1.6;
-        }
-
-        .click-hint {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            margin-top: 15px;
-
-            color: #ff8eb5;
-
-            font-size: 11px;
-
-            opacity: 0.8;
-
-            transition: 0.3s ease;
-        }
-
-        .gallery-card:hover .click-hint {
-            opacity: 1;
-            gap: 12px;
-        }
-
-        .click-hint span {
-            width: 25px;
-            height: 25px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 50%;
-
-            background: rgba(255,255,255,0.08);
-
-            border: 1px solid rgba(255,255,255,0.12);
-        }
-
-
-        /* =========================
-           EXTRA CARDS
-        ========================= */
-
-        .extra-card {
-            display: none;
-
-            opacity: 0;
-
-            transform:
-                translateY(35px)
-                scale(0.95);
-        }
-
-        .extra-card.show-card {
-            display: block;
-
-            animation:
-                extraReveal
-                0.65s
-                cubic-bezier(.2,.8,.2,1)
-                forwards;
-        }
-
-        @keyframes extraReveal {
-
-            0% {
-                opacity: 0;
-                transform:
-                    translateY(45px)
-                    scale(0.92);
-            }
-
-            100% {
-                opacity: 1;
-                transform:
-                    translateY(0)
-                    scale(1);
-            }
-        }
-
-
-        /* =========================
-           SHOW LESS
-        ========================= */
-
-        .show-less-wrap {
-            display: none;
-
-            justify-content: center;
-
-            margin-top: 42px;
-        }
-
-        .show-less-wrap.active {
-            display: flex;
-        }
-
-        .show-less {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-
-            padding: 13px 25px;
-
-            border-radius: 50px;
-
-            border: 1px solid rgba(255,255,255,0.1);
-
-            background: rgba(255,255,255,0.045);
-
-            color: rgba(255,255,255,0.8);
-
-            cursor: pointer;
-
-            transition: 0.3s ease;
-        }
-
-        .show-less:hover {
-            background: rgba(255,107,157,0.1);
-            border-color: rgba(255,107,157,0.3);
-            transform: translateY(-3px);
-        }
-
-
-        /* =========================
-           BOTTOM CTA
-        ========================= */
-
-        .gallery-cta {
-            margin-top: 100px;
-
-            padding: 55px 35px;
-
-            text-align: center;
-
-            position: relative;
-            overflow: hidden;
-
-            border-radius: 28px;
-
-            border: 1px solid rgba(255,255,255,0.09);
-
-            background:
-                linear-gradient(
-                    120deg,
-                    rgba(255,78,138,0.09),
-                    rgba(139,47,214,0.12)
-                );
-
-            box-shadow:
-                inset 0 1px rgba(255,255,255,0.05);
-        }
-
-        .gallery-cta::before {
-            content: "";
-
-            position: absolute;
-
-            width: 260px;
-            height: 260px;
-
-            background: rgba(255,78,138,0.12);
-
-            filter: blur(80px);
-
-            border-radius: 50%;
-
-            top: -130px;
-            left: -80px;
-        }
-
-        .gallery-cta h2 {
-            position: relative;
-
-            font-family: "Cormorant Garamond", serif;
-
-            font-size: 42px;
-
-            margin-bottom: 12px;
-        }
-
-        .gallery-cta p {
-            position: relative;
-
-            max-width: 550px;
-
-            margin: auto auto 25px;
-
-            color: rgba(255,255,255,0.58);
-
-            font-size: 13px;
-
-            line-height: 1.8;
-        }
-
-        .cta-btn {
-            position: relative;
-
-            display: inline-flex;
-
-            padding: 13px 28px;
-
-            border-radius: 50px;
-
-            background:
-                linear-gradient(
-                    110deg,
-                    #ff4e8a,
-                    #8b2fd6
-                );
-
-            color: white;
-
-            font-size: 13px;
-
-            box-shadow:
-                0 12px 35px rgba(255,78,138,0.2);
-
-            transition: 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-4px);
-
-            box-shadow:
-                0 18px 45px rgba(255,78,138,0.3);
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .gallery-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-            .nav-links {
-                gap: 20px;
-            }
-
-            .gallery-card {
-                min-height: 330px;
-            }
-        }
-
-
-        @media (max-width: 700px) {
-
-            .nav {
-                min-height: 68px;
-            }
-
-            .logo {
-                font-size: 30px;
-            }
-
-            .menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                position: absolute;
-
-                top: 75px;
-                left: 4%;
-
-                width: 92%;
-
-                padding: 20px;
-
-                flex-direction: column;
-
-                align-items: stretch;
-
-                gap: 4px;
-
-                background: rgba(20,9,35,0.95);
-
-                backdrop-filter: blur(20px);
-
-                border: 1px solid rgba(255,255,255,0.1);
-
-                border-radius: 18px;
-
-                opacity: 0;
-                visibility: hidden;
-
-                transform: translateY(-12px);
-
-                transition: 0.3s ease;
-            }
-
-            .nav-links.active {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-
-            .nav-links li a {
-                display: block;
-
-                padding: 13px 14px;
-
-                border-radius: 10px;
-            }
-
-            .nav-links li a:hover {
-                background: rgba(255,255,255,0.05);
-            }
-
-            .hero {
-                min-height: 430px;
-
-                padding-top: 125px;
-            }
-
-            .hero h1 {
-                font-size: 62px;
-            }
-
-            .hero p {
-                font-size: 13px;
-                line-height: 1.8;
-            }
-
-            .gallery-section {
-                width: 90%;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 18px;
-            }
-
-            .gallery-card {
-                min-height: 390px;
-                border-radius: 20px;
-            }
-
-            .filters {
-                gap: 8px;
-            }
-
-            .filter-btn {
-                padding: 9px 17px;
-                font-size: 12px;
-            }
-
-            .gallery-cta {
-                padding: 42px 22px;
-            }
-
-            .gallery-cta h2 {
-                font-size: 35px;
-            }
-        }
-
-
-        @media (max-width: 420px) {
-
-            .hero h1 {
-                font-size: 53px;
-            }
-
-            .eyebrow {
-                font-size: 10px;
-            }
-
-            .gallery-card {
-                min-height: 350px;
-            }
-
-            .card-content {
-                padding: 22px;
-            }
-
-            .card-content h3 {
-                font-size: 26px;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gallery | Glamora Beauty Salon</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --bg: #12091f;
+    --pink: #ff6b9d;
+    --pink-light: #ffb1ca;
+    --purple: #8b2fd6;
+    --white: #fff;
+    --muted: rgba(255,255,255,.65);
+    --gradient: linear-gradient(110deg,#ff4e8a,#8b2fd6);
+    --serif: "Cormorant Garamond",serif;
+    --sans: "Poppins",sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--sans);
+    color: white;
+    background:
+        radial-gradient(circle at 10% 10%,#32134e,transparent 30%),
+        radial-gradient(circle at 90% 80%,#40153f,transparent 30%),
+        linear-gradient(135deg,#10071b,#1a0f2e,#28133f);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* HEADER */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(15,7,27,.82);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.nav {
+    width: 92%;
+    max-width: 1180px;
+    min-height: 78px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.logo span {
+    color: var(--pink);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    position: relative;
+    color: rgba(255,255,255,.7);
+    font-size: 13px;
+    transition: .3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: white;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient);
+    transition: .3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.menu-btn {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 13px;
+    background: rgba(255,255,255,.06);
+    color: white;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 510px;
+    padding: 145px 20px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: rgba(255,78,138,.15);
+    filter: blur(100px);
+    animation: glow 7s infinite alternate;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    animation: heroIn 1s ease both;
+}
+
+.eyebrow {
+    display: inline-flex;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 20px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 50px;
+    color: var(--pink-light);
+    background: rgba(255,255,255,.04);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+    content: "";
+    width: 18px;
+    height: 1px;
+    background: var(--pink);
+}
+
+.hero-title {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-family: var(--serif);
+    font-size: clamp(60px,8vw,95px);
+    line-height: .95;
+    margin-bottom: 30px;
+}
+
+.hero-title span {
+    background: linear-gradient(110deg,#fff,#ffb1ca,#d9a7ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: titleIn 1s ease both;
+}
+
+.hero-title span:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.hero-description {
+    max-width: 650px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
+}
+
+/* GALLERY SECTION */
+
+.gallery-section {
+    width: 92%;
+    max-width: 1180px;
+    margin: auto;
+    padding-bottom: 100px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.section-heading h2 {
+    font-family: var(--serif);
+    font-size: clamp(40px,5vw,58px);
+    font-weight: 600;
+}
+
+.section-heading h2::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 2px;
+    margin: 15px auto 0;
+    background: var(--gradient);
+}
+
+.section-heading p {
+    margin-top: 20px;
+    color: rgba(255,255,255,.5);
+    font-size: 13px;
+}
+
+/* FILTERS */
+
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 45px;
+}
+
+.filter-btn {
+    padding: 11px 25px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 50px;
+    background: rgba(255,255,255,.05);
+    color: rgba(255,255,255,.7);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.filter-btn:hover {
+    transform: translateY(-4px);
+    color: white;
+    border-color: var(--pink);
+}
+
+.filter-btn.active {
+    color: white;
+    border-color: transparent;
+    background: var(--gradient);
+    box-shadow: 0 10px 30px rgba(255,78,138,.25);
+}
+
+/* CARDS */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+    perspective: 1200px;
+}
+
+.gallery-card {
+    position: relative;
+    min-height: 370px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 25px;
+    background: rgba(255,255,255,.05);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(40px) scale(.96);
+    transition:
+        opacity .7s ease,
+        transform .5s ease,
+        box-shadow .4s ease,
+        border-color .4s ease;
+    transform-style: preserve-3d;
+}
+
+.gallery-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.gallery-card:hover {
+    transform:
+        translateY(-12px)
+        rotateX(var(--rx,0deg))
+        rotateY(var(--ry,0deg))
+        scale(1.02);
+    border-color: rgba(255,107,157,.65);
+    box-shadow:
+        0 30px 65px rgba(0,0,0,.5),
+        0 0 35px rgba(255,78,138,.18);
+}
+
+.gallery-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    background: linear-gradient(
+        115deg,
+        transparent 25%,
+        rgba(255,255,255,.16) 50%,
+        transparent 75%
+    );
+    transform: translateX(-120%);
+    transition: transform .9s ease;
+}
+
+.gallery-card:hover::before {
+    transform: translateX(120%);
+}
+
+.card-image {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease,filter .6s ease;
+}
+
+.gallery-card:hover .card-image img {
+    transform: scale(1.12);
+    filter: brightness(.7) saturate(1.15);
+}
+
+.card-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(13,6,22,.98),
+        rgba(13,6,22,.45) 52%,
+        transparent
+    );
+}
+
+.card-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    padding: 27px;
+    transform: translateZ(35px);
+    transition: transform .5s ease;
+}
+
+.gallery-card:hover .card-content {
+    transform: translateY(-5px) translateZ(35px);
+}
+
+.card-category {
+    display: inline-block;
+    padding: 6px 13px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,107,157,.3);
+    border-radius: 30px;
+    background: rgba(255,107,157,.14);
+    color: #ff9fbd;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.card-content h3 {
+    font-family: var(--serif);
+    font-size: 31px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    color: rgba(255,255,255,.62);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.click-hint {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 17px;
+    color: #ff8eb5;
+    font-size: 11px;
+    transition: .4s;
+}
+
+.gallery-card:hover .click-hint {
+    gap: 15px;
+}
+
+.click-hint span {
+    display: grid;
+    place-items: center;
+    width: 27px;
+    height: 27px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+}
+
+/* CTA */
+
+.gallery-cta {
+    position: relative;
+    overflow: hidden;
+    margin-top: 100px;
+    padding: 60px 25px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 30px;
+    background: linear-gradient(
+        120deg,
+        rgba(255,78,138,.12),
+        rgba(139,47,214,.15)
+    );
+}
+
+.gallery-cta h2 {
+    font-family: var(--serif);
+    font-size: 46px;
+    margin-bottom: 12px;
+}
+
+.gallery-cta p {
+    max-width: 570px;
+    margin: auto auto 28px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.cta-btn {
+    display: inline-flex;
+    padding: 14px 30px;
+    border-radius: 50px;
+    background: var(--gradient);
+    color: white;
+    font-size: 12px;
+    box-shadow: 0 12px 35px rgba(255,78,138,.25);
+    transition: .3s;
+}
+
+.cta-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 45px rgba(255,78,138,.4);
+}
+
+/* ANIMATIONS */
+
+@keyframes heroIn {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes titleIn {
+    from {
+        opacity: 0;
+        transform: translateY(80px) rotate(5deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+}
+
+@keyframes glow {
+    from {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    to {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px) {
+
+    .gallery-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+}
+
+@media(max-width:700px) {
+
+    .nav {
+        min-height: 70px;
+    }
+
+    .logo {
+        font-size: 32px;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 78px;
+        left: 4%;
+        width: 92%;
+        padding: 18px;
+        flex-direction: column;
+        gap: 5px;
+        background: rgba(20,9,35,.98);
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 18px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-15px);
+        transition: .3s;
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255,255,255,.06);
+    }
+
+    .hero {
+        min-height: 460px;
+        padding-top: 125px;
+    }
+
+    .hero-title {
+        font-size: clamp(52px,14vw,75px);
+    }
+
+    .hero-description {
+        font-size: 12px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .gallery-card {
+        min-height: 390px;
+    }
+
+    .filters {
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 9px 17px;
+        font-size: 12px;
+    }
+
+    .gallery-cta {
+        margin-top: 75px;
+        padding: 45px 20px;
+    }
+
+    .gallery-cta h2 {
+        font-size: 38px;
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+
+}
+
+</style>
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header class="header">
 
@@ -933,56 +657,23 @@
             Glamora<span>.</span>
         </a>
 
-        <button
-            class="menu-btn"
-            id="menuBtn"
-            type="button"
-            aria-label="Open menu">
+        <button class="menu-btn" id="menuBtn">
             ☰
         </button>
 
         <ul class="nav-links" id="navLinks">
 
-            <li>
-                <a href="index.html">
-                    Home
-                </a>
-            </li>
-
-            <li>
-                <a href="services.html">
-                    Services
-                </a>
-            </li>
-
-            <li>
-                <a href="packages.html">
-                    Packages
-                </a>
-            </li>
-
-            <li>
-                <a href="gallery.html" class="active">
-                    Gallery
-                </a>
-            </li>
-
-            <li>
-                <a href="contact.html">
-                    Contact
-                </a>
-            </li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="packages.html">Packages</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
 
         </ul>
 
     </nav>
 
 </header>
-
-
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero">
 
@@ -992,1013 +683,556 @@
             Glamora Beauty Studio
         </div>
 
-        <h1>
-            Our Gallery
+        <h1 class="hero-title">
+            <span>Our</span>
+            <span>Gallery</span>
         </h1>
 
-        <p>
-            Step inside the world of Glamora and explore our
-            signature beauty transformations, elegant styles,
-            flawless finishes and luxury salon artistry.
+        <p class="hero-description">
+            Step inside the world of Glamora and explore our signature
+            beauty transformations, elegant styles, flawless finishes
+            and luxury salon artistry.
         </p>
 
     </div>
 
 </section>
 
-
-<!-- =========================
-     GALLERY
-========================= -->
-
 <section class="gallery-section">
 
     <div class="section-heading">
 
-        <h2>
-            Beauty In Every Detail
-        </h2>
+        <h2>Beauty In Every Detail</h2>
 
         <p>
-            Click any card to discover more styles from that collection.
+            Click any card to explore that beauty collection.
         </p>
 
     </div>
 
-
-    <!-- FILTERS -->
-
     <div class="filters">
 
-        <button
-            class="filter-btn active"
-            data-category="all">
+        <button class="filter-btn active" data-category="all">
             All
         </button>
 
-        <button
-            class="filter-btn"
-            data-category="hair">
+        <button class="filter-btn" data-category="hair">
             Hair
         </button>
 
-        <button
-            class="filter-btn"
-            data-category="makeup">
+        <button class="filter-btn" data-category="makeup">
             Makeup
         </button>
 
-        <button
-            class="filter-btn"
-            data-category="skin">
+        <button class="filter-btn" data-category="skin">
             Skin
         </button>
 
-        <button
-            class="filter-btn"
-            data-category="nails">
+        <button class="filter-btn" data-category="nails">
             Nails
         </button>
 
     </div>
 
-
-    <!-- =========================
-         CARDS
-    ========================= -->
-
     <div class="gallery-grid" id="galleryGrid">
 
+        <!-- HAIR -->
 
-        <!-- HAIR 1 -->
-
-        <article
-            class="gallery-card"
-            data-category="hair">
+        <article class="gallery-card" data-category="hair">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=85"
-                    alt="Luxury Hair Styling">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEpbIPDyrQKstBK2SCoXmoMFnn8SzS4L-rrke3JnrQKg&s=10" alt="Signature hair styling">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Hair
-                </span>
-
-                <h3>
-                    Signature Hair
-                </h3>
-
-                <p>
-                    Elegant salon styling created for a refined look.
-                </p>
-
-                <div class="click-hint">
-                    Explore more
-                    <span>→</span>
-                </div>
-
+                <span class="card-category">Hair</span>
+                <h3>Signature Hair</h3>
+                <p>Elegant salon styling created for a refined look.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <!-- MAKEUP 1 -->
-
-        <article
-            class="gallery-card"
-            data-category="makeup">
+        <article class="gallery-card" data-category="hair">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=85"
-                    alt="Luxury Makeup">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaU3gESJZHM7KpCgazyrGbJYhAQQYZo2bhIgSCPaascw&s=10" alt="Soft waves">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Makeup
-                </span>
-
-                <h3>
-                    Glam Makeup
-                </h3>
-
-                <p>
-                    Soft glam finishes designed to highlight natural beauty.
-                </p>
-
-                <div class="click-hint">
-                    Explore more
-                    <span>→</span>
-                </div>
-
+                <span class="card-category">Hair</span>
+                <h3>Soft Waves</h3>
+                <p>Effortless waves with a polished glamorous finish.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <!-- SKIN 1 -->
-
-        <article
-            class="gallery-card"
-            data-category="skin">
+        <article class="gallery-card" data-category="hair">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85"
-                    alt="Luxury Skin Treatment">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgQLcDoKDL7l46GFPp6ulLUK-Nl6Al0KLWxgGHGojMOw&s=10" alt="Hair transformation">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Skin
-                </span>
-
-                <h3>
-                    Glow Facial
-                </h3>
-
-                <p>
-                    Relaxing skincare rituals for a fresh radiant glow.
-                </p>
-
-                <div class="click-hint">
-                    Explore more
-                    <span>→</span>
-                </div>
-
+                <span class="card-category">Hair</span>
+                <h3>Hair Transformation</h3>
+                <p>Fresh cuts and beautiful transformations.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <!-- NAILS 1 -->
-
-        <article
-            class="gallery-card"
-            data-category="nails">
+        <article class="gallery-card" data-category="hair">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=85"
-                    alt="Luxury Nail Art">
-
+                <img src="https://www.etonline.com/sites/default/files/images/2020-03/gettyimages-1088446220.jpg" alt="Root touch up">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Nails
-                </span>
-
-                <h3>
-                    Elegant Nails
-                </h3>
-
-                <p>
-                    Detailed nail artistry with a sophisticated finish.
-                </p>
-
-                <div class="click-hint">
-                    Explore more
-                    <span>→</span>
-                </div>
-
+                <span class="card-category">Hair</span>
+                <h3>Root Touch-up</h3>
+                <p>Professional root coloring for a polished appearance.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <!-- HAIR 2 -->
-
-        <article
-            class="gallery-card"
-            data-category="hair">
+        <article class="gallery-card" data-category="hair">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85"
-                    alt="Hair Styling">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkct37JvLMN3-DRN5ICMoWw41XwM3Sh9DnkT37lUEujg&s=10" alt="Blow dry">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Hair
-                </span>
-
-                <h3>
-                    Soft Waves
-                </h3>
-
-                <p>
-                    Effortless waves with a polished glamorous finish.
-                </p>
-
-                <div class="click-hint">
-                    Explore more
-                    <span>→</span>
-                </div>
-
+                <span class="card-category">Hair</span>
+                <h3>Blow Dry</h3>
+                <p>Volume, bounce and a smooth salon-finished look.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
+        <!-- MAKEUP -->
 
-        <!-- MAKEUP 2 -->
-
-        <article
-            class="gallery-card"
-            data-category="makeup">
+        <article class="gallery-card" data-category="makeup">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=85"
-                    alt="Makeup Beauty">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFWNEioBOjJMnfzIoBkZBY8bheP5m7Rcz9NuzkyDBxWdHMQWD6c13gRLY&s=10" alt="Glam makeup">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Makeup
-                </span>
-
-                <h3>
-                    Bridal Glow
-                </h3>
-
-                <p>
-                    Timeless bridal beauty with luminous details.
-                </p>
-
-                <div class="click-hint">
-                    Explore more
-                    <span>→</span>
-                </div>
-
+                <span class="card-category">Makeup</span>
+                <h3>Glam Makeup</h3>
+                <p>Soft glam finishes designed to highlight natural beauty.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <!-- =========================
-             EXTRA HAIR
-        ========================= -->
-
-        <article
-            class="gallery-card extra-card"
-            data-category="hair">
+        <article class="gallery-card" data-category="makeup">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=900&q=85"
-                    alt="Hair Transformation">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS8gVzR19CCeo4iXyegvqPnJpXe45CXcUN12KsaprwwA&s=10" alt="Bridal makeup">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Hair
-                </span>
-
-                <h3>
-                    Hair Transformation
-                </h3>
-
-                <p>
-                    Fresh cuts and beautiful transformations.
-                </p>
-
+                <span class="card-category">Makeup</span>
+                <h3>Bridal Glow</h3>
+                <p>Timeless bridal beauty with luminous details.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <article
-            class="gallery-card extra-card"
-            data-category="hair">
+        <article class="gallery-card" data-category="makeup">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1527799820374-dcf8f2d4a1b5?auto=format&fit=crop&w=900&q=85"
-                    alt="Elegant Hair">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTM2rxZQcCoRFZ1-Q0YUHyMrSw0dxzuoLxqCATfThQug&s=10" alt="Party makeup">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Hair
-                </span>
-
-                <h3>
-                    Luxury Finish
-                </h3>
-
-                <p>
-                    Sophisticated salon styling for every occasion.
-                </p>
-
+                <span class="card-category">Makeup</span>
+                <h3>Party Makeup</h3>
+                <p>Bold yet elegant makeup for special occasions.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <!-- =========================
-             EXTRA MAKEUP
-        ========================= -->
-
-        <article
-            class="gallery-card extra-card"
-            data-category="makeup">
+        <article class="gallery-card" data-category="makeup">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=85"
-                    alt="Professional Makeup">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQysI3Y3QI08f0w_g3SyIk83eKtPZkMormP8xMP3gwARw&s=10" alt="Natural makeup">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Makeup
-                </span>
-
-                <h3>
-                    Evening Glam
-                </h3>
-
-                <p>
-                    Bold yet elegant makeup for special occasions.
-                </p>
-
+                <span class="card-category">Makeup</span>
+                <h3>Model Makeup</h3>
+                <p>Fresh, soft and naturally radiant beauty.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <article
-            class="gallery-card extra-card"
-            data-category="makeup">
+        <article class="gallery-card" data-category="makeup">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=85"
-                    alt="Beauty Makeup">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJXP-HrGQwbWygw8dqStVs96O5j1oYb1C0x32v2c0EIw&s=10" alt="Natural makeup look">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Makeup
-                </span>
-
-                <h3>
-                    Natural Glam
-                </h3>
-
-                <p>
-                    Fresh, soft and naturally radiant beauty.
-                </p>
-
+                <span class="card-category">Makeup</span>
+                <h3>No-Makeup Look</h3>
+                <p>A naturally polished and elegant makeup style.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <!-- =========================
-             EXTRA SKIN
-        ========================= -->
-
-        <article
-            class="gallery-card extra-card"
-            data-category="skin">
+        <article class="gallery-card" data-category="makeup">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1556229010-aa3c3a2f3b2f?auto=format&fit=crop&w=900&q=85"
-                    alt="Skin Care">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdOh08ZBNcUrQRMkhkcIbfeSSKLFNIrSkfzB-aArn2VQ&s=10" alt="Engagement makeup">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Skin
-                </span>
-
-                <h3>
-                    Hydration Ritual
-                </h3>
-
-                <p>
-                    Deep hydration for soft and refreshed skin.
-                </p>
-
+                <span class="card-category">Makeup</span>
+                <h3>Engagement Makeup</h3>
+                <p>Elegant beauty for engagement and Nikkah events.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
+        <!-- SKIN -->
 
-        <article
-            class="gallery-card extra-card"
-            data-category="skin">
+        <article class="gallery-card" data-category="skin">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=85"
-                    alt="Facial Treatment">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-ASIvEKYuAobIDULqejgma-EltpyhtjEQ5FGaH67yCg&s=10" alt="Glow facial">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Skin
-                </span>
-
-                <h3>
-                    Pure Radiance
-                </h3>
-
-                <p>
-                    A refreshing skincare experience for luminous skin.
-                </p>
-
+                <span class="card-category">Skin</span>
+                <h3>Glow Facial</h3>
+                <p>Relaxing skincare rituals for a fresh radiant glow.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <!-- =========================
-             EXTRA NAILS
-        ========================= -->
-
-        <article
-            class="gallery-card extra-card"
-            data-category="nails">
+        <article class="gallery-card" data-category="skin">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=85"
-                    alt="Nail Art">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9MJiFmpk6kMt7MzyBqtmroA0fvoaHCQwWGX3z8kOTQ&s" alt="Hydration skincare">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Nails
-                </span>
-
-                <h3>
-                    Pink Elegance
-                </h3>
-
-                <p>
-                    Feminine pink tones with a polished finish.
-                </p>
-
+                <span class="card-category">Skin</span>
+                <h3>Hydration Ritual</h3>
+                <p>Deep hydration for soft and refreshed skin.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
-
-        <article
-            class="gallery-card extra-card"
-            data-category="nails">
+        <article class="gallery-card" data-category="skin">
 
             <div class="card-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=85"
-                    alt="Luxury Nail Design">
-
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5HY_CUYWH5Zmq5a7JloAFJMufBrGazkBMloLJvTkztg&s=10" alt="Radiance facial">
             </div>
 
             <div class="card-content">
-
-                <span class="card-category">
-                    Nails
-                </span>
-
-                <h3>
-                    Modern Nail Art
-                </h3>
-
-                <p>
-                    Contemporary designs created with precision.
-                </p>
-
+                <span class="card-category">Skin</span>
+                <h3>Pure Radiance</h3>
+                <p>A refreshing skincare experience for luminous skin.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
             </div>
 
         </article>
 
+        <!-- NAILS -->
+
+        <article class="gallery-card" data-category="nails">
+
+            <div class="card-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXkU64ug3NgqLf_vUZOnCirK12fUKn2w7Bwd2cVQc_hw&s=10" alt="Elegant nail art">
+            </div>
+
+            <div class="card-content">
+                <span class="card-category">Nails</span>
+                <h3>Elegant Nails</h3>
+                <p>Detailed nail artistry with a sophisticated finish.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
+            </div>
+
+        </article>
+
+        <article class="gallery-card" data-category="nails">
+
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=85" alt="Pink nails">
+            </div>
+
+            <div class="card-content">
+                <span class="card-category">Nails</span>
+                <h3>Pink Elegance</h3>
+                <p>Feminine pink tones with a polished finish.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
+            </div>
+
+        </article>
+
+        <article class="gallery-card" data-category="nails">
+
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=85" alt="Modern nail art">
+            </div>
+
+            <div class="card-content">
+                <span class="card-category">Nails</span>
+                <h3>Modern Nail Art</h3>
+                <p>Contemporary designs created with precision.</p>
+                <div class="click-hint">Explore more <span>→</span></div>
+            </div>
+
+        </article>
 
     </div>
-
-
-    <!-- SHOW LESS -->
-
-    <div
-        class="show-less-wrap"
-        id="showLessWrap">
-
-        <button
-            class="show-less"
-            id="showLess">
-
-            Show Less
-            <span>↑</span>
-
-        </button>
-
-    </div>
-
-
-    <!-- CTA -->
 
     <div class="gallery-cta">
 
-        <h2>
-            Ready To Glow?
-        </h2>
+        <h2>Ready To Glow?</h2>
 
         <p>
             Your beauty journey deserves a little luxury.
-            Book your appointment and let Glamora create
-            your perfect look.
+            Book your appointment and let Glamora create your perfect look.
         </p>
 
-        <a
-            href="booking.html"
-            class="cta-btn">
-
-            Book Your Appointment
-            <span style="margin-left:8px;">→</span>
-
+        <a href="booking.html" class="cta-btn">
+            Book Your Appointment →
         </a>
 
     </div>
 
 </section>
 
-
-
 <script>
 
-    /* =========================
-       MOBILE MENU
-    ========================= */
+/* MOBILE MENU */
 
-    const menuBtn =
-        document.getElementById("menuBtn");
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
 
-    const navLinks =
-        document.getElementById("navLinks");
+menuBtn.addEventListener("click", () => {
 
-    menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
 
-        navLinks.classList.toggle("active");
+    menuBtn.textContent =
+        navLinks.classList.contains("active") ? "✕" : "☰";
 
-        menuBtn.textContent =
-            navLinks.classList.contains("active")
-                ? "✕"
-                : "☰";
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("active");
+        menuBtn.textContent = "☰";
 
     });
 
-
-    /* =========================
-       ELEMENTS
-    ========================= */
-
-    const filterButtons =
-        document.querySelectorAll(".filter-btn");
-
-    const cards =
-        document.querySelectorAll(".gallery-card");
-
-    const extraCards =
-        document.querySelectorAll(".extra-card");
-
-    const showLessWrap =
-        document.getElementById("showLessWrap");
-
-    const showLess =
-        document.getElementById("showLess");
+});
 
 
-    /* =========================
-       INITIAL CARD ANIMATION
-    ========================= */
+/* GALLERY */
 
-    function animateCards() {
+const filterButtons = [
+    ...document.querySelectorAll(".filter-btn")
+];
 
-        const visibleCards =
-            [...cards].filter(card => {
+const cards = [
+    ...document.querySelectorAll(".gallery-card")
+];
 
-                return (
-                    card.style.display !== "none" &&
-                    !card.classList.contains("extra-card")
-                );
-
-            });
-
-        visibleCards.forEach((card, index) => {
-
-            setTimeout(() => {
-
-                card.classList.add("visible");
-
-            }, index * 100);
-
-        });
-
-    }
+let timers = [];
 
 
-    /* =========================
-       HIDE ALL EXTRA
-    ========================= */
+/* CLEAR ANIMATIONS */
 
-    function hideExtraCards() {
+function clearTimers() {
 
-        extraCards.forEach(card => {
+    timers.forEach(timer => clearTimeout(timer));
 
-            card.classList.remove("show-card");
+    timers = [];
 
-            card.style.display = "none";
-
-        });
-
-        showLessWrap.classList.remove("active");
-
-    }
+}
 
 
-    /* =========================
-       FILTER
-    ========================= */
+/* ACTIVE FILTER */
+
+function setActive(category) {
 
     filterButtons.forEach(button => {
 
-        button.addEventListener("click", () => {
-
-            const category =
-                button.dataset.category;
-
-
-            filterButtons.forEach(btn => {
-                btn.classList.remove("active");
-            });
-
-            button.classList.add("active");
-
-
-            hideExtraCards();
-
-
-            cards.forEach(card => {
-
-                card.classList.remove("visible");
-
-                const cardCategory =
-                    card.dataset.category;
-
-                const isExtra =
-                    card.classList.contains("extra-card");
-
-
-                if (isExtra) {
-
-                    card.style.display = "none";
-
-                    return;
-
-                }
-
-
-                if (
-                    category === "all" ||
-                    cardCategory === category
-                ) {
-
-                    card.style.display = "block";
-
-                } else {
-
-                    card.style.display = "none";
-
-                }
-
-            });
-
-
-            setTimeout(() => {
-
-                const selectedCards =
-                    [...cards].filter(card => {
-
-                        return (
-                            card.style.display !== "none" &&
-                            !card.classList.contains("extra-card")
-                        );
-
-                    });
-
-
-                selectedCards.forEach((card, index) => {
-
-                    setTimeout(() => {
-
-                        card.classList.add("visible");
-
-                    }, index * 100);
-
-                });
-
-            }, 50);
-
-        });
+        button.classList.toggle(
+            "active",
+            button.dataset.category === category
+        );
 
     });
 
+}
 
-    /* =========================
-       CARD CLICK
-       SHOW MORE CARDS
-    ========================= */
+
+/* SHOW CARDS */
+
+function showCategory(category) {
+
+    clearTimers();
+
+    setActive(category);
+
+    const selectedCards = cards.filter(card => {
+
+        return category === "all" ||
+               card.dataset.category === category;
+
+    });
 
     cards.forEach(card => {
 
-        card.addEventListener("click", () => {
+        const shouldShow = selectedCards.includes(card);
 
-            const category =
-                card.dataset.category;
+        card.style.display = shouldShow ? "block" : "none";
 
-
-            if (!category) return;
-
-
-            /* Activate category button */
-
-            filterButtons.forEach(btn => {
-
-                btn.classList.remove("active");
-
-                if (
-                    btn.dataset.category === category
-                ) {
-
-                    btn.classList.add("active");
-
-                }
-
-            });
-
-
-            /* Hide other main cards */
-
-            cards.forEach(item => {
-
-                if (
-                    !item.classList.contains("extra-card") &&
-                    item.dataset.category !== category
-                ) {
-
-                    item.style.display = "none";
-                    item.classList.remove("visible");
-
-                }
-
-            });
-
-
-            /* Keep category cards visible */
-
-            cards.forEach(item => {
-
-                if (
-                    !item.classList.contains("extra-card") &&
-                    item.dataset.category === category
-                ) {
-
-                    item.style.display = "block";
-
-                    setTimeout(() => {
-                        item.classList.add("visible");
-                    }, 50);
-
-                }
-
-            });
-
-
-            /* Find extra cards */
-
-            const categoryExtraCards =
-                [...extraCards].filter(item => {
-
-                    return (
-                        item.dataset.category === category
-                    );
-
-                });
-
-
-            if (
-                categoryExtraCards.length === 0
-            ) {
-                return;
-            }
-
-
-            /* Show extra cards one by one */
-
-            categoryExtraCards.forEach(
-                (extraCard, index) => {
-
-                    extraCard.style.display =
-                        "block";
-
-                    setTimeout(() => {
-
-                        extraCard.classList.add(
-                            "show-card"
-                        );
-
-                    }, 120 + index * 150);
-
-                }
-            );
-
-
-            showLessWrap.classList.add(
-                "active"
-            );
-
-
-            /* Scroll smoothly to new cards */
-
-            setTimeout(() => {
-
-                const firstExtra =
-                    categoryExtraCards[0];
-
-                if (firstExtra) {
-
-                    firstExtra.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-
-                }
-
-            }, 400);
-
-        });
+        card.classList.remove("visible");
 
     });
 
+    selectedCards.forEach((card,index) => {
 
-    /* =========================
-       SHOW LESS
-    ========================= */
+        const timer = setTimeout(() => {
 
-    showLess.addEventListener("click", () => {
+            card.classList.add("visible");
 
-        hideExtraCards();
+        },80 + index * 100);
 
-
-        filterButtons.forEach(btn => {
-
-            btn.classList.remove("active");
-
-            if (
-                btn.dataset.category === "all"
-            ) {
-
-                btn.classList.add("active");
-
-            }
-
-        });
-
-
-        cards.forEach(card => {
-
-            card.classList.remove("visible");
-
-            card.style.display = "block";
-
-        });
-
-
-        setTimeout(() => {
-
-            cards.forEach((card, index) => {
-
-                setTimeout(() => {
-
-                    card.classList.add("visible");
-
-                }, index * 80);
-
-            });
-
-        }, 50);
-
-
-        document.querySelector(
-            ".section-heading"
-        ).scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+        timers.push(timer);
 
     });
 
+}
 
-    /* =========================
-       FIRST LOAD
-    ========================= */
 
-    window.addEventListener(
-        "DOMContentLoaded",
-        () => {
+/* FILTER BUTTONS */
 
-            animateCards();
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        showCategory(button.dataset.category);
+
+    });
+
+});
+
+
+/* CARD CLICK */
+
+cards.forEach(card => {
+
+    card.setAttribute("tabindex","0");
+    card.setAttribute("role","button");
+
+    function openCard() {
+
+        const category = card.dataset.category;
+
+        showCategory(category);
+
+        document.querySelector(".gallery-section")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+    }
+
+    card.addEventListener("click",openCard);
+
+    card.addEventListener("keydown",event => {
+
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+
+            event.preventDefault();
+
+            openCard();
 
         }
-    );
+
+    });
+
+});
+
+
+/* 3D TILT */
+
+if (
+    window.matchMedia(
+        "(hover:hover) and (pointer:fine)"
+    ).matches
+) {
+
+    cards.forEach(card => {
+
+        card.addEventListener("pointermove",event => {
+
+            const rect = card.getBoundingClientRect();
+
+            const x =
+                (event.clientX - rect.left) /
+                rect.width - .5;
+
+            const y =
+                (event.clientY - rect.top) /
+                rect.height - .5;
+
+            card.style.setProperty(
+                "--rx",
+                `${-y * 5}deg`
+            );
+
+            card.style.setProperty(
+                "--ry",
+                `${x * 5}deg`
+            );
+
+        });
+
+        card.addEventListener("pointerleave",() => {
+
+            card.style.setProperty("--rx","0deg");
+            card.style.setProperty("--ry","0deg");
+
+        });
+
+    });
+
+}
+
+
+/* INITIAL LOAD */
+
+window.addEventListener("DOMContentLoaded",() => {
+
+    showCategory("all");
+
+});
 
 </script>
 
