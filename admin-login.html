@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Admin Login | Glamora
+</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
+</head>
+
+
+<body>
+
+
+<main
+class="
+login-page
+fade-in
+">
+
+
+<div
+class="
+glass
+admin-login-card
+">
+
+
+<div class="logo">
+
+Glamora<span>.</span>
+
+</div>
+
+
+<p class="admin-text">
+
+Admin Portal
+
+</p>
+
+
+<form
+id="adminLoginForm">
+
+
+<input
+id="adminEmail"
+class="input"
+type="email"
+placeholder="Admin Email"
+required>
+
+
+<input
+id="adminPassword"
+class="input"
+type="password"
+placeholder="Password"
+required>
+
+
+<button
+class="
+btn
+btn-gradient
+">
+
+Admin Sign In
+
+</button>
+
+
+</form>
+
+
+<p id="errorMessage">
+
+</p>
+
+
+</div>
+
+
+</main>
+
+
+
+<style>
+
+.login-page {
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:20px;
+
+}
+
+
+.admin-login-card {
+
+width:100%;
+
+max-width:430px;
+
+padding:45px;
+
+text-align:center;
+
+}
+
+
+.admin-text {
+
+color:
+var(--muted);
+
+margin:
+10px 0 30px;
+
+}
+
+
+#adminLoginForm {
+
+display:flex;
+
+flex-direction:column;
+
+gap:16px;
+
+}
+
+
+#errorMessage {
+
+color:
+#ff6b6b;
+
+margin-top:15px;
+
+}
+
+</style>
+
+
+
+<script
+type="module">
+
+
+import {auth,signInWithEmailAndPassword}from "./firebase.js";
+
+
+
+document.getElementById("adminLoginForm").addEventListener("submit",
+async e => {
+
+e.preventDefault();
+
+
+const email =
+document.getElementById(
+"adminEmail"
+).value;
+
+
+const password =
+document.getElementById(
+"adminPassword"
+).value;
+
+
+try {
+
+
+await signInWithEmailAndPassword(
+
+auth,
+
+email,
+
+password
+
+);
+
+
+// Dashboard
+
+window.location.href =
+"admin-dashboard.html";
+
+}
+catch(error){
+
+document
+.getElementById(
+"errorMessage"
+)
+.innerText =
+error.message;
+
+}
+
+}
+);
+
+</script>
+
+
+</body>
+
+</html>
