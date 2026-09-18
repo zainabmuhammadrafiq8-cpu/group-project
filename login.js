@@ -272,7 +272,6 @@ loginActualForm.addEventListener(
 
         event.preventDefault();
 
-
         const email =
             loginEmail.value.trim();
 
@@ -376,12 +375,14 @@ if (forgotPassword) {
                 loginMessage.textContent =
                     "Password reset email sent. Check your inbox.";
 
+
             } catch (error) {
 
                 console.error(
                     "FORGOT PASSWORD ERROR:",
                     error
                 );
+
 
                 loginMessage.textContent =
                     firebaseError(error);
@@ -401,7 +402,6 @@ if (forgotPassword) {
 
 // ========================================
 // GOOGLE AUTH
-// REDIRECT METHOD
 // ========================================
 
 const googleProvider =
@@ -412,8 +412,6 @@ googleProvider.setCustomParameters({
     prompt: "select_account"
 });
 
-
-// Prevent duplicate Google requests
 
 let googleAuthRunning = false;
 
@@ -427,6 +425,7 @@ async function googleAuth(messageElement) {
     if (googleAuthRunning) {
 
         return;
+
     }
 
 
@@ -515,7 +514,9 @@ async function checkGoogleRedirect() {
 }
 
 
-// Run redirect check
+// ========================================
+// RUN GOOGLE REDIRECT CHECK
+// ========================================
 
 checkGoogleRedirect();
 
@@ -564,27 +565,28 @@ let phoneAuthRunning = false;
 
 
 // ========================================
-// CREATE RECAPTCHA
+// CREATE RECAPTCHA ONLY ONCE
 // ========================================
 
 function createRecaptcha() {
 
+    // IMPORTANT:
+    // Agar verifier already bana hua hai,
+    // usi ko reuse karo.
+    // Dobara render nahi karna.
+
     if (recaptchaVerifier) {
 
-        try {
+        return recaptchaVerifier;
 
-            recaptchaVerifier.clear();
+    }
 
-        } catch (error) {
 
-            console.log(
-                "Old reCAPTCHA cleanup:",
-                error
-            );
+    if (!recaptchaContainer) {
 
-        }
-
-        recaptchaVerifier = null;
+        throw new Error(
+            "reCAPTCHA container not found."
+        );
 
     }
 
@@ -632,6 +634,7 @@ async function phoneAuth(messageElement) {
     if (phoneAuthRunning) {
 
         return;
+
     }
 
 
@@ -649,11 +652,40 @@ async function phoneAuth(messageElement) {
         phoneAuthRunning = false;
 
         return;
+
     }
 
 
     const cleanPhoneNumber =
         phoneNumber.trim();
+
+
+    // ====================================
+    // PHONE NUMBER FORMAT CHECK
+    // ====================================
+
+    if (!cleanPhoneNumber.startsWith("+")) {
+
+        messageElement.textContent =
+            "Please use country code. Example: +923001234567";
+
+        phoneAuthRunning = false;
+
+        return;
+
+    }
+
+
+    if (!/^\+[1-9]\d{7,14}$/.test(cleanPhoneNumber)) {
+
+        messageElement.textContent =
+            "Invalid phone number. Example: +923001234567";
+
+        phoneAuthRunning = false;
+
+        return;
+
+    }
 
 
     messageElement.textContent =
@@ -662,9 +694,17 @@ async function phoneAuth(messageElement) {
 
     try {
 
+        // =================================
+        // CREATE / REUSE RECAPTCHA
+        // =================================
+
         const appVerifier =
             createRecaptcha();
 
+
+        // =================================
+        // SEND OTP
+        // =================================
 
         confirmationResult =
             await signInWithPhoneNumber(
@@ -678,6 +718,10 @@ async function phoneAuth(messageElement) {
             "OTP sent. Check your phone.";
 
 
+        // =================================
+        // ENTER OTP
+        // =================================
+
         const code =
             prompt(
                 "Enter the OTP sent to your phone:"
@@ -689,9 +733,16 @@ async function phoneAuth(messageElement) {
             messageElement.textContent =
                 "OTP verification cancelled.";
 
+            phoneAuthRunning = false;
+
             return;
+
         }
 
+
+        // =================================
+        // VERIFY OTP
+        // =================================
 
         await confirmationResult.confirm(
             code.trim()
@@ -701,6 +752,10 @@ async function phoneAuth(messageElement) {
         messageElement.textContent =
             "Phone login successful!";
 
+
+        // =================================
+        // GO TO INDEX
+        // =================================
 
         setTimeout(
             function () {
@@ -724,32 +779,14 @@ async function phoneAuth(messageElement) {
         messageElement.textContent =
             firebaseError(error);
 
-
-    } finally {
-
-        phoneAuthRunning = false;
-
-
-        if (recaptchaVerifier) {
-
-            try {
-
-                recaptchaVerifier.clear();
-
-            } catch (error) {
-
-                console.log(
-                    "reCAPTCHA cleanup:",
-                    error
-                );
-
-            }
-
-            recaptchaVerifier = null;
-
-        }
-
     }
+
+
+    // IMPORTANT:
+    // reCAPTCHA ko yahan CLEAR nahi karna.
+    // Next phone attempt par same verifier reuse hoga.
+
+    phoneAuthRunning = false;
 
 }
 
@@ -801,7 +838,9 @@ function firebaseError(error) {
     switch (error.code) {
 
 
+        // ====================================
         // EMAIL
+        // ====================================
 
         case "auth/email-already-in-use":
 
@@ -833,7 +872,9 @@ function firebaseError(error) {
             return "Incorrect password.";
 
 
+        // ====================================
         // GOOGLE
+        // ====================================
 
         case "auth/popup-closed-by-user":
 
@@ -855,16 +896,23 @@ function firebaseError(error) {
             return "This website domain is not authorized in Firebase.";
 
 
+        // ====================================
+        // PHONE
+        // ====================================
+
         case "auth/operation-not-allowed":
 
-            return "This login method is not enabled in Firebase.";
+            return "Phone login is not allowed for this region. Make sure Pakistan is enabled in SMS region policy.";
 
-
-        // PHONE
 
         case "auth/invalid-phone-number":
 
             return "Enter a valid phone number like +923001234567.";
+
+
+        case "auth/missing-phone-number":
+
+            return "Please enter your phone number with country code.";
 
 
         case "auth/invalid-verification-code":
@@ -879,12 +927,7 @@ function firebaseError(error) {
 
         case "auth/captcha-check-failed":
 
-            return "reCAPTCHA verification failed. Try again.";
-
-
-        case "auth/missing-phone-number":
-
-            return "Please enter your phone number.";
+            return "reCAPTCHA verification failed. Please try again.";
 
 
         case "auth/quota-exceeded":
@@ -897,12 +940,18 @@ function firebaseError(error) {
             return "Too many attempts. Please try again later.";
 
 
+        // ====================================
         // NETWORK
+        // ====================================
 
         case "auth/network-request-failed":
 
             return "Internet connection problem.";
 
+
+        // ====================================
+        // DEFAULT
+        // ====================================
 
         default:
 
