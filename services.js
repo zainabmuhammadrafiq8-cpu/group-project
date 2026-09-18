@@ -4,19 +4,19 @@ const services = {
         {
             name: "Hair Styling",
             price: "Rs. 2,500",
-            image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=700&q=80",
+            image: "https://www.mbmmakeupstudio.com/wp-content/uploads/2021/10/hair-styling-course-in-Delhi.jpg",
             description: "Professional styling for a beautiful everyday or special look."
         },
         {
             name: "Hair Treatment",
             price: "Rs. 3,500",
-            image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdnoU4b6yeOeCzdXgSNfa3Jh2jydV45OQMQJBRaWp4_k91gDIbqG7KJSqm&s=10",
             description: "Deep nourishing treatment for healthier looking hair."
         },
         {
             name: "Hair Color",
             price: "Rs. 5,000",
-            image: "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=700&q=80",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTplejsCv4ZYBKstEYS7KBb-rb0q3CrO7EcW-FWsuflBuM1n4OK3x0goAI&s=10",
             description: "Beautiful professional hair coloring customized for you."
         }
     ],
@@ -25,19 +25,19 @@ const services = {
         {
             name: "Party Makeup",
             price: "Rs. 4,000",
-            image: "https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=700&q=80",
+            image: "https://i.pinimg.com/564x/62/cc/30/62cc302283d482f202cb7296a74e25a6.jpg",
             description: "Elegant makeup for parties and special occasions."
         },
         {
             name: "Soft Glam",
             price: "Rs. 5,000",
-            image: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=700&q=80",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-JjbPiqvhUCAl9t9810rjXVB1f2ZrrSKKoeto5mssQeP6t_ALaQXdb2mY&s=10",
             description: "Soft, elegant and glowing makeup look."
         },
         {
             name: "Bridal Makeup",
             price: "Rs. 15,000",
-            image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=700&q=80",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpmie8nWbTvilfFp2aG31vPPzAmejTk2mnCZuAvknFtSOUjlTaY0uxp3c&s=10",
             description: "Complete bridal makeup designed for your special day."
         }
     ],
@@ -67,19 +67,19 @@ const services = {
         {
             name: "Manicure",
             price: "Rs. 1,500",
-            image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=700&q=80",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4R5O_dZi2dZTRVVMPP_cAFv2Bn9ZSQS7zpCZHyn4hKni4wPc1dOvjnZc&s=10",
             description: "Complete nail care and manicure experience."
         },
         {
             name: "Gel Nails",
             price: "Rs. 2,500",
-            image: "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=700&q=80",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsntVg71qR1glhYB9XLIER8_HFMtPjdn2uHwuTQpCeht95fRghDx6vjepN&s=10",
             description: "Long-lasting and elegant gel nail styling."
         },
         {
             name: "Pedicure",
             price: "Rs. 2,000",
-            image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=700&q=80",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrP45x4_LWMvsWiU-G6yojcaTjT-LcPfvGFrXdvj_-ZkopxruKSQsMGqWT&s=10",
             description: "Relaxing pedicure with complete foot care."
         }
     ],
@@ -109,19 +109,19 @@ const services = {
         {
             name: "Bridal Makeup",
             price: "Rs. 15,000",
-            image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHW9GCxb3PEUg-XfbQmeSRp3Oo5xtawk8uL9uM7Lzrr3OVHaCW9c7tZYY&s=10",
             description: "Luxury bridal makeup for your unforgettable day."
         },
         {
             name: "Bridal Hair",
             price: "Rs. 7,000",
-            image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=700&q=80",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT52u83SRpNDy0iKgzXUBhoNCnDzsGDinayKnBiFRF8zAli_hkLwcWQo_OR&s=10",
             description: "Elegant bridal hairstyles designed for your look."
         },
         {
             name: "Complete Bridal",
             price: "Rs. 25,000",
-            image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=700&q=80",
+            image: "https://cdn.shopify.com/s/files/1/0639/6320/1692/files/Pakistani-barat-event.png?v=1783503972",
             description: "Complete bridal beauty experience from head to toe."
         }
     ]
