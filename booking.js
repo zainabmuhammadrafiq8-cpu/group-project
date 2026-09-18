@@ -82,7 +82,7 @@ bookingForm.addEventListener("submit", async function (event) {
     try {
 
         // ===============================
-        // SAVE BOOKING TO FIRESTORE
+        // BOOKING DATA
         // ===============================
 
         const bookingData = {
@@ -108,6 +108,10 @@ bookingForm.addEventListener("submit", async function (event) {
         };
 
 
+        // ===============================
+        // SAVE BOOKING TO FIRESTORE
+        // ===============================
+
         const bookingRef = await addDoc(
             collection(db, "bookings"),
             bookingData
@@ -118,6 +122,32 @@ bookingForm.addEventListener("submit", async function (event) {
             "Booking saved:",
             bookingRef.id
         );
+
+
+        // ===============================
+        // WHATSAPP BOOKING ALERT
+        // ===============================
+
+        const whatsappNumber = "923452446189";
+
+        const whatsappText = `✨ Glamora Salon Booking Alert
+
+👤 Name: ${name}
+📧 Email: ${email}
+📱 Phone: ${phone}
+💄 Service: ${service}
+📅 Date: ${date}
+⏰ Time: ${time}
+
+📝 Special Request:
+${message}
+
+✅ Booking request received successfully!`;
+
+        const whatsappURL =
+            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
+
+        window.open(whatsappURL, "_blank");
 
 
         // ===============================
@@ -145,7 +175,6 @@ bookingForm.addEventListener("submit", async function (event) {
 
         successMessage.textContent =
             "Something went wrong. Please try again.";
-
 
     } finally {
 
