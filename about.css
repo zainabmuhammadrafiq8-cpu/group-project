@@ -1,43 +1,83 @@
+/* =========================
+   RESET
+========================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+
 /* =========================
-   ROOT / BODY
+   ROOT
 ========================= */
 
 :root {
+
     --bg: #09050d;
+
     --bg-soft: #120915;
+
     --pink: #ff5b9d;
+
     --pink-light: #ff9fc5;
+
     --purple: #a83cff;
+
     --purple-light: #d66cff;
+
     --text: #ffffff;
+
     --muted: #c8bdca;
-    --border: rgba(255, 105, 180, 0.35);
+
     --glass: rgba(255, 255, 255, 0.06);
+
 }
+
+
+
+/* =========================
+   HTML
+========================= */
 
 html {
+
     scroll-behavior: smooth;
+
 }
 
+
+
+/* =========================
+   BODY
+========================= */
+
 body {
+
     font-family: "Poppins", sans-serif;
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
     background:
+
         radial-gradient(
             circle at 10% 20%,
             rgba(255, 50, 150, 0.16),
             transparent 30%
         ),
+
         radial-gradient(
             circle at 90% 35%,
             rgba(155, 40, 255, 0.13),
             transparent 32%
         ),
+
         linear-gradient(
             135deg,
             #08050b,
@@ -45,26 +85,30 @@ body {
             #08050b
         );
 
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
 }
+
+
 
 /* =========================
    BACKGROUND GLOW
 ========================= */
 
 body::before {
+
     content: "";
+
     position: fixed;
 
     width: 450px;
+
     height: 450px;
 
     left: -180px;
+
     top: 120px;
 
-    background: rgba(255, 50, 145, 0.18);
+    background:
+        rgba(255, 50, 145, 0.18);
 
     border-radius: 50%;
 
@@ -73,20 +117,30 @@ body::before {
     pointer-events: none;
 
     z-index: -1;
+
+    animation:
+        glowMove 8s ease-in-out infinite;
+
 }
 
+
+
 body::after {
+
     content: "";
 
     position: fixed;
 
     width: 500px;
+
     height: 500px;
 
     right: -200px;
+
     bottom: -100px;
 
-    background: rgba(148, 48, 255, 0.17);
+    background:
+        rgba(148, 48, 255, 0.17);
 
     border-radius: 50%;
 
@@ -95,65 +149,41 @@ body::after {
     pointer-events: none;
 
     z-index: -1;
+
+    animation:
+        glowMove 10s ease-in-out infinite reverse;
+
 }
+
+
 
 /* =========================
    NAVBAR
 ========================= */
 
-/* .navbar {
-    width: 94%;
-
-    margin: 14px auto 0;
-
-    padding: 16px 30px;
-
-    display: flex;
-
-    align-items: center;
-
-    position: sticky;
-
-    top: 12px;
-
-    z-index: 100;
-
-    background:
-        linear-gradient(
-            100deg,
-            rgba(255, 70, 160, 0.08),
-            rgba(20, 10, 25, 0.78),
-            rgba(150, 50, 255, 0.08)
-        );
-
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-
-    border: 1px solid rgba(255, 100, 190, 0.32);
-
-    border-radius: 50px;
-
-    box-shadow:
-        0 15px 50px rgba(0, 0, 0, 0.45),
-        inset 0 0 25px rgba(255, 255, 255, 0.025);
-} */
-
 .navbar {
+
     position: fixed;
 
     top: 15px;
+
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     width: 94%;
+
     max-width: 1220px;
 
-    padding: 16px 30px;
+    padding: 13px 22px;
 
-    display: flex;
+    display: grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
     align-items: center;
-    justify-content: space-between;
 
     border-radius: 45px;
 
@@ -164,52 +194,79 @@ body::after {
             rgba(255,255,255,.025)
         );
 
-    border: 1px solid rgba(255, 78, 177, .35);
+    border:
+        1px solid
+        rgba(255, 78, 177, .35);
 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.07);
+
+        0 15px 45px
+        rgba(0,0,0,.45),
+
+        inset 0 1px 0
+        rgba(255,255,255,.07);
 
     z-index: 1000;
 
     transition: .4s ease;
+
 }
+
+
 
 .navbar:hover {
-    border-color: rgba(255, 75, 180, .55);
+
+    border-color:
+        rgba(255, 75, 180, .55);
 
     box-shadow:
-        0 15px 55px rgba(0,0,0,.5),
-        0 0 30px rgba(255,40,160,.08);
+
+        0 15px 55px
+        rgba(0,0,0,.5),
+
+        0 0 30px
+        rgba(255,40,160,.08);
+
 }
+
+
 
 /* =========================
    LOGO
 ========================= */
 
 .logo {
-    font-family: "Playfair Display", serif;
 
-    font-size: 30px;
+    justify-self: start;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 27px;
 
     font-weight: 700;
 
-    flex: 1;
-
     color: #ffffff;
 
-    text-decoration: none;
-
     letter-spacing: -1px;
+
+    white-space: nowrap;
+
 }
 
-.logo span,
-h1 span,
-h2 span {
+
+
+.logo span {
+
     background:
+
         linear-gradient(
             90deg,
             #ff8db8,
@@ -217,18 +274,24 @@ h2 span {
             #b84cff
         );
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip:
+        text;
 
-    background-clip: text;
+    -webkit-text-fill-color:
+        transparent;
+
+    background-clip:
+        text;
+
 }
+
+
 
 /* =========================
    NAVIGATION
 ========================= */
 
 nav {
-    flex: 2;
 
     display: flex;
 
@@ -236,39 +299,51 @@ nav {
 
     justify-content: center;
 
-    gap: 40px;
+    gap: 35px;
+
 }
 
+
+
 nav a {
+
+    position: relative;
+
     color: #d8cedb;
 
     text-decoration: none;
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: 400;
 
-    transition: 0.35s ease;
-
-    position: relative;
-
     white-space: nowrap;
+
+    transition: .35s ease;
+
 }
 
+
+
 nav a::after {
+
     content: "";
 
     position: absolute;
 
     left: 50%;
-    bottom: -9px;
+
+    bottom: -8px;
 
     width: 0;
+
     height: 2px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     background:
+
         linear-gradient(
             90deg,
             var(--pink),
@@ -277,70 +352,97 @@ nav a::after {
 
     border-radius: 10px;
 
-    transition: 0.35s ease;
+    transition: .35s ease;
+
 }
+
+
 
 nav a:hover,
 nav a.active {
+
     color: #ffffff;
+
 }
+
+
 
 nav a:hover::after,
 nav a.active::after {
-    width: 28px;
+
+    width: 25px;
+
 }
+
+
 
 /* =========================
    LOGIN BUTTON
 ========================= */
 
 .login-btn {
-    flex: 1;
 
-    display: flex;
+    justify-self: end;
 
-    justify-content: flex-end;
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 17px;
+
+    min-width: 65px;
+
+    border-radius: 25px;
+
+    border:
+        1px solid
+        rgba(255, 85, 174, .65);
+
+    background:
+        rgba(255, 70, 170, .06);
 
     color: #ffffff;
 
     text-decoration: none;
 
-    border: 1px solid #ff55ae;
+    font-size: 12px;
 
-    padding: 10px 22px;
+    transition: .35s ease;
 
-    border-radius: 30px;
-
-    width: fit-content;
-
-    margin-left: auto;
-
-    transition: 0.35s ease;
-
-    background:
-        rgba(255, 70, 170, 0.04);
 }
 
+
+
 .login-btn:hover {
+
     background:
+
         linear-gradient(
             90deg,
-            rgba(255, 80, 150, 0.18),
-            rgba(165, 50, 255, 0.18)
+            rgba(255, 80, 150, .18),
+            rgba(165, 50, 255, .18)
         );
 
     box-shadow:
-        0 0 25px rgba(255, 70, 170, 0.25);
+        0 0 20px
+        rgba(255, 70, 170, .22);
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
+
 }
 
+
+
 /* =========================
-   ABOUT HERO
+   HERO
 ========================= */
 
 .about-hero {
-    min-height: 65vh;
+
+    min-height: 68vh;
 
     display: flex;
 
@@ -350,57 +452,76 @@ nav a.active::after {
 
     text-align: center;
 
-    padding: 100px 8%;
+    padding:
+        120px 8% 80px;
 
     position: relative;
 
     overflow: hidden;
 
     background:
+
         linear-gradient(
             rgba(8, 4, 12, 0.58),
             rgba(8, 4, 12, 0.88)
         ),
-        url("https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1600&q=80")
-        center/cover;
+
+        url(
+            "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1600&q=80"
+        )
+
+        center / cover;
+
 }
 
-/* Pink glow over hero */
+
 
 .about-hero::before {
+
     content: "";
 
     position: absolute;
 
     width: 500px;
+
     height: 500px;
 
-    background: rgba(255, 35, 150, 0.15);
+    left: -150px;
+
+    bottom: -200px;
+
+    background:
+        rgba(255, 35, 150, 0.15);
 
     border-radius: 50%;
 
     filter: blur(100px);
 
-    left: -150px;
-
-    bottom: -200px;
 }
+
+
 
 /* =========================
    HERO CONTENT
 ========================= */
 
 .hero-content {
+
     max-width: 800px;
 
     position: relative;
 
     z-index: 2;
 
-    animation: fadeUp 1s ease;
+    animation:
+        fadeUp 1s ease;
+
 }
 
+
+
 .small-title {
+
     color: #ff9fc5;
 
     letter-spacing: 4px;
@@ -410,21 +531,57 @@ nav a.active::after {
     margin-bottom: 15px;
 
     font-weight: 500;
+
 }
 
-h1 {
-    font-family: "Playfair Display", serif;
 
-    font-size: clamp(45px, 6vw, 75px);
+
+h1 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(45px, 6vw, 75px);
 
     line-height: 1.05;
 
     margin-bottom: 20px;
 
     color: #ffffff;
+
 }
 
-.hero-content > p:last-child {
+
+
+h1 span,
+h2 span {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ff8db8,
+            #ff39a8,
+            #b84cff
+        );
+
+    -webkit-background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+    background-clip:
+        text;
+
+}
+
+
+
+.hero-description {
+
     color: #d0c7d2;
 
     line-height: 1.8;
@@ -432,94 +589,136 @@ h1 {
     max-width: 650px;
 
     margin: auto;
+
 }
+
+
 
 /* =========================
    GENERAL SECTION
 ========================= */
 
 .section {
+
     width: 86%;
 
     max-width: 1200px;
 
-    margin: 100px auto;
+    margin:
+        110px auto;
 
     position: relative;
+
 }
 
+
+
 /* =========================
-   GLASSMORPHISM
+   GLASS
 ========================= */
 
 .glass {
+
     background:
+
         linear-gradient(
             135deg,
             rgba(255, 255, 255, 0.08),
             rgba(255, 255, 255, 0.025)
         );
 
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.14);
 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
 
     box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+        0 25px 70px
+        rgba(0, 0, 0, 0.45),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.06);
 
     position: relative;
 
     overflow: hidden;
+
 }
 
+
+
 .glass::before {
+
     content: "";
 
     position: absolute;
 
     width: 180px;
+
     height: 180px;
 
-    background: rgba(255, 70, 160, 0.08);
+    background:
+        rgba(255, 70, 160, 0.08);
 
     border-radius: 50%;
 
     filter: blur(70px);
 
     top: -100px;
+
     right: -80px;
 
     pointer-events: none;
+
 }
+
+
 
 /* =========================
    STORY
 ========================= */
 
 .story {
+
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 35px;
 
     align-items: center;
+
 }
 
+
+
 .story-image {
+
     overflow: hidden;
 
     border-radius: 25px;
 
-    border: 1px solid rgba(255, 70, 170, 0.35);
+    border:
+        1px solid
+        rgba(255, 70, 170, 0.35);
 
     box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.45);
+        0 20px 60px
+        rgba(0, 0, 0, 0.45);
+
 }
 
+
+
 .story-image img {
+
     width: 100%;
 
     height: 500px;
@@ -528,51 +727,76 @@ h1 {
 
     display: block;
 
-    transition: 0.7s ease;
+    transition: .7s ease;
+
 }
+
+
 
 .story-image:hover img {
-    transform: scale(1.07);
+
+    transform:
+        scale(1.07);
+
 }
 
+
+
 .story-content {
+
     padding: 45px;
 
     border-radius: 25px;
+
 }
 
+
+
 .story-content h2 {
-    font-family: "Playfair Display", serif;
+
+    font-family:
+        "Playfair Display",
+        serif;
 
     font-size: 42px;
 
     margin-bottom: 20px;
 
     color: #fff;
+
 }
 
+
+
 .story-content p {
+
     color: #c7bdca;
 
     line-height: 1.8;
 
     margin-bottom: 18px;
+
 }
 
+
+
 /* =========================
-   GRADIENT BUTTON
+   BUTTON
 ========================= */
 
 .gold-btn {
+
     display: inline-block;
 
     margin-top: 15px;
 
-    padding: 13px 28px;
+    padding:
+        13px 28px;
 
     border-radius: 30px;
 
     background:
+
         linear-gradient(
             90deg,
             #ff668f,
@@ -586,123 +810,367 @@ h1 {
 
     font-weight: 600;
 
-    border: none;
-
-    transition: 0.35s ease;
+    transition: .35s ease;
 
     box-shadow:
-        0 8px 25px rgba(255, 70, 160, 0.18);
+        0 8px 25px
+        rgba(255, 70, 160, 0.18);
+
 }
+
+
 
 .gold-btn:hover {
-    transform: translateY(-4px);
+
+    transform:
+        translateY(-4px);
 
     box-shadow:
-        0 12px 35px rgba(255, 70, 160, 0.35);
+        0 12px 35px
+        rgba(255, 70, 160, 0.35);
+
 }
 
-/* =========================
-   STATS
-========================= */
 
-.stats {
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 20px;
-}
-
-.stat-card {
-    padding: 35px 20px;
-
-    text-align: center;
-
-    border-radius: 20px;
-
-    transition: 0.4s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-10px);
-
-    border-color: rgba(255, 75, 170, 0.45);
-
-    box-shadow:
-        0 20px 50px rgba(255, 50, 160, 0.08);
-}
-
-.stat-card h2 {
-    font-family: "Playfair Display", serif;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff87b7,
-            #d74aff
-        );
-
-    /* -webkit-background-clip: text; */
-
-    -webkit-text-fill-color: transparent;
-
-    font-size: 42px;
-}
-
-.stat-card p {
-    color: #aaa1ae;
-}
 
 /* =========================
    SECTION HEADING
 ========================= */
 
 .section-heading {
+
     text-align: center;
 
-    margin-bottom: 45px;
+    margin-bottom: 50px;
+
 }
 
+
+
 .section-heading h2 {
-    font-family: "Playfair Display", serif;
+
+    font-family:
+        "Playfair Display",
+        serif;
 
     font-size: 45px;
 
     color: #ffffff;
+
 }
+
+
+
+.heading-description {
+
+    max-width: 650px;
+
+    margin:
+        15px auto 0;
+
+    color: #aaa1ae;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+
+}
+
+
+
+/* =========================
+   SPECIAL SECTION
+========================= */
+
+.special {
+
+    margin-top: 120px;
+
+}
+
+
+
+.special-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 0;
+
+}
+
+
+
+/* =========================
+   SPECIAL ITEM
+========================= */
+
+.special-item {
+
+    position: relative;
+
+    padding:
+        15px 30px 30px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+
+        opacity .6s ease,
+
+        transform .6s ease;
+
+}
+
+
+
+.special-item.show {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+
+.special-item:not(:last-child)::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 5px;
+
+    right: 0;
+
+    width: 1px;
+
+    height: 85%;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255, 90, 170, .35),
+            transparent
+        );
+
+}
+
+
+
+/* =========================
+   SPECIAL ICON
+========================= */
+
+.special-icon {
+
+    width: 68px;
+
+    height: 68px;
+
+    margin:
+        0 auto 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 26px;
+
+    color: #ff8fbe;
+
+    border:
+        1px solid
+        rgba(255, 90, 180, .3);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255, 90, 170, .1),
+            rgba(155, 50, 255, .08)
+        );
+
+    box-shadow:
+        0 0 30px
+        rgba(255, 70, 170, .08);
+
+    transition: .4s ease;
+
+}
+
+
+
+.special-item:hover
+.special-icon {
+
+    transform:
+        translateY(-5px)
+        scale(1.08);
+
+    box-shadow:
+        0 0 35px
+        rgba(255, 70, 170, .2);
+
+}
+
+
+
+/* =========================
+   SPECIAL NUMBER
+========================= */
+
+.special-number {
+
+    display: block;
+
+    color: #ff78b5;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+
+    opacity: .8;
+
+}
+
+
+
+/* =========================
+   SPECIAL TITLE
+========================= */
+
+.special-item h3 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 21px;
+
+    color: #ffffff;
+
+    margin-bottom: 12px;
+
+}
+
+
+
+/* =========================
+   SPECIAL TEXT
+========================= */
+
+.special-item p {
+
+    max-width: 230px;
+
+    margin: auto;
+
+    color: #aaa1ae;
+
+    font-size: 13px;
+
+    line-height: 1.75;
+
+}
+
+
 
 /* =========================
    VALUES
 ========================= */
 
 .value-grid {
+
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
 
     gap: 25px;
+
 }
 
+
+
 .value-card {
-    padding: 40px 30px;
+
+    padding:
+        40px 30px;
 
     text-align: center;
 
     border-radius: 22px;
 
-    transition: 0.4s ease;
+    opacity: 0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+
+        opacity .6s ease,
+
+        transform .6s ease,
+
+        border-color .4s ease,
+
+        box-shadow .4s ease;
+
 }
+
+
+
+.value-card.show {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
 
 .value-card:hover {
-    transform: translateY(-10px);
 
-    border-color: rgba(255, 70, 170, 0.5);
+    transform:
+        translateY(-10px);
+
+    border-color:
+        rgba(255, 70, 170, 0.5);
 
     box-shadow:
-        0 20px 50px rgba(190, 40, 255, 0.1);
+        0 20px 50px
+        rgba(190, 40, 255, 0.1);
+
 }
 
+
+
+/* =========================
+   VALUE ICON
+========================= */
+
 .icon {
+
     font-size: 38px;
 
     color: #ff65ad;
@@ -711,66 +1179,117 @@ h1 {
 
     filter:
         drop-shadow(
-            0 0 10px rgba(255, 70, 170, 0.35)
+            0 0 10px
+            rgba(255, 70, 170, 0.35)
         );
+
 }
 
+
+
+/* =========================
+   VALUE TITLE
+========================= */
+
 .value-card h3 {
+
     margin-bottom: 12px;
 
     color: #ffffff;
+
 }
 
+
+
+/* =========================
+   VALUE TEXT
+========================= */
+
 .value-card p {
+
     color: #aaa1ae;
 
     line-height: 1.7;
+
 }
+
+
 
 /* =========================
    FOOTER
 ========================= */
 
 footer {
-    padding: 50px 8%;
+
+    padding:
+        50px 8%;
 
     text-align: center;
 
-    border-top: 1px solid rgba(255, 90, 170, 0.15);
+    border-top:
+        1px solid
+        rgba(255, 90, 170, 0.15);
 
     color: #999;
 
     background:
         rgba(5, 3, 7, 0.65);
 
-    backdrop-filter: blur(15px);
+    backdrop-filter:
+        blur(15px);
+
 }
 
-footer .logo {
-    margin-bottom: 10px;
+
+
+/* footer .logo {
 
     display: block;
+
+    margin-bottom: 10px;
+
+} */
+
+footer .logo {
+
+    display: block;
+
+    width: fit-content;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-bottom: 10px;
+
+    justify-self: center;
+
 }
+
+
 
 footer p {
+
     margin: 6px;
+
 }
 
-/* =========================
-   GLOW LINE
-========================= */
+
 
 footer::before {
+
     content: "";
 
     display: block;
 
     width: 100px;
+
     height: 2px;
 
-    margin: 0 auto 25px;
+    margin:
+        0 auto 25px;
 
     background:
+
         linear-gradient(
             90deg,
             transparent,
@@ -778,92 +1297,99 @@ footer::before {
             #9c4dff,
             transparent
         );
+
 }
 
+
+
 /* =========================
-   HERO ANIMATION
+   ANIMATIONS
 ========================= */
 
 @keyframes fadeUp {
+
     from {
+
         opacity: 0;
 
         transform:
             translateY(40px);
+
     }
 
     to {
+
         opacity: 1;
 
         transform:
             translateY(0);
+
     }
+
 }
 
-/* =========================
-   FLOATING GLOW ANIMATION
-========================= */
+
 
 @keyframes glowMove {
+
     0% {
-        transform: translate(0, 0);
+
+        transform:
+            translate(0, 0);
+
     }
 
     50% {
-        transform: translate(20px, -20px);
+
+        transform:
+            translate(20px, -20px);
+
     }
 
     100% {
-        transform: translate(0, 0);
+
+        transform:
+            translate(0, 0);
+
     }
+
 }
 
-body::before {
-    animation: glowMove 8s ease-in-out infinite;
-}
 
-body::after {
-    animation: glowMove 10s ease-in-out infinite reverse;
-}
 
 /* =========================
    TABLET
 ========================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 
-    .navbar {
-        width: 92%;
+    .special-grid {
 
-        padding: 15px 22px;
-
-        flex-wrap: wrap;
-
-        border-radius: 30px;
-    }
-
-    .logo {
-        font-size: 26px;
-    }
-
-    nav {
-        gap: 22px;
-    }
-
-    .story {
-        grid-template-columns: 1fr;
-    }
-
-    .stats {
         grid-template-columns:
             repeat(2, 1fr);
+
+        gap: 40px 0;
+
     }
+
+
+    .special-item:nth-child(2)::after {
+
+        display: none;
+
+    }
+
 
     .value-grid {
+
         grid-template-columns:
             repeat(2, 1fr);
+
     }
+
 }
+
+
 
 /* =========================
    MOBILE
@@ -872,224 +1398,267 @@ body::after {
 @media (max-width: 800px) {
 
     .navbar {
-        padding: 15px 20px;
 
-        flex-direction: column;
+        grid-template-columns:
+            1fr auto;
 
-        gap: 18px;
-
-        border-radius: 25px;
-    }
-
-    .logo {
-        flex: none;
-    }
-
-    nav {
-        flex: none;
-
-        width: 100%;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
+        padding:
+            13px 18px;
 
         gap: 15px;
 
-        flex-wrap: wrap;
+        border-radius: 25px;
+
     }
+
+
+    .logo {
+
+        font-size: 24px;
+
+    }
+
+
+    nav {
+
+        grid-column:
+            1 / -1;
+
+        grid-row: 2;
+
+        width: 100%;
+
+        gap: 17px;
+
+        flex-wrap: wrap;
+
+    }
+
 
     .login-btn {
-        margin: 0 auto;
+
+        grid-column: 2;
+
+        grid-row: 1;
+
     }
+
 
     .about-hero {
-        padding:
-            80px 6%;
 
-        min-height: 55vh;
+        min-height: 58vh;
+
+        padding:
+            110px 6% 70px;
+
     }
 
+
     .section {
+
         width: 90%;
 
         margin:
-            70px auto;
+            75px auto;
+
     }
+
 
     .story {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
+
     }
+
 
     .story-image img {
+
         height: 400px;
+
     }
 
-    .stats {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .value-grid {
-        grid-template-columns: 1fr;
-    }
 
     .story-content {
+
         padding: 32px;
+
     }
+
 
     .story-content h2 {
+
         font-size: 34px;
+
     }
 
+
     .section-heading h2 {
+
         font-size: 38px;
+
     }
+
+
+    .value-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
 }
+
+
 
 /* =========================
    SMALL MOBILE
 ========================= */
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 
-    .navbar {
-        width: 94%;
+    .special-grid {
 
-        padding: 14px 18px;
+        grid-template-columns:
+            1fr;
 
-        top: 8px;
+        gap: 35px;
+
     }
 
-    .logo {
-        font-size: 25px;
+
+    .special-item {
+
+        padding:
+            10px 20px 30px;
+
     }
+
+
+    .special-item::after {
+
+        display: none !important;
+
+    }
+
 
     nav {
+
         gap: 12px;
+
     }
+
 
     nav a {
-        font-size: 12px;
+
+        font-size: 11px;
+
     }
 
-    .login-btn {
+
+    .heading-description {
+
         font-size: 13px;
 
-        padding:
-            8px 18px;
     }
 
-    .about-hero {
-        min-height: 55vh;
-
-        padding:
-            70px 5%;
-    }
-
-    h1 {
-        font-size:
-            clamp(40px, 12vw, 58px);
-    }
-
-    .small-title {
-        font-size: 10px;
-
-        letter-spacing: 3px;
-    }
-
-    .hero-content > p:last-child {
-        font-size: 13px;
-
-        line-height: 1.7;
-    }
-
-    .section {
-        width: 90%;
-
-        margin:
-            60px auto;
-    }
 
     .story-image img {
+
         height: 330px;
+
     }
+
 
     .story-content {
+
         padding: 25px;
+
     }
 
+
     .story-content h2 {
+
         font-size: 30px;
+
     }
+
 
     .story-content p {
+
         font-size: 13px;
+
     }
 
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .value-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .value-card {
-        padding: 32px 22px;
-    }
-
-    .section-heading {
-        margin-bottom: 30px;
-    }
-
-    .section-heading h2 {
-        font-size: 32px;
-    }
-
-    footer {
-        padding:
-            40px 6%;
-    }
 }
 
+
+
 /* =========================
-   VERY SMALL SCREENS
+   VERY SMALL SCREEN
 ========================= */
 
-@media (max-width: 350px) {
+@media (max-width: 400px) {
 
     .navbar {
+
+        width: 94%;
+
         padding:
-            12px 14px;
+            11px 13px;
+
     }
+
 
     .logo {
-        font-size: 22px;
+
+        font-size: 21px;
+
     }
+
 
     nav {
+
         gap: 9px;
+
     }
+
 
     nav a {
-        font-size: 11px;
+
+        font-size: 10px;
+
     }
+
 
     .login-btn {
-        font-size: 12px;
+
+        font-size: 11px;
 
         padding:
-            7px 15px;
+            7px 13px;
+
     }
+
 
     h1 {
+
         font-size: 38px;
+
     }
 
+
     .story-content h2 {
+
         font-size: 27px;
+
     }
+
+
+    .section-heading h2 {
+
+        font-size: 32px;
+
+    }
+
 }

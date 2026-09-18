@@ -1,6 +1,18 @@
+/* =========================
+   ABOUT PAGE ANIMATIONS
+========================= */
+
+
+/* Select elements that should
+   appear when scrolling */
+
 const animatedItems = document.querySelectorAll(
-    ".story-image, .story-content, .stat-card, .value-card"
+    ".story-image, .story-content, .special-item, .value-card"
 );
+
+
+
+/* Create Intersection Observer */
 
 const observer = new IntersectionObserver(
     (entries) => {
@@ -10,6 +22,8 @@ const observer = new IntersectionObserver(
             if (entry.isIntersecting) {
 
                 entry.target.classList.add("show");
+
+                observer.unobserve(entry.target);
 
             }
 
@@ -22,9 +36,13 @@ const observer = new IntersectionObserver(
 );
 
 
+
+/* Observe every animated element */
+
 animatedItems.forEach((item, index) => {
 
-    item.style.transitionDelay = `${index * 0.12}s`;
+    item.style.transitionDelay =
+        `${index * 0.10}s`;
 
     observer.observe(item);
 
