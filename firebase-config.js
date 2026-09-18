@@ -21,21 +21,13 @@ import {
 // ========================================
 
 const firebaseConfig = {
-
-    apiKey: "AIzaSyAWAyxSAgTAGALsfTTFe-N3xY-si2s8dgM",
-
-    authDomain: "javeriyah-firebase-project.firebaseapp.com",
-
-    projectId: "javeriyah-firebase-project",
-
-    storageBucket: "javeriyah-firebase-project.firebasestorage.app",
-
-    messagingSenderId: "63860956015",
-
-    appId: "1:63860956015:web:eb713b648cb7edb6bbe69a",
-
-    measurementId: "G-G9F1RPC342"
-};
+    apiKey: "AIzaSyBFmMidgKqXIkc339It9Papd9-vMgJpQrw",
+    authDomain: "my-signup-app-43246.firebaseapp.com",
+    projectId: "my-signup-app-43246",
+    storageBucket: "my-signup-app-43246.firebasestorage.app",
+    messagingSenderId: "940632201907",
+    appId: "1:940632201907:web:59405d4121907b4a6faec6"
+  };
 
 
 // ========================================
