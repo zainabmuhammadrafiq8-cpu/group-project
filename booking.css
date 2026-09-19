@@ -58,31 +58,6 @@ body::after {
    NAVBAR
 ========================= */
 
-/* .navbar {
-    width: 94%;
-    margin: 14px auto 0;
-    padding: 16px 28px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background: rgba(20, 7, 25, 0.65);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-
-    border: 1px solid rgba(255, 75, 185, 0.28);
-    border-radius: 40px;
-
-    box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.45),
-        inset 0 0 25px rgba(255, 73, 181, 0.04);
-
-    position: sticky;
-    top: 14px;
-    z-index: 100;
-} */
-
 .navbar {
     position: fixed;
 
@@ -97,7 +72,9 @@ body::after {
     padding: 16px 30px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     border-radius: 45px;
@@ -109,14 +86,21 @@ body::after {
             rgba(255,255,255,.025)
         );
 
-    border: 1px solid rgba(255, 78, 177, .35);
+    border:
+        1px solid
+        rgba(255, 78, 177, .35);
 
     backdrop-filter: blur(25px);
+
     -webkit-backdrop-filter: blur(25px);
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.07);
+
+        0 15px 45px
+        rgba(0,0,0,.45),
+
+        inset 0 1px 0
+        rgba(255,255,255,.07);
 
     z-index: 1000;
 
@@ -124,11 +108,17 @@ body::after {
 }
 
 .navbar:hover {
-    border-color: rgba(255, 75, 180, .55);
+
+    border-color:
+        rgba(255, 75, 180, .55);
 
     box-shadow:
-        0 15px 55px rgba(0,0,0,.5),
-        0 0 30px rgba(255,40,160,.08);
+
+        0 15px 55px
+        rgba(0,0,0,.5),
+
+        0 0 30px
+        rgba(255,40,160,.08);
 }
 
 /* =========================
@@ -136,23 +126,37 @@ body::after {
 ========================= */
 
 .logo {
-    font-family: "Playfair Display", serif;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
     font-size: 30px;
+
     font-weight: 600;
+
     letter-spacing: -1px;
+
+    color: #ffffff;
+
+    white-space: nowrap;
 }
 
 .logo span,
 h1 span {
-    background: linear-gradient(
-        90deg,
-        #ff6f9f,
-        #ff36d0,
-        #b84dff
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff6f9f,
+            #ff36d0,
+            #b84dff
+        );
 
     -webkit-background-clip: text;
+
     background-clip: text;
+
     color: transparent;
 }
 
@@ -161,45 +165,67 @@ h1 span {
 ========================= */
 
 nav {
+
     display: flex;
+
     gap: 35px;
+
     align-items: center;
 }
 
 nav a {
-    color: #ddd;
-    text-decoration: none;
-    font-size: 14px;
+
     position: relative;
-    transition: 0.3s ease;
+
+    color: #ddd;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+
+    transition: .3s ease;
 }
 
 nav a::after {
+
     content: "";
+
     position: absolute;
+
     width: 0;
+
     height: 2px;
+
     left: 50%;
+
     bottom: -8px;
 
-    background: linear-gradient(
-        90deg,
-        #ff5f9e,
-        #c43cff
-    );
+    background:
+        linear-gradient(
+            90deg,
+            #ff5f9e,
+            #c43cff
+        );
 
-    transform: translateX(-50%);
-    transition: 0.3s ease;
+    transform:
+        translateX(-50%);
+
+    transition: .3s ease;
+
     border-radius: 10px;
 }
 
 nav a:hover,
 nav a.active {
+
     color: #ff70bd;
 }
 
 nav a:hover::after,
 nav a.active::after {
+
     width: 100%;
 }
 
@@ -208,34 +234,63 @@ nav a.active::after {
 ========================= */
 
 .login-btn {
-    border: 1px solid #ff55b5;
-    padding: 10px 23px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        #ff55b5;
+
+    padding:
+        10px 23px;
+
     border-radius: 30px;
 
-    background: rgba(255, 45, 160, 0.04);
+    background:
+        rgba(255, 45, 160, 0.04);
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 12px;
 
     box-shadow:
-        0 0 15px rgba(255, 45, 160, 0.12),
-        inset 0 0 15px rgba(255, 45, 160, 0.04);
 
-    transition: 0.3s ease;
+        0 0 15px
+        rgba(255, 45, 160, 0.12),
+
+        inset 0 0 15px
+        rgba(255, 45, 160, 0.04);
+
+    transition: .3s ease;
 }
 
 .login-btn:hover {
-    color: #fff !important;
 
-    background: linear-gradient(
-        90deg,
-        #ff4d8d,
-        #c238e9
-    );
+    color: #fff;
 
-    border-color: transparent;
+    background:
+        linear-gradient(
+            90deg,
+            #ff4d8d,
+            #c238e9
+        );
+
+    border-color:
+        transparent;
 
     box-shadow:
-        0 0 25px rgba(255, 52, 175, 0.35);
 
-    transform: translateY(-2px);
+        0 0 25px
+        rgba(255, 52, 175, 0.35);
+
+    transform:
+        translateY(-2px);
 }
 
 /* =========================
@@ -246,7 +301,7 @@ nav a.active::after {
     width: 86%;
     max-width: 1150px;
 
-    margin: 90px auto;
+    margin: 160px auto 90px;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -669,7 +724,7 @@ footer p:first-child {
         width: 90%;
         grid-template-columns: 1fr;
         gap: 50px;
-        margin: 70px auto;
+        margin: 140px auto 70px;
     }
 
     .booking-info {
@@ -719,6 +774,8 @@ footer p:first-child {
         flex-wrap: wrap;
 
         gap: 13px 20px;
+
+        order: 3;
     }
 
     nav a {
@@ -731,7 +788,7 @@ footer p:first-child {
 
     .booking-page {
         width: 90%;
-        margin: 55px auto;
+        margin: 125px auto 55px;
         gap: 40px;
     }
 
