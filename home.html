@@ -1,46 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>LuxeAura | Beauty Salon</title>
 
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
 
     <!-- HOME CSS -->
     <link rel="stylesheet" href="home.css">
+
 </head>
+
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
 
-<header class="navbar">
+<!-- =========================================================
+     HEADER / NAVBAR
+========================================================= -->
 
-    <div class="logo">
-        <span>Glamora
-        <small>BEAUTY SALON</small>
+<header id="mainHeader">
+
+    <div class="navbar">
+
+        <!-- LOGO -->
+        <a href="index.html" class="logo">
+            Glamora.
+        </a>
+
+
+        <!-- NAVIGATION -->
+        <nav>
+
+            <ul class="nav-links" id="navLinks">
+
+                <li>
+                    <a href="index.html" class="active">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="services.html">
+                        Services
+                    </a>
+                </li>
+
+                <li>
+                    <a href="booking.html">
+                        Booking
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <!-- LOGIN BUTTON -->
+        <a href="login.html" class="btn nav-cta">
+            Login
+        </a>
+
+
+        <!-- MOBILE MENU BUTTON -->
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            aria-label="Open menu"
+            aria-expanded="false">
+
+            <i class="fas fa-bars"></i>
+
+        </button>
+
     </div>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="booking.html">Booking</a>
-    </nav>
-
-    <a href="login.html" class="login-btn">
-        Login
-    </a>
 
 </header>
 
 
-<!-- ================= HERO ================= -->
+
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section class="hero">
 
@@ -98,49 +163,75 @@
 </section>
 
 
-<!-- ================= FEATURES ================= -->
+
+<!-- =========================================================
+     FEATURES
+========================================================= -->
 
 <section class="features">
 
     <div class="feature-card glass">
+
         <div class="icon">✦</div>
-        <h3>Expert Artists</h3>
+
+        <h3>
+            Expert Artists
+        </h3>
+
         <p>
             Professional beauty experts
             for your perfect look.
         </p>
+
     </div>
 
 
     <div class="feature-card glass">
+
         <div class="icon">♡</div>
-        <h3>Premium Products</h3>
+
+        <h3>
+            Premium Products
+        </h3>
+
         <p>
             Quality products selected
             for your beauty needs.
         </p>
+
     </div>
 
 
     <div class="feature-card glass">
+
         <div class="icon">✧</div>
-        <h3>Luxury Experience</h3>
+
+        <h3>
+            Luxury Experience
+        </h3>
+
         <p>
             Relax in a beautiful and
             comfortable environment.
         </p>
+
     </div>
 
 </section>
 
 
-<!-- ================= SERVICES PREVIEW ================= -->
+
+<!-- =========================================================
+     SERVICES PREVIEW
+========================================================= -->
 
 <section class="services-preview">
 
     <div class="section-heading">
 
-        <p>OUR SERVICES</p>
+        <p>
+            OUR SERVICES
+        </p>
 
         <h2>
             Beauty From
@@ -153,35 +244,80 @@
     <div class="service-grid">
 
         <div class="service-card glass">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCMfjWwyEgmLVLG4eAFpBM-jO_Lx9xjMIon7maZI3ldvEHxvhIpr4ufVU&s=10">
+
+            <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCMfjWwyEgmLVLG4eAFpBM-jO_Lx9xjMIon7maZI3ldvEHxvhIpr4ufVU&s=10"
+                alt="Hair Styling"
+            >
 
             <div>
-                <small>HAIR</small>
-                <h3>Hair Styling</h3>
-                <p>Professional styling for every occasion.</p>
+
+                <small>
+                    HAIR
+                </small>
+
+                <h3>
+                    Hair Styling
+                </h3>
+
+                <p>
+                    Professional styling for every occasion.
+                </p>
+
             </div>
+
         </div>
 
 
         <div class="service-card glass">
-            <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=700&q=80">
+
+            <img
+                src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=700&q=80"
+                alt="Makeup"
+            >
 
             <div>
-                <small>MAKEUP</small>
-                <h3>Makeup</h3>
-                <p>Elegant makeup for your special moments.</p>
+
+                <small>
+                    MAKEUP
+                </small>
+
+                <h3>
+                    Makeup
+                </h3>
+
+                <p>
+                    Elegant makeup for your special moments.
+                </p>
+
             </div>
+
         </div>
 
 
         <div class="service-card glass">
-            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80">
+
+            <img
+                src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80"
+                alt="Facial"
+            >
 
             <div>
-                <small>SKIN</small>
-                <h3>Facial</h3>
-                <p>Relaxing treatments for glowing skin.</p>
+
+                <small>
+                    SKIN
+                </small>
+
+                <h3>
+                    Facial
+                </h3>
+
+                <p>
+                    Relaxing treatments for glowing skin.
+                </p>
+
             </div>
+
         </div>
 
     </div>
@@ -194,13 +330,18 @@
 </section>
 
 
-<!-- ================= BRIDAL ================= -->
+
+<!-- =========================================================
+     BRIDAL
+========================================================= -->
 
 <section class="bridal">
 
     <div class="bridal-content">
 
-        <p>BRIDAL COLLECTION</p>
+        <p>
+            BRIDAL COLLECTION
+        </p>
 
         <h2>
             Your Perfect
@@ -221,7 +362,10 @@
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
 <footer>
 
@@ -234,11 +378,27 @@
     </p>
 
     <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="booking.html">Booking</a>
-        <a href="login.html">Login</a>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+        <a href="services.html">
+            Services
+        </a>
+
+        <a href="booking.html">
+            Booking
+        </a>
+
+        <a href="login.html">
+            Login
+        </a>
+
     </div>
 
     <small>
@@ -248,8 +408,9 @@
 </footer>
 
 
+
 <!-- HOME JS -->
-<script src="home.js></script>
+<script src="home.js"></script>
 
 </body>
 </html>
