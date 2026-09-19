@@ -200,13 +200,28 @@ body::after {
 .logo {
     font-family: "Playfair Display", serif;
 
-    font-size: 30px;
+    font-size: 40px;
 
     margin-bottom: 40px;
 
-    color: #ffffff;
+    /* color: #ffffff; */
 
     letter-spacing: -1px;
+}
+
+.logo {
+    background: linear-gradient(
+        135deg,
+        #8b2fd6,
+        #ff4e8a,
+        #8b6cff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+    color: transparent;
 }
 
 .logo span,
