@@ -1,101 +1,356 @@
 
-/* MOBILE MENU */
+document.addEventListener("DOMContentLoaded", () => {
 
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
 
-menuBtn.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
 
-    menuBtn.setAttribute("aria-expanded", isOpen);
+    if (menuBtn && navLinks) {
 
-    menuBtn.innerHTML = isOpen
-        ? '<i class="fas fa-xmark"></i>'
-        : '<i class="fas fa-bars"></i>';
-});
+        menuBtn.addEventListener("click", () => {
 
-document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-    });
-});
+            const isOpen = navLinks.classList.toggle("open");
 
-/* HERO SLIDER */
+            menuBtn.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
 
-const slides = document.querySelectorAll(".hero-slide");
-const dots = document.querySelectorAll(".dot");
+            menuBtn.innerHTML = isOpen
+                ? '<i class="fas fa-xmark"></i>'
+                : '<i class="fas fa-bars"></i>';
 
-let currentSlide = 0;
-let sliderTimer;
-
-function showSlide(index) {
-    slides.forEach(slide => slide.classList.remove("active"));
-    dots.forEach(dot => dot.classList.remove("active"));
-
-    currentSlide = (index + slides.length) % slides.length;
-
-    slides[currentSlide].classList.add("active");
-    dots[currentSlide].classList.add("active");
-}
-
-function startSlider() {
-    clearInterval(sliderTimer);
-    sliderTimer = setInterval(() => {
-        showSlide(currentSlide + 1);
-    }, 5000);
-}
-
-dots.forEach((dot,index) => {
-    dot.addEventListener("click", () => {
-        showSlide(index);
-        startSlider();
-    });
-});
-
-startSlider();
-
-/* GALLERY FILTER */
-
-const filterButtons = document.querySelectorAll(".filter-btn");
-const galleryCards = document.querySelectorAll(".gallery-card");
-
-filterButtons.forEach(button => {
-    button.addEventListener("click", () => {
-
-        filterButtons.forEach(btn => {
-            btn.classList.remove("active");
         });
 
-        button.classList.add("active");
+        document.querySelectorAll(".nav-links a").forEach(link => {
 
-        const filter = button.dataset.filter;
+            link.addEventListener("click", () => {
 
-        galleryCards.forEach(card => {
-            const category = card.dataset.category;
-            const shouldShow =
-                filter === "all" || category === filter;
+                navLinks.classList.remove("open");
 
-            if (shouldShow) {
-                card.style.display = "block";
+                menuBtn.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
 
-                setTimeout(() => {
-                    card.style.opacity = "1";
-                    card.style.transform = "translateY(0)";
-                }, 20);
+                menuBtn.innerHTML =
+                    '<i class="fas fa-bars"></i>';
 
-            } else {
-                card.style.opacity = "0";
-                card.style.transform = "translateY(15px)";
+            });
 
-                setTimeout(() => {
-                    card.style.display = "none";
-                }, 250);
+        });
+
+    }
+
+
+    /* =====================================================
+       NAVBAR SCROLL EFFECT
+    ===================================================== */
+
+    const mainHeader = document.getElementById("mainHeader");
+
+    if (mainHeader) {
+
+        window.addEventListener("scroll", () => {
+
+            mainHeader.classList.toggle(
+                "scrolled",
+                window.scrollY > 30
+            );
+
+        }, { passive: true });
+
+    }
+
+
+    /* =====================================================
+       PREMIUM HERO SLIDER
+    ===================================================== */
+
+    const heroSlides =
+        document.querySelectorAll(".hero-slide");
+
+    const heroContents =
+        document.querySelectorAll(".hero-content-item");
+
+    const heroDots =
+        document.querySelectorAll(".slider-dot");
+
+    const heroPrev =
+        document.getElementById("heroPrev");
+
+    const heroNext =
+        document.getElementById("heroNext");
+
+    let currentSlide = 0;
+    let sliderTimer = null;
+
+
+    function showHeroSlide(index) {
+
+        if (heroSlides.length === 0) return;
+
+        if (index < 0) {
+            index = heroSlides.length - 1;
+        }
+
+        if (index >= heroSlides.length) {
+            index = 0;
+        }
+
+        currentSlide = index;
+
+        heroSlides.forEach((slide, i) => {
+
+            slide.classList.toggle(
+                "active",
+                i === currentSlide
+            );
+
+        });
+
+        heroContents.forEach((content, i) => {
+
+            content.classList.toggle(
+                "active",
+                i === currentSlide
+            );
+
+        });
+
+        heroDots.forEach((dot, i) => {
+
+            dot.classList.toggle(
+                "active",
+                i === currentSlide
+            );
+
+        });
+
+    }
+
+
+    function nextHeroSlide() {
+        showHeroSlide(currentSlide + 1);
+    }
+
+
+    function previousHeroSlide() {
+        showHeroSlide(currentSlide - 1);
+    }
+
+
+    function startHeroSlider() {
+
+        clearInterval(sliderTimer);
+
+        if (heroSlides.length > 1) {
+
+            sliderTimer = setInterval(() => {
+
+                nextHeroSlide();
+
+            }, 5500);
+
+        }
+
+    }
+
+
+    if (heroSlides.length > 0) {
+
+        showHeroSlide(0);
+        startHeroSlider();
+
+        if (heroNext) {
+
+            heroNext.addEventListener("click", () => {
+
+                nextHeroSlide();
+                startHeroSlider();
+
+            });
+
+        }
+
+        if (heroPrev) {
+
+            heroPrev.addEventListener("click", () => {
+
+                previousHeroSlide();
+                startHeroSlider();
+
+            });
+
+        }
+
+        heroDots.forEach(dot => {
+
+            dot.addEventListener("click", () => {
+
+                const slideIndex =
+                    Number(dot.dataset.slide);
+
+                showHeroSlide(slideIndex);
+                startHeroSlider();
+
+            });
+
+        });
+
+        document.addEventListener(
+            "visibilitychange",
+            () => {
+
+                if (document.hidden) {
+
+                    clearInterval(sliderTimer);
+
+                } else {
+
+                    startHeroSlider();
+
+                }
+
             }
-        });
-    });
-});
+        );
 
-/* =====================================
-   GSAP SCROLL REVEAL
+    }
+
+
+    /* =====================================================
+       3D SCROLL REVEAL ANIMATION
+    ===================================================== */
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+    if (revealElements.length > 0) {
+
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                        entry.target.style.opacity = "1";
+
+                        entry.target.style.transform =
+                            "translateY(0) rotateX(0deg)";
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+
+        revealElements.forEach(element => {
+
+            element.style.opacity = "0";
+
+            element.style.transform =
+                "translateY(60px) rotateX(12deg)";
+
+            element.style.transition =
+                "opacity 1s ease, transform 1s ease";
+
+            revealObserver.observe(element);
+
+        });
+
+    }
+
+
+    /* =====================================================
+       3D MOUSE EFFECT ON HERO IMAGE
+    ===================================================== */
+
+    const heroImage =
+        document.querySelector(".hero-image");
+
+    if (heroImage) {
+
+        heroImage.addEventListener(
+            "mousemove",
+            (event) => {
+
+                const rect =
+                    heroImage.getBoundingClientRect();
+
+                const x =
+                    event.clientX - rect.left;
+
+                const y =
+                    event.clientY - rect.top;
+
+                const rotateY =
+                    ((x / rect.width) - 0.5) * 12;
+
+                const rotateX =
+                    ((y / rect.height) - 0.5) * -12;
+
+                heroImage.style.transform =
+                    `perspective(1000px)
+                     rotateX(${rotateX}deg)
+                     rotateY(${rotateY}deg)
+                     scale(1.02)`;
+
+            }
+        );
+
+
+        heroImage.addEventListener(
+            "mouseleave",
+            () => {
+
+                heroImage.style.transform =
+                    "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       CONTACT FORM
+    ===================================================== */
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+    if (contactForm) {
+
+        contactForm.addEventListener(
+            "submit",
+            (event) => {
+
+                event.preventDefault();
+
+                alert(
+                    "Thank you! Your message has been received."
+                );
+
+                contactForm.reset();
+
+            }
+        );
+
+    }
+
+});
