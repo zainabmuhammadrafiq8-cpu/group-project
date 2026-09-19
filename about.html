@@ -24,8 +24,15 @@
     >
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     >
 
 
@@ -43,49 +50,77 @@
          NAVBAR
     ========================== -->
 
-    <header class="navbar">
+    <header id="mainHeader">
 
-        <!-- Logo -->
+        <div class="navbar">
 
-        <div class="logo">
-            Glamora</span>
-        </div>
+            <!-- Logo -->
 
-
-        <!-- Center Navigation -->
-
-        <nav>
-
-            <a href="index.html">
-                Home
+            <a href="index.html" class="logo">
+                Glamora.
             </a>
+
+
+            <!-- Navigation -->
+
+            <nav>
+
+                <ul class="nav-links" id="navLinks">
+
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="about.html"
+                            class="active"
+                        >
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="services.html">
+                            Services
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="booking.html">
+                            Booking
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+
+            <!-- Login -->
 
             <a
-                href="about.html"
-                class="active"
+                href="login.html"
+                class="btn nav-cta"
             >
-                About
+                Login
             </a>
 
-            <a href="services.html">
-                Services
-            </a>
 
-            <a href="booking.html">
-                Booking
-            </a>
+            <!-- Mobile Menu -->
 
-        </nav>
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
 
-
-        <!-- Login -->
-
-        <a
-            href="login.html"
-            class="login-btn"
-        >
-            Login
-        </a>
+        </div>
 
     </header>
 
@@ -446,7 +481,7 @@
     <footer>
 
         <div class="logo">
-            Glamora</span>
+            Glamora
         </div>
 
 
