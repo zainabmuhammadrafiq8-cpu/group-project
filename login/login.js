@@ -309,7 +309,7 @@ loginActualForm.addEventListener(
                 function () {
 
                     window.location.href =
-                        "index.html";
+                        "../home.html";
 
                 },
                 1000
@@ -490,7 +490,7 @@ async function checkGoogleRedirect() {
                 function () {
 
                     window.location.href =
-                        "index.html";
+                        "../home.html";
 
                 },
                 1000
@@ -754,14 +754,14 @@ async function phoneAuth(messageElement) {
 
 
         // =================================
-        // GO TO INDEX
+        // GO TO HOME
         // =================================
 
         setTimeout(
             function () {
 
                 window.location.href =
-                    "index.html";
+                    "../home.html";
 
             },
             1000
