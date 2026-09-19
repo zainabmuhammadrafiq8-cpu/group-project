@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Glamora Salon</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Login CSS -->
+    <link rel="stylesheet" href="login.css">
+
+</head>
+
+
+<body>
+
+    <div class="auth-container">
+
+
+        <!-- ================= IMAGE SECTION ================= -->
+
+        <div class="auth-image">
+
+            <div class="image-content">
+
+                <div class="logo">
+                    Glamora
+                </div>
+
+                <h1>
+                    Beauty Begins With <span>Confidence</span>
+                </h1>
+
+                <p>
+                    Join Glamora and enjoy a personalized
+                    luxury beauty experience.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= AUTH BOX ================= -->
+
+        <div class="auth-box">
+
+
+            <!-- ================= LOGIN ================= -->
+
+            <div class="form-box active" id="loginForm">
+
+                <p class="small-title">
+                    WELCOME BACK
+                </p>
+
+                <h2>
+                    Login
+                </h2>
+
+                <p class="subtitle">
+                    Sign in to your Glamora account
+                </p>
+
+
+                <!-- LOGIN FORM -->
+
+                <form id="loginActualForm">
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Email Address"
+                        required
+                    >
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Password"
+                        required
+                    >
+
+
+                    <div class="forgot">
+
+                        <a
+                            href="#"
+                            class="forgot-password"
+                        >
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <button type="submit">
+                        Login
+                    </button>
+
+
+                    <p id="loginMessage"></p>
+
+                </form>
+
+
+                <!-- OR -->
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+
+                <!-- GOOGLE LOGIN -->
+
+                <button
+                    class="google-btn"
+                    type="button"
+                    id="googleLoginBtn"
+                >
+                    Continue with Google
+                </button>
+
+
+                <!-- PHONE LOGIN -->
+
+                <button
+                    class="phone-btn"
+                    type="button"
+                    id="phoneLoginBtn"
+                >
+                    Continue with Phone
+                </button>
+
+
+                <!-- SWITCH TO SIGNUP -->
+
+                <p class="switch">
+
+                    Don't have an account?
+
+                    <span id="showSignup">
+                        Create Account
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <!-- ================= SIGNUP ================= -->
+
+            <div class="form-box" id="signupForm">
+
+                <p class="small-title">
+                    JOIN US
+                </p>
+
+                <h2>
+                    Create Account
+                </h2>
+
+                <p class="subtitle">
+                    Create your Glamora account
+                </p>
+
+
+                <!-- SIGNUP FORM -->
+
+                <form id="signupActualForm">
+
+                    <input
+                        type="text"
+                        id="signupName"
+                        placeholder="Full Name"
+                        required
+                    >
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="Email Address"
+                        required
+                    >
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        placeholder="Password"
+                        required
+                    >
+
+
+                    <button type="submit">
+                        Create Account
+                    </button>
+
+
+                    <p id="signupMessage"></p>
+
+                </form>
+
+
+                <!-- OR -->
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+
+                <!-- GOOGLE SIGNUP -->
+
+                <button
+                    class="google-btn"
+                    type="button"
+                    id="googleSignupBtn"
+                >
+                    Sign up with Google
+                </button>
+
+
+                <!-- PHONE SIGNUP -->
+
+                <button
+                    class="phone-btn"
+                    type="button"
+                    id="phoneSignupBtn"
+                >
+                    Sign up with Phone
+                </button>
+
+
+                <!-- SWITCH TO LOGIN -->
+
+                <p class="switch">
+
+                    Already have an account?
+
+                    <span id="showLogin">
+                        Login
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <!-- ================= RECAPTCHA ================= -->
+
+            <div id="recaptcha-container"></div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script
+        type="module"
+        src="login.js"
+    ></script>
+
+</body>
+
+</html>
