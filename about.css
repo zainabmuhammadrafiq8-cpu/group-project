@@ -264,6 +264,8 @@ header .logo {
 
     white-space: nowrap;
 
+    text-decoration: none;
+
     background:
         var(--gradient);
 
