@@ -137,9 +137,24 @@ body::after {
 
     letter-spacing: -1px;
 
-    color: #ffffff;
+    /* color: #ffffff; */
 
     white-space: nowrap;
+}
+
+.logo {
+    background: linear-gradient(
+        135deg,
+        #8b2fd6,
+        #ff4e8a,
+        #8b6cff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+    color: transparent;
 }
 
 .logo span,
